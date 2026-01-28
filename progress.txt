@@ -139,3 +139,14 @@ Started: 2026-01-28
   - Target matching in puzzles uses targetId pattern: target?.id?.toLowerCase() || target?.toLowerCase?.() || ''
   - When USE X WITH Y doesn't work, try using character's last name (e.g., "patchwell" not "doctor")
 ---
+
+## 2026-01-28 - US-019
+- **What was implemented:** Mess Hall room with broken food synthesizer
+- **Files changed:**
+  - src/data/rooms.js - Added mess-hall room, added UP exit from main-corridor
+  - src/data/items.js - Added coffee-mug and stale-donuts items
+- **Learnings for future iterations:**
+  - Use UP/DOWN connections for multi-level areas (stairs, elevators)
+  - Room features can provide puzzle hints (e.g., "needs duct tape" for repair puzzle)
+  - Items can be placed in new rooms via startingRoom property without additional code
+---
