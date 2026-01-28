@@ -339,10 +339,22 @@ function setupScienceLabPuzzle(game) {
             // Clear the goo!
             gameState.setFlag('science_lab_goo_cleared', true);
 
-            // Unlock the door
+            // Unlock the door and update room description
             const corridor = game.rooms.get('science-lab-corridor');
-            if (corridor && corridor.connections.east) {
-                corridor.connections.east.locked = false;
+            if (corridor) {
+                if (corridor.connections.east) {
+                    corridor.connections.east.locked = false;
+                }
+
+                // Update room description to reflect dissolved goo
+                corridor.description = `A short corridor leads to the Science Lab. The doorway to the east is now clear - only a faint burnt-toast smell and some discolored floor tiles remain where the alien goo once blocked the way.
+
+A sign next to the door reads "SCIENCE LAB - AUTHORIZED PERSONNEL ONLY." At least the goo respected the sign's authority more than you did.`;
+
+                // Update features to reflect dissolved goo
+                corridor.features['goo'] = 'The alien goo is gone, dissolved by your Universal Cleaning Solvent. Only a faint discoloration on the floor marks where it once stood. Professional satisfaction: achieved.';
+                corridor.features['alien goo'] = corridor.features['goo'];
+                corridor.features['door'] = 'The door to the Science Lab is now accessible, no longer blocked by alien goo. It looks like a standard blast door - nothing special now that the organic obstruction is gone.';
             }
 
             // Remove solvent from inventory (used up)

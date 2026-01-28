@@ -53,7 +53,9 @@ export class Parser {
         };
 
         // Words to strip from input
-        this.fillerWords = ['the', 'a', 'an', 'at', 'to', 'on', 'in', 'my', 'some'];
+        // Note: 'on' is intentionally excluded - it's a meaningful preposition
+        // in commands like "USE X ON Y" and "LOOK AT SIGN ON WALL"
+        this.fillerWords = ['the', 'a', 'an', 'at', 'to', 'in', 'my', 'some'];
     }
 
     /**
@@ -195,6 +197,20 @@ export class Parser {
         // Get the rest as noun phrase
         let nounPhrase = words.slice(1).join(' ');
 
+        // Handle "USE/APPLY/ACTIVATE X WITH/ON Y" for verb aliases
+        // The regex at the top only catches literal "use"; this catches aliases
+        if (verb === 'use') {
+            const useTargetMatch = nounPhrase.match(/^(.+?)\s+(?:with|on)\s+(.+)$/i);
+            if (useTargetMatch) {
+                return {
+                    verb: 'use',
+                    noun: this.cleanNoun(useTargetMatch[1]),
+                    target: this.cleanNoun(useTargetMatch[2]),
+                    raw
+                };
+            }
+        }
+
         // Check if noun contains a direction (for GO command)
         if (verb === 'go') {
             const dir = this.directions[nounPhrase] || this.directions[words[1]];
@@ -294,7 +310,7 @@ LOOK AT / EXAMINE [object] - Look at something closely
 TAKE / GET [object] - Pick up an item
 DROP [object] - Put down an item
 USE [object] - Use an item
-USE [object] WITH [object] - Use an item with something
+USE [object] WITH/ON [object] - Use an item with something
 INVENTORY (or I) - Check what you're carrying
 GO [direction] - Move (N/S/E/W/UP/DOWN or just the direction)
 TALK TO [character] - Speak with someone
