@@ -10,6 +10,7 @@
  */
 export function initializePuzzles(game) {
     setupKeycardPuzzle(game);
+    setupKeycardDoorUnlock(game);
     // Additional puzzles will be added here
 }
 
@@ -82,6 +83,76 @@ The Cargo Keycard is now on the floor within easy reach.`
             return `The Cargo Keycard lies on the floor, no longer mocking you from its high perch. It's marked "CARGO" in faded letters. Victory tastes sweet - or maybe that's just the cleaning solvent fumes.`;
         }
         return null; // Use default examineText
+    });
+}
+
+/**
+ * Setup keycard door unlock mechanic
+ * - Player can use keycards to unlock doors
+ */
+function setupKeycardDoorUnlock(game) {
+    const keycard = game.items.get('keycard-cargo');
+    if (!keycard) return;
+
+    // Store original use handler if any
+    const originalHandler = keycard._onUse;
+
+    keycard.setUseHandler((item, target, gameState) => {
+        const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+        // Check if using keycard with door or engineering
+        if (targetId === 'door' || targetId === 'engineering door' ||
+            targetId === 'engineering' || targetId === 'west' ||
+            targetId === 'west door') {
+
+            // Check if we're in the main corridor
+            const currentRoomId = gameState.getCurrentRoomId();
+            if (currentRoomId !== 'main-corridor') {
+                return {
+                    success: false,
+                    message: "There's no door here that needs this keycard."
+                };
+            }
+
+            // Check if already unlocked
+            if (gameState.getFlag('engineering_door_unlocked')) {
+                return {
+                    success: false,
+                    message: "The Engineering door is already unlocked."
+                };
+            }
+
+            // Unlock the door!
+            const mainCorridor = game.rooms.get('main-corridor');
+            if (mainCorridor && mainCorridor.connections.west) {
+                mainCorridor.connections.west.locked = false;
+                gameState.setFlag('engineering_door_unlocked', true);
+                gameState.addScore(5, 'engineering_door');
+
+                return {
+                    success: true,
+                    message: `You wave the Cargo Keycard at the reader with the confidence of someone who has unlocked many doors in their career. Most of them were janitor closets, but still.
+
+*BEEP*
+
+The light turns green, and the blast door slides open with a satisfying hiss. The warm air of Engineering wafts out, carrying the smell of ozone and minor mechanical disasters.
+
+"Access granted," the door announces unnecessarily. Yes, thank you, door. You noticed.
+
+The way to Engineering is now open.`
+                };
+            }
+        }
+
+        // Fall through to original handler or default
+        if (originalHandler) {
+            return originalHandler(item, target, gameState);
+        }
+
+        return {
+            success: false,
+            message: "You're not sure how to use the keycard with that."
+        };
     });
 }
 

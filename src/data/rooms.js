@@ -56,15 +56,41 @@ The lights flicker in a pattern that almost seems intentional, as if the station
             south: 'cargo-corridor',
             north: 'bridge',
             east: 'medical-bay',
-            west: 'engineering-corridor'
+            west: {
+                roomId: 'engineering-corridor',
+                locked: true,
+                requiredKey: 'keycard-cargo',
+                lockedMessage: 'The door to Engineering is locked. It has a keycard reader with "CARGO" written above it. Apparently, Engineering counts as "cargo" in some bureaucratic sense.'
+            }
         },
         features: {
             'goo': `Pulsing, iridescent alien goo. It smells faintly of burnt toast and something unidentifiable. You've cleaned up a lot of strange substances in your career, but this one takes the cake. It seems almost... alive? Best not to think about that.`,
             'signs': `Emergency signs point to various locations: Bridge (North), Medical Bay (East), Engineering (West), Cargo (South). The "You Are Here" dot has been replaced with a sad face emoji. You don't remember authorizing that modification.`,
             'walls': `The usually pristine white walls are covered in scorch marks and that weird goo. You're going to need a LOT of Universal Cleaning Solvent for this. Maybe THE DISSOLVER.`,
-            'lights': `The emergency lights flicker in an almost rhythmic pattern. Is the station trying to tell you something? Or is this just standard "everything is failing" behavior? Hard to tell anymore.`
+            'lights': `The emergency lights flicker in an almost rhythmic pattern. Is the station trying to tell you something? Or is this just standard "everything is failing" behavior? Hard to tell anymore.`,
+            'door': `The door to Engineering is a heavy blast door with a keycard reader. Above the reader, someone has helpfully labeled it "CARGO ACCESS REQUIRED." Because apparently, Engineering is considered cargo storage. Station bureaucracy at its finest.`,
+            'engineering door': `The door to Engineering is a heavy blast door with a keycard reader. Above the reader, someone has helpfully labeled it "CARGO ACCESS REQUIRED." Because apparently, Engineering is considered cargo storage. Station bureaucracy at its finest.`
         },
         image: 'main-corridor.png'
+    },
+
+    'engineering-corridor': {
+        name: 'ENGINEERING CORRIDOR',
+        description: `You're in the corridor leading to Engineering. The air here is noticeably warmer, and you can feel a subtle vibration through the floor from the station's power systems. Various pipes and conduits line the walls, most of them labeled with warnings you've learned to ignore.
+
+A few of the pipes are leaking steam, which adds a dramatic atmosphere but is probably terrible for the station's efficiency ratings. Someone has stuck a "We'll Fix It Eventually" sticky note on one of them. It's dated three years ago.
+
+The smell of ozone and machine oil hangs in the air. It's the smell of Engineering - a place where miracles are performed daily and nobody thanks you for it.`,
+        connections: {
+            east: 'main-corridor',
+            west: 'engineering-deck'
+        },
+        features: {
+            'pipes': `Various pipes carry coolant, fuel, and what you suspect might be the captain's private hot cocoa supply. Most are labeled. Some labels are crossed out and replaced with cryptic notes like "DO NOT TOUCH - JENKINS" and "DEFINITELY NOT HOT COCOA."`,
+            'steam': `Steam hisses from a leaky pipe. It's been doing this for at least three years, based on that sticky note. You've reported it twelve times. It's become a personal rivalry at this point.`,
+            'note': `A faded sticky note reads: "We'll Fix It Eventually - Engineering Dept." It's dated three years ago. You admire their optimism.`
+        },
+        image: 'engineering-corridor.png'
     }
 };
 
