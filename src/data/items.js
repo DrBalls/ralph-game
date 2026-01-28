@@ -193,6 +193,19 @@ With this, you can access the more restricted areas of the station. The plot thi
         hidden: true,
         aliases: ['keycard', 'eng keycard', 'access card'],
         useWith: ['door', 'science door', 'science lab']
+    },
+
+    'alien-goo-sample': {
+        name: 'Alien Goo Sample',
+        description: 'A small container of alien goo pulses with inner light.',
+        examineText: `A sample of the alien goo, collected in a standard science containment unit. It pulses gently with an inner light, shifting between colors that make your eyes water.
+
+Occasionally it forms tiny shapes - faces, symbols, what might be obscene gestures in some alien language. You're not sure if it's sentient or just randomly pattern-forming. Either way, it's unsettling.
+
+The scientists probably wanted to study this stuff. Now it's your problem. Such is the janitor's lot in life.`,
+        takeable: true,
+        startingRoom: 'science-lab',
+        aliases: ['goo sample', 'sample', 'goo', 'containment unit']
     }
 };
 

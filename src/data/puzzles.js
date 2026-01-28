@@ -13,6 +13,7 @@ export function initializePuzzles(game) {
     setupKeycardDoorUnlock(game);
     setupSmellingSaltsPuzzle(game);
     setupCoffeePuzzle(game);
+    setupScienceLabPuzzle(game);
 }
 
 /**
@@ -153,6 +154,79 @@ The way to Engineering is now open.`
         return {
             success: false,
             message: "You're not sure how to use the keycard with that."
+        };
+    });
+}
+
+/**
+ * Setup the Science Lab goo puzzle
+ * - Player uses Universal Cleaning Solvent on the alien goo blocking the lab
+ */
+function setupScienceLabPuzzle(game) {
+    const solvent = game.items.get('solvent');
+
+    if (!solvent) return;
+
+    solvent.setUseHandler((item, target, gameState) => {
+        const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+        // Check if using solvent on goo or door
+        if (targetId === 'goo' || targetId === 'alien goo' || targetId === 'door' ||
+            targetId === 'alien-goo' || targetId === 'doorway') {
+            // Check if we're in the science lab corridor
+            const currentRoomId = gameState.getCurrentRoomId();
+            if (currentRoomId !== 'science-lab-corridor') {
+                return {
+                    success: false,
+                    message: "There's no alien goo blocking anything here. Save the solvent for when you need it."
+                };
+            }
+
+            // Check if already cleared
+            if (gameState.getFlag('science_lab_goo_cleared')) {
+                return {
+                    success: false,
+                    message: "You've already dissolved the goo. The way to the Science Lab is clear."
+                };
+            }
+
+            // Clear the goo!
+            gameState.setFlag('science_lab_goo_cleared', true);
+
+            // Unlock the door
+            const corridor = game.rooms.get('science-lab-corridor');
+            if (corridor && corridor.connections.east) {
+                corridor.connections.east.locked = false;
+            }
+
+            // Remove solvent from inventory (used up)
+            gameState.inventory.remove('solvent');
+
+            gameState.addScore(10, 'clear_goo');
+
+            return {
+                success: true,
+                message: `You approach the wall of alien goo with the confidence of someone who has dissolved many things that shouldn't exist. Which is to say, you.
+
+"Universal Cleaning Solvent," you announce, holding up the bottle. "For all your dissolution needs."
+
+You pour the solvent onto the goo. For a moment, nothing happens. Then:
+
+*HISSSSSSS* *BUBBLE* *SPLORP*
+
+The goo reacts violently, frothing and bubbling as it dissolves. It makes sounds that might be screaming, if goo could scream. You choose to believe it can't.
+
+Within seconds, the doorway is clear. The goo has completely dissolved, leaving only a faint burnt-toast smell and your profound sense of professional satisfaction.
+
+"Just another day at the office," you mutter.
+
+The way to the Science Lab is now open!`
+            };
+        }
+
+        return {
+            success: false,
+            message: "You're not sure what to dissolve with the solvent here. This stuff is strong - best to save it for something that really needs dissolving."
         };
     });
 }

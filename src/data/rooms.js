@@ -62,11 +62,12 @@ The lights flicker in a pattern that almost seems intentional, as if the station
                 requiredKey: 'keycard-cargo',
                 lockedMessage: 'The door to Engineering is locked. It has a keycard reader with "CARGO" written above it. Apparently, Engineering counts as "cargo" in some bureaucratic sense.'
             },
-            up: 'mess-hall'
+            up: 'mess-hall',
+            down: 'science-lab-corridor'
         },
         features: {
             'goo': `Pulsing, iridescent alien goo. It smells faintly of burnt toast and something unidentifiable. You've cleaned up a lot of strange substances in your career, but this one takes the cake. It seems almost... alive? Best not to think about that.`,
-            'signs': `Emergency signs point to various locations: Bridge (North), Medical Bay (East), Engineering (West), Cargo (South), Mess Hall (Up via stairs). The "You Are Here" dot has been replaced with a sad face emoji. You don't remember authorizing that modification.`,
+            'signs': `Emergency signs point to various locations: Bridge (North), Medical Bay (East), Engineering (West), Cargo (South), Mess Hall (Up via stairs), Science Lab (Down via stairs). The "You Are Here" dot has been replaced with a sad face emoji. You don't remember authorizing that modification.`,
             'walls': `The usually pristine white walls are covered in scorch marks and that weird goo. You're going to need a LOT of Universal Cleaning Solvent for this. Maybe THE DISSOLVER.`,
             'lights': `The emergency lights flicker in an almost rhythmic pattern. Is the station trying to tell you something? Or is this just standard "everything is failing" behavior? Hard to tell anymore.`,
             'door': `The door to Engineering is a heavy blast door with a keycard reader. Above the reader, someone has helpfully labeled it "CARGO ACCESS REQUIRED." Because apparently, Engineering is considered cargo storage. Station bureaucracy at its finest.`,
@@ -155,6 +156,54 @@ Through the static on the viewscreen, you can just make out the approaching Blor
             'captain': `Captain Reginald Bluster, unconscious and slightly drooling on his command chair. His perfect hair is finally out of place. You resist the urge to take a photo.`
         },
         image: 'bridge.png'
+    },
+
+    'science-lab-corridor': {
+        name: 'SCIENCE LAB CORRIDOR',
+        description: `A short corridor leads to the Science Lab. Or rather, it would lead there, if the doorway wasn't completely blocked by a massive wall of pulsating alien goo. The stuff is the same iridescent, burnt-toast-smelling substance you saw in the Main Corridor, but here it's formed an impenetrable barrier.
+
+The goo pulses with an internal light, occasionally forming shapes that might be faces, or might just be your imagination running away with you. Either way, it's disturbing.
+
+A sign next to the door reads "SCIENCE LAB - AUTHORIZED PERSONNEL ONLY." The goo seems unimpressed by the sign.`,
+        connections: {
+            west: 'main-corridor',
+            east: {
+                roomId: 'science-lab',
+                locked: true,
+                requiredKey: null,
+                lockedMessage: 'The doorway is completely blocked by alien goo. The stuff pulses and gurgles when you get close, as if daring you to try. Maybe something could dissolve it?'
+            }
+        },
+        features: {
+            'goo': `The alien goo forms a solid wall across the doorway. It's warm to the touch (you checked, regrettably) and seems almost alive. Your professional assessment: this is a mess that needs cleaning.`,
+            'alien goo': `The alien goo forms a solid wall across the doorway. It's warm to the touch (you checked, regrettably) and seems almost alive. Your professional assessment: this is a mess that needs cleaning.`,
+            'sign': `"SCIENCE LAB - AUTHORIZED PERSONNEL ONLY." Below it, someone has written "This means you, Jenkins." Jenkins must have been really unpopular.`,
+            'door': `You can barely see the door behind all that goo. It's a heavy blast door, probably locked too, but the goo is the more immediate problem.`
+        },
+        image: 'science-lab-corridor.png'
+    },
+
+    'science-lab': {
+        name: 'SCIENCE LAB',
+        description: `The Science Lab is ground zero for the chaos that's gripped the station. Equipment lies scattered, consoles spark intermittently, and in the center of it all sits THE ARTIFACT.
+
+The alien artifact hovers a few inches above its containment pedestal, glowing with an inner light that shifts between colors your brain insists shouldn't exist. It hums at a frequency that makes your teeth itch.
+
+Scattered around the room are notes, data pads, and what appears to be someone's lunch (now mutated into something that's eating the container). The scientists clearly left in a hurry when things went wrong.
+
+Despite the chaos, this is actually one of the cleaner rooms you've seen. The artifact's energy wave seems to have organized certain things while destroying others. Very inconsiderate of it.`,
+        connections: {
+            west: 'science-lab-corridor'
+        },
+        features: {
+            'artifact': `The alien artifact. The thing that started all this. It's about the size of a basketball, covered in intricate patterns that seem to shift when you're not looking directly at them. It hums smugly, as if it knows exactly what it did and isn't sorry.`,
+            'alien artifact': `The alien artifact. The thing that started all this. It's about the size of a basketball, covered in intricate patterns that seem to shift when you're not looking directly at them. It hums smugly, as if it knows exactly what it did and isn't sorry.`,
+            'pedestal': `A high-tech containment pedestal designed to keep the artifact stable. It's doing an... adequate job, considering the artifact is still glowing and humming ominously.`,
+            'consoles': `Scientific consoles blink with error messages and readings that are either very wrong or very right in ways no one understands anymore.`,
+            'notes': `Scientific notes scattered everywhere. Most are too technical to understand, but you spot phrases like "unprecedented energy readings," "consciousness patterns??" and "ORDER MORE COFFEE - URGENT."`,
+            'lunch': `What was once someone's lunch has mutated into a small, purple blob that's slowly consuming its container. It looks at you (how? It doesn't have eyes) and makes a sound that might be a greeting. You decide to leave it alone.`
+        },
+        image: 'science-lab.png'
     },
 
     'mess-hall': {

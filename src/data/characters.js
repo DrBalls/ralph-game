@@ -52,6 +52,27 @@ You've cleaned this man's quarters for fifteen years. You know things about him.
             'repaired': `"Ah, that's better. Thank you - and I'm genuinely not being sarcastic for once. My backup personality chip was in the DISCO BALL? Whose idea was that? Actually, don't tell me. I probably don't want to know."`,
             'default': `DUSTY's screen flickers. "I appreciate the conversation, but perhaps we should focus on not dying? Just a suggestion."`
         }
+    },
+
+    'alien-artifact': {
+        id: 'alien-artifact',
+        name: 'The Artifact',
+        description: `The alien artifact hovers serenely above its pedestal, glowing with colors that shouldn't exist. It hums at a frequency that makes your fillings vibrate. Despite being an inanimate object (probably), it radiates an aura of smug self-satisfaction.
+
+This is the thing that knocked out the entire crew, corrupted the AI, and set the station on a collision course with an alien homeworld. And it seems... proud of itself?`,
+        startingRoom: 'science-lab',
+        state: 'active',
+        dialogue: {
+            'active': [
+                `The artifact pulses brighter for a moment. You get the distinct impression it's laughing at you. "Tiny cleaning creature. You think you can fix what I have done? How... adorable."`,
+                `"I have traversed the void between stars while your species was still learning to walk upright. And you approach me with a... mop?" The artifact's hum takes on a condescending tone.`,
+                `"The station's course is set. The AI is scrambled. The crew sleeps. And you, the cleaner of toilets, will save them all? The universe has a sense of humor."`,
+                `"I must admit, I didn't expect the janitor to be the last one standing. You're either very lucky or very boring. Possibly both."`,
+                `"Yes, yes, keep asking questions. Every moment you waste talking to me is a moment closer to your inevitable collision with Blorgnax Prime. No pressure."`
+            ],
+            'dormant': `The artifact's glow has dimmed considerably. It's still humming, but now it sounds almost... sulky. "Fine. You win this round, janitor. But I'll be back. I'm an ancient cosmic artifact. We're patient."`,
+            'default': `The artifact pulses thoughtfully. "You know, for a cleaning professional, you're remarkably resilient. It's almost... admirable. Almost."`
+        }
     }
 };
 
