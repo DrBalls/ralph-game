@@ -309,6 +309,21 @@ The gauge shows it's fully charged. You've discharged these before - accidentall
         startingRoom: 'airlock',
         aliases: ['extinguisher', 'fire suppressant', 'co2 extinguisher'],
         useWith: ['fire', 'flames', 'sparks']
+    },
+
+    'verification-code': {
+        name: 'Navigation Verification Code',
+        description: 'A glowing symbol hovers above your palm - the artifact\'s verification code.',
+        examineText: `The verification code hovers above your palm like a miniature hologram, pulsing with the same otherworldly light as the artifact itself. It's a complex symbol that hurts to look at directly - geometry that shouldn't exist in three dimensions.
+
+The artifact called this a "safety measure." Apparently, even ancient cosmic entities believe in two-factor authentication.
+
+DUSTY should be able to use this to verify the navigation course correction. At least, that's what the smug alien basketball said.`,
+        takeable: true,
+        startingRoom: null,
+        hidden: true,
+        aliases: ['code', 'verification', 'artifact code', 'symbol', 'navigation code'],
+        useWith: ['dusty', 'console', 'navigation', 'terminal']
     }
 };
 

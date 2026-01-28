@@ -285,3 +285,15 @@ Started: 2026-01-28
   - Character state updates (dusty.setState('repaired')) change dialogue
   - Long story sequences work well for climactic moments
 ---
+
+## 2026-01-28 - US-032
+- **What was implemented:** Final puzzle - get verification code from artifact, redirect station
+- **Files changed:**
+  - src/data/items.js - Added verification-code item
+  - src/data/characters.js - Added 'impressed' dialogue state for artifact
+  - src/data/puzzles.js - Added setupFinalPuzzle() with artifact talk override and verification code handler
+- **Learnings for future iterations:**
+  - Character.talk() can be overridden in puzzles for dynamic behavior
+  - Game flags (game_won) can trigger ending sequences
+  - Final puzzles should have dramatic, satisfying feedback messages
+---

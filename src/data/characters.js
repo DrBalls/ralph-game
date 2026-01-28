@@ -87,6 +87,13 @@ This is the thing that knocked out the entire crew, corrupted the AI, and set th
                 `"I must admit, I didn't expect the janitor to be the last one standing. You're either very lucky or very boring. Possibly both."`,
                 `"Yes, yes, keep asking questions. Every moment you waste talking to me is a moment closer to your inevitable collision with Blorgnax Prime. No pressure."`
             ],
+            'impressed': [
+                `The artifact's glow flickers in what might be surprise. "You... fixed the AI? Without any engineering training? That's... actually impressive. For a janitor."`,
+                `"Fine. Fine! You want to redirect the station? You'll need my verification code. The navigation system requires it - a safety measure I installed because I'm not a COMPLETE monster."`,
+                `"Here. Take this." A glowing symbol materializes in the air before you. "Use it with your AI. And don't say I never gave you anything."`,
+                `"Now go. Save your station. I'll just... sit here. Contemplating how I was outsmarted by someone with a mop. This is very embarrassing for me."`,
+                `"Also - don't tell anyone about this. I have a reputation to maintain. 'Defeated by a janitor' is not a good look for an ancient cosmic entity."`
+            ],
             'dormant': `The artifact's glow has dimmed considerably. It's still humming, but now it sounds almost... sulky. "Fine. You win this round, janitor. But I'll be back. I'm an ancient cosmic artifact. We're patient."`,
             'default': `The artifact pulses thoughtfully. "You know, for a cleaning professional, you're remarkably resilient. It's almost... admirable. Almost."`
         }

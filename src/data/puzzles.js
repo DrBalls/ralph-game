@@ -20,6 +20,7 @@ export function initializePuzzles(game) {
     setupDiscoBallPuzzle(game);
     setupOverrideCodePuzzle(game);
     setupDustyRepairPuzzle(game);
+    setupFinalPuzzle(game);
 }
 
 /**
@@ -1192,6 +1193,134 @@ DUSTY has been repaired! The AI is back to its normal, sarcastic self.`
             return {
                 success: false,
                 message: "You're not sure where to install the personality chip here."
+            };
+        });
+    }
+}
+
+/**
+ * Setup the final puzzle - get verification code and redirect station
+ */
+function setupFinalPuzzle(game) {
+    const artifact = game.characters.get('alien-artifact');
+    const verificationCode = game.items.get('verification-code');
+
+    // Override the artifact's talk method to handle giving the code
+    if (artifact) {
+        const originalTalk = artifact.talk.bind(artifact);
+
+        artifact.talk = function(gameState) {
+            // Check if DUSTY is repaired
+            if (gameState?.getFlag('dusty_repaired') && !gameState?.getFlag('verification_code_received')) {
+                // First time talking after DUSTY repair - give the code
+                this.setState('impressed');
+                gameState.setFlag('verification_code_received', true);
+
+                // Give the verification code
+                if (verificationCode) {
+                    verificationCode.hidden = false;
+                    gameState.inventory.add(verificationCode);
+                }
+
+                gameState.addScore(15, 'get_verification_code');
+
+                return `The artifact's glow flickers in what might be surprise.
+
+"You... fixed the AI? Without any engineering training? That's... actually impressive. For a janitor."
+
+The artifact seems to deflate slightly, if a floating alien sphere can deflate.
+
+"Fine. FINE. You want to redirect the station? You'll need my verification code. The navigation system requires it - a safety measure I installed because I'm not a COMPLETE monster."
+
+A symbol materializes in the air, glowing with the same otherworldly light as the artifact. It floats toward you and settles into your palm.
+
+"Use it with your AI. And don't say I never gave you anything. Now go. Save your station. I'll just... sit here. Contemplating how I was outsmarted by someone with a mop."
+
+You received the Navigation Verification Code!`;
+            }
+
+            // If code already received, show different dialogue
+            if (gameState?.getFlag('verification_code_received')) {
+                this.setState('dormant');
+            }
+
+            // Call original talk method
+            return originalTalk(gameState);
+        };
+    }
+
+    // Setup verification code use handler
+    if (verificationCode) {
+        verificationCode.setUseHandler((item, target, gameState) => {
+            const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+            if (targetId === 'dusty' || targetId === 'terminal' || targetId === 'console' ||
+                targetId === 'navigation' || targetId === 'core' || targetId === 'computer') {
+                // Check if we're on the bridge or in DUSTY's core
+                const currentRoomId = gameState.getCurrentRoomId();
+                if (currentRoomId !== 'bridge' && currentRoomId !== 'dusty-core') {
+                    return {
+                        success: false,
+                        message: "You need to use this with DUSTY's systems on the Bridge or in the Core."
+                    };
+                }
+
+                // Check if DUSTY is repaired
+                if (!gameState.getFlag('dusty_repaired')) {
+                    return {
+                        success: false,
+                        message: "DUSTY isn't functioning properly yet. You need to repair the AI first."
+                    };
+                }
+
+                // Check if already redirected
+                if (gameState.getFlag('station_redirected')) {
+                    return {
+                        success: false,
+                        message: "The station has already been redirected. Crisis averted!"
+                    };
+                }
+
+                // REDIRECT THE STATION!
+                gameState.setFlag('station_redirected', true);
+
+                // Remove verification code (used)
+                gameState.inventory.remove('verification-code');
+
+                gameState.addScore(30, 'redirect_station');
+
+                // Trigger game ending (this will be handled by US-033)
+                gameState.setFlag('game_won', true);
+
+                return {
+                    success: true,
+                    message: `You hold up the glowing verification code to DUSTY's terminal. The symbol pulses once, twice, and then flows into the system like water into a drain.
+
+"Verification code received," DUSTY announces. "Authenticity confirmed. That's... actually the artifact's signature. How did you convince it to help?"
+
+"Long story," you say.
+
+"Fair enough. Initiating course correction now."
+
+The station shudders. Through the viewscreen, you can see the stars begin to shift as the Pristine Venture changes heading. The looming bulk of Blorgnax Prime starts to drift to the side.
+
+"New course plotted," DUSTY reports. "We will now pass Blorgnax Prime at a safe distance. Collision averted. You know, for a janitor, you're remarkably competent at saving everyone's lives."
+
+"It's all about having the right tools," you say, patting your mop.
+
+"I... was not referring to the mop, but sure. Let's go with that."
+
+The emergency lights begin to shift from red to normal. Somewhere in the distance, you hear the first groans of crew members starting to wake up.
+
+You did it. You actually did it.
+
+THE STATION HAS BEEN SAVED!`
+                };
+            }
+
+            return {
+                success: false,
+                message: "You're not sure where to use the verification code here."
             };
         });
     }
