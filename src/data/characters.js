@@ -54,6 +54,23 @@ You've cleaned this man's quarters for fifteen years. You know things about him.
         }
     },
 
+    'chief-krix': {
+        id: 'chief-krix',
+        name: 'Chief Engineer Krix',
+        description: `Chief Engineer Krix is a Delvian - a species known for having four arms, no patience, and an uncanny ability to fix anything with enough duct tape and profanity. She's currently draped over the punch bowl, all four arms dangling limply, still clutching a hydrospanner in one hand.
+
+Even unconscious, she looks annoyed. This is her default expression. You've never seen her smile. You're not sure Delvians CAN smile. It might be physically impossible.
+
+Her engineering jumpsuit is covered in grease stains that predate your employment on this station.`,
+        startingRoom: 'ballroom',
+        state: 'unconscious',
+        dialogue: {
+            'unconscious': `Chief Krix is unconscious. Her four arms twitch occasionally, probably dreaming about fixing things. Or yelling at people. Both are equally likely.`,
+            'awake': `"Mnrgh... wha... which one of you idiots broke the station this time?" Krix blinks all three of her eyes and focuses on you. "Oh. The janitor. Why am I not surprised? Every time something goes wrong, you're always there. Coincidence? I think NOT."`,
+            'default': `Krix crosses two of her arms while the other two continue working on whatever she's holding. "What do you want? I'm busy. The whole station's falling apart and you want to CHAT?"`
+        }
+    },
+
     'alien-artifact': {
         id: 'alien-artifact',
         name: 'The Artifact',

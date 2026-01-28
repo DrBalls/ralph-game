@@ -64,15 +64,17 @@ The lights flicker in a pattern that almost seems intentional, as if the station
                 lockedMessage: 'The door to Engineering is locked. It has a keycard reader with "CARGO" written above it. Apparently, Engineering counts as "cargo" in some bureaucratic sense.'
             },
             up: 'mess-hall',
-            down: 'science-lab-corridor'
+            down: 'science-lab-corridor',
+            northeast: 'ballroom'
         },
         features: {
             'goo': `Pulsing, iridescent alien goo. It smells faintly of burnt toast and something unidentifiable. You've cleaned up a lot of strange substances in your career, but this one takes the cake. It seems almost... alive? Best not to think about that.`,
-            'signs': `Emergency signs point to various locations: Bridge (North), Medical Bay (East), Engineering (West), Cargo (South), Mess Hall (Up via stairs), Science Lab (Down via stairs). The "You Are Here" dot has been replaced with a sad face emoji. You don't remember authorizing that modification.`,
+            'signs': `Emergency signs point to various locations: Bridge (North), Medical Bay (East), Engineering (West), Cargo (South), Mess Hall (Up via stairs), Science Lab (Down via stairs), Ballroom (Northeast). The "You Are Here" dot has been replaced with a sad face emoji. You don't remember authorizing that modification.`,
             'walls': `The usually pristine white walls are covered in scorch marks and that weird goo. You're going to need a LOT of Universal Cleaning Solvent for this. Maybe THE DISSOLVER.`,
             'lights': `The emergency lights flicker in an almost rhythmic pattern. Is the station trying to tell you something? Or is this just standard "everything is failing" behavior? Hard to tell anymore.`,
             'door': `The door to Engineering is a heavy blast door with a keycard reader. Above the reader, someone has helpfully labeled it "CARGO ACCESS REQUIRED." Because apparently, Engineering is considered cargo storage. Station bureaucracy at its finest.`,
-            'engineering door': `The door to Engineering is a heavy blast door with a keycard reader. Above the reader, someone has helpfully labeled it "CARGO ACCESS REQUIRED." Because apparently, Engineering is considered cargo storage. Station bureaucracy at its finest.`
+            'engineering door': `The door to Engineering is a heavy blast door with a keycard reader. Above the reader, someone has helpfully labeled it "CARGO ACCESS REQUIRED." Because apparently, Engineering is considered cargo storage. Station bureaucracy at its finest.`,
+            'ballroom': `A large archway to the northeast leads to the Grand Ballroom, where the Captain's Gala was in full swing when everything went wrong. You can see scattered lights from the disco ball inside.`
         },
         image: 'main-corridor.png'
     },
@@ -168,6 +170,31 @@ Through the static on the viewscreen, you can just make out the approaching Blor
             'captain': `Captain Reginald Bluster, unconscious and slightly drooling on his command chair. His perfect hair is finally out of place. You resist the urge to take a photo.`
         },
         image: 'bridge.png'
+    },
+
+    'ballroom': {
+        name: 'BALLROOM',
+        description: `The Grand Ballroom of the Pristine Venture is frozen in time - specifically, the exact moment when the Captain's Gala went from "mandatory fun" to "mandatory unconsciousness."
+
+Dozens of crew members lie scattered across the polished floor, still in their formal wear, still clutching drinks that have long since gone flat. The decorations are impeccable: streamers, balloons, and a banner that reads "EXCELLENCE: IT'S NOT OPTIONAL!" The irony is palpable.
+
+Above it all, a massive disco ball hangs from the ceiling, still slowly rotating, scattering fragments of light across the unconscious partygoers like the world's most depressing snow globe.
+
+Chief Engineer Krix, the station's four-armed Delvian engineer, is slumped over the punch bowl, all four arms dangling limply. Even unconscious, she looks annoyed.`,
+        connections: {
+            southwest: 'main-corridor'
+        },
+        features: {
+            'disco ball': `A massive disco ball hangs from the ceiling, slowly rotating and casting sparkles across the room. It's the centerpiece of every station gala, because nothing says "mandatory fun" like a reflective sphere.
+
+Wait - is that... is there something INSIDE the disco ball? Through the mirrored panels, you can see what looks like a small electronic device. How did that get in there? And more importantly, why?`,
+            'crew': `Dozens of unconscious crew members in various states of formal dress. Some are face-down in hors d'oeuvres. Others are frozen mid-conversation. One appears to have been in the middle of an interpretive dance. You choose not to think about that one.`,
+            'decorations': `Streamers, balloons, and motivational banners. "EXCELLENCE: IT'S NOT OPTIONAL!" "PRISTINE IS PRISTING!" (someone clearly didn't proofread that one) and "CAPTAIN BLUSTER: LEADER, LEGEND, LOVER OF FINE CHEESE."`,
+            'banner': `"EXCELLENCE: IT'S NOT OPTIONAL!" screams the banner in letters you can read from space. You've cleaned up after many galas, and they always have banners like this. The more aggressive the message about fun, the less fun the event actually is.`,
+            'punch bowl': `Chief Engineer Krix is draped over the punch bowl. The punch itself has turned a concerning shade of purple. Either that's the alien goo's influence, or this is just how Engineering makes punch. Both are equally possible.`,
+            'floor': `The polished ballroom floor that you've buffed to a mirror shine many times. Currently decorated with unconscious people and spilled drinks. This is going to take FOREVER to clean.`
+        },
+        image: 'ballroom.png'
     },
 
     'science-lab-corridor': {

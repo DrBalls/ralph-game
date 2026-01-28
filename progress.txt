@@ -230,3 +230,14 @@ Started: 2026-01-28
   - Hidden items (override-code) start with hidden:true and startingRoom:null, added to inventory by puzzle
   - Books can have both examineText (for EXAMINE) and useHandler (for READ/USE)
 ---
+
+## 2026-01-28 - US-027
+- **What was implemented:** Ballroom with frozen gala scene and Chief Engineer Krix
+- **Files changed:**
+  - src/data/rooms.js - Added ballroom room, updated main-corridor with northeast connection
+  - src/data/characters.js - Added chief-krix character (4-armed Delvian engineer)
+- **Learnings for future iterations:**
+  - Diagonal directions (northeast, southwest, etc.) work for connections
+  - Room features can describe objects that will be puzzle targets later (disco ball)
+  - Characters can have alien physiology (multiple arms, eyes) for variety
+---

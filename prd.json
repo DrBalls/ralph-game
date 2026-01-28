@@ -449,8 +449,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 27,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. Ballroom accessible via northeast from Main Corridor. Chief Krix is a 4-armed Delvian."
     },
     {
       "id": "US-028",
