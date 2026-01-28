@@ -350,3 +350,21 @@ Started: 2026-01-28
   - Include item locations and puzzle solutions
   - Scoring table helps verify all points are achievable
 ---
+
+## 2026-01-28 - US-035 through US-043
+- **What was implemented:** VGA-style pixel art for all 16 game rooms
+- **Files changed:**
+  - public/images/*.png - 16 room images generated
+  - src/ui/GameUI.js - Added automatic room image display in updateUI()
+- **Images created:**
+  - cargo-bay-7.png, cargo-corridor.png, main-corridor.png
+  - engineering-corridor.png, engineering-deck.png, medical-bay.png
+  - bridge.png, dusty-core.png, ballroom.png
+  - science-lab-corridor.png, science-lab.png, airlock.png
+  - crew-quarters.png, maintenance-tunnels.png, captains-quarters.png, mess-hall.png
+- **Learnings for future iterations:**
+  - Rooms already had `image` property in rooms.js data
+  - updateUI() is the central place for UI sync - add image updates there
+  - Generated images via image-generator subagent with VGA-style prompts
+  - Room image path format: `images/${room.image}` (relative to public/)
+---

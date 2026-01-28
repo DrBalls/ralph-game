@@ -579,8 +579,8 @@
         "Verify in browser using dev-browser skill"
       ],
       "priority": 35,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. VGA-style pixel art generated and wired to GameUI."
     },
     {
       "id": "US-036",
@@ -596,8 +596,8 @@
         "Verify in browser using dev-browser skill"
       ],
       "priority": 36,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. VGA-style pixel art generated."
     },
     {
       "id": "US-037",
@@ -612,8 +612,8 @@
         "Verify in browser using dev-browser skill"
       ],
       "priority": 37,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. VGA-style pixel art generated."
     },
     {
       "id": "US-038",
@@ -628,8 +628,8 @@
         "Verify in browser using dev-browser skill"
       ],
       "priority": 38,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. VGA-style pixel art generated."
     },
     {
       "id": "US-039",
@@ -644,8 +644,8 @@
         "Verify in browser using dev-browser skill"
       ],
       "priority": 39,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. VGA-style pixel art generated."
     },
     {
       "id": "US-040",
@@ -660,8 +660,8 @@
         "Verify in browser using dev-browser skill"
       ],
       "priority": 40,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. VGA-style pixel art generated."
     },
     {
       "id": "US-041",
@@ -676,8 +676,8 @@
         "Verify in browser using dev-browser skill"
       ],
       "priority": 41,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. VGA-style pixel art generated."
     },
     {
       "id": "US-042",
@@ -692,8 +692,8 @@
         "Verify in browser using dev-browser skill"
       ],
       "priority": 42,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. VGA-style pixel art generated."
     },
     {
       "id": "US-043",
@@ -709,8 +709,8 @@
         "Verify in browser using dev-browser skill"
       ],
       "priority": 43,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. All 16 room images generated: cargo-bay-7, cargo-corridor, main-corridor, engineering-corridor, engineering-deck, medical-bay, bridge, dusty-core, ballroom, science-lab-corridor, science-lab, airlock, crew-quarters, maintenance-tunnels, captains-quarters, mess-hall."
     },
     {
       "id": "US-044",

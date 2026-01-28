@@ -153,15 +153,20 @@ export class GameUI {
     }
 
     /**
-     * Update UI elements (location, inventory, score)
+     * Update UI elements (location, inventory, score, room image)
      */
     updateUI() {
         if (!this.game) return;
 
-        // Update location name
+        // Update location name and room image
+        const room = this.game.getCurrentRoom();
         if (this.locationName) {
-            const room = this.game.getCurrentRoom();
             this.locationName.textContent = room ? room.name : 'Unknown';
+        }
+
+        // Update room image
+        if (room && room.image) {
+            this.updateImage(`images/${room.image}`);
         }
 
         // Update inventory display
