@@ -368,8 +368,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 22,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. Implemented in US-015/016/017, verified working."
     },
     {
       "id": "US-023",
