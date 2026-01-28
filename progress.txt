@@ -163,3 +163,17 @@ Started: 2026-01-28
   - Character item exchanges: remove consumed item, add received item, update character state
   - Scoring can be distributed across puzzle steps for better feedback
 ---
+
+## 2026-01-28 - US-021
+- **What was implemented:** Science Lab with alien artifact and goo puzzle
+- **Files changed:**
+  - src/data/rooms.js - Added science-lab-corridor and science-lab rooms, added DOWN exit from main-corridor
+  - src/data/items.js - Added alien-goo-sample item
+  - src/data/characters.js - Added alien-artifact character with sarcastic dialogue array
+  - src/data/puzzles.js - Added setupScienceLabPuzzle() for goo dissolution
+- **Learnings for future iterations:**
+  - Locked doors without requiredKey can use locked boolean with lockedMessage for non-keycard puzzles
+  - Characters can be inanimate objects (artifact) that respond to TALK TO command
+  - Array dialogue provides variety for repeated interactions
+  - Environmental obstacles (goo) use same locked door pattern but puzzle-unlocked instead of key-unlocked
+---

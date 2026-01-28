@@ -351,8 +351,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 21,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. Science Lab accessible via DOWN from Main Corridor, goo puzzle works, artifact talks."
     },
     {
       "id": "US-022",
