@@ -39,3 +39,9 @@ Started: 2026-01-28
 - **Files changed:** src/engine/Item.js
 - **Learnings:** Items support custom handlers via setUseHandler(), aliases for matching player input
 ---
+
+## 2026-01-28 - US-004
+- **What was implemented:** Inventory system for player items
+- **Files changed:** src/engine/Inventory.js
+- **Learnings:** findByName() searches both name and aliases, getDisplayString() for UI
+---
