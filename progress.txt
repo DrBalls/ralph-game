@@ -194,3 +194,14 @@ Started: 2026-01-28
   - Personal effects add flavor and character to the world
   - Items needed for later puzzles can be placed early for discovery
 ---
+
+## 2026-01-28 - US-024
+- **What was implemented:** Power cell puzzle for restoring emergency power
+- **Files changed:**
+  - src/data/puzzles.js - Added setupPowerCellPuzzle() function
+- **Learnings for future iterations:**
+  - Room-specific puzzles check currentRoomId before allowing the action
+  - Installed items can be removed from inventory (consumed by puzzle)
+  - Room features (like 'power cell slot') guide players on what targets to use
+  - Flag-based state (power_restored) can gate future puzzle access
+---

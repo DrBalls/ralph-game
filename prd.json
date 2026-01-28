@@ -400,8 +400,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 24,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. Power cell from Crew Quarters, USE POWER CELL WITH SLOT/REACTOR in Engineering Deck restores power, sets power_restored flag, awards 20 points."
     },
     {
       "id": "US-025",

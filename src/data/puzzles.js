@@ -14,6 +14,7 @@ export function initializePuzzles(game) {
     setupSmellingSaltsPuzzle(game);
     setupCoffeePuzzle(game);
     setupScienceLabPuzzle(game);
+    setupPowerCellPuzzle(game);
 }
 
 /**
@@ -154,6 +155,77 @@ The way to Engineering is now open.`
         return {
             success: false,
             message: "You're not sure how to use the keycard with that."
+        };
+    });
+}
+
+/**
+ * Setup the power cell puzzle
+ * - Player uses power cell with the reactor/slot in Engineering Deck
+ */
+function setupPowerCellPuzzle(game) {
+    const powerCell = game.items.get('power-cell');
+
+    if (!powerCell) return;
+
+    powerCell.setUseHandler((item, target, gameState) => {
+        const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+        // Check if using power cell with reactor, slot, or generator
+        if (targetId === 'reactor' || targetId === 'slot' || targetId === 'power cell slot' ||
+            targetId === 'generator' || targetId === 'emergency generator') {
+            // Check if we're in the engineering deck
+            const currentRoomId = gameState.getCurrentRoomId();
+            if (currentRoomId !== 'engineering-deck') {
+                return {
+                    success: false,
+                    message: "There's nothing here that needs a power cell."
+                };
+            }
+
+            // Check if already restored power
+            if (gameState.getFlag('power_restored')) {
+                return {
+                    success: false,
+                    message: "You've already restored emergency power. The station hums with renewed energy."
+                };
+            }
+
+            // Restore power!
+            gameState.setFlag('power_restored', true);
+
+            // Remove power cell from inventory (installed)
+            gameState.inventory.remove('power-cell');
+
+            gameState.addScore(20, 'restore_power');
+
+            return {
+                success: true,
+                message: `You approach the emergency power cell slot with the confidence of someone who has inserted many things into many slots. Professionally speaking.
+
+You line up the power cell with the slot, take a deep breath, and...
+
+*CLICK*
+
+*WHIRRRRRR*
+
+*BZZZZZT*
+
+The power cell locks into place. For a terrifying moment, nothing happens. Then the emergency generator roars to life, and throughout the station, lights begin to stabilize.
+
+The constant flickering stops. The ominous red emergency lighting shifts to a more reassuring (if still dim) yellow. Somewhere in the distance, you hear systems coming back online.
+
+"EMERGENCY POWER RESTORED," announces a voice over the intercom. "STATION SYSTEMS AT 47% CAPACITY. THAT'S... ACTUALLY BETTER THAN USUAL."
+
+You feel a surge of pride. Not bad for a janitor.
+
+Emergency power has been restored! The station's systems are more stable now.`
+            };
+        }
+
+        return {
+            success: false,
+            message: "You're not sure where to install the power cell here."
         };
     });
 }
