@@ -334,3 +334,19 @@ Started: 2026-01-28
   - Multiple aliases for self ('self', 'me', 'myself', character name, role) improve usability
   - Character description should reflect game's tone and protagonist's personality
 ---
+
+## 2026-01-28 - US-049
+- **What was implemented:** Verification only - Inventory UI already in GameUI.updateUI()
+- **Files changed:** None (verification only)
+- **Learnings:** Status bar displays inventory, score, and location. Updates via updateUI() after each command.
+---
+
+## 2026-01-28 - US-050
+- **What was implemented:** Complete game walkthrough document
+- **Files changed:**
+  - WALKTHROUGH.md - Created with 9 acts, item checklist, scoring table, and tips
+- **Learnings for future iterations:**
+  - Walkthrough should organize by narrative acts
+  - Include item locations and puzzle solutions
+  - Scoring table helps verify all points are achievable
+---
