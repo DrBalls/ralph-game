@@ -126,3 +126,16 @@ Started: 2026-01-28
   - Character state (e.g., 'unconscious', 'awake') determines which dialogue is returned
   - matchesName() checks both name.includes() and id exact match for flexible player input
 ---
+
+## 2026-01-28 - US-018
+- **What was implemented:** Smelling salts puzzle to wake Dr. Patchwell
+- **Files changed:**
+  - src/data/items.js - Added smelling-salts item, updated ammonia useWith array
+  - src/data/puzzles.js - Added setupSmellingSaltsPuzzle() function
+- **Learnings for future iterations:**
+  - Item combination puzzles: set useHandler on first item, check if second item is in inventory
+  - Remove consumed items from inventory, add result item directly to inventory
+  - Character state updates via game.characters.get(id).setState(newState)
+  - Target matching in puzzles uses targetId pattern: target?.id?.toLowerCase() || target?.toLowerCase?.() || ''
+  - When USE X WITH Y doesn't work, try using character's last name (e.g., "patchwell" not "doctor")
+---
