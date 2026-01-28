@@ -45,3 +45,9 @@ Started: 2026-01-28
 - **Files changed:** src/engine/Inventory.js
 - **Learnings:** findByName() searches both name and aliases, getDisplayString() for UI
 ---
+
+## 2026-01-28 - US-005
+- **What was implemented:** Text parser for command interpretation
+- **Files changed:** src/engine/Parser.js
+- **Learnings:** parse() returns {verb, noun, target, raw, error}, handles USE X WITH Y pattern specially
+---
