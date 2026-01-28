@@ -202,9 +202,11 @@ The station is saved! Watch the ending sequence where:
 
 ## Tips
 
-- `EXAMINE` everything - lots of flavor text and hints
+- `USE X WITH Y` and `USE X ON Y` are interchangeable — use whichever feels natural
+- `EXAMINE` everything — lots of flavor text and hints
 - `TALK TO` characters multiple times for different dialogue
 - `EXAMINE SELF` for a humorous self-description
+- You can examine items in your inventory, not just things in the room
 - Save frequently with `SAVE 1/2/3`
 - The artifact is surprisingly sarcastic for an ancient cosmic entity
 - Duct tape really does fix everything
