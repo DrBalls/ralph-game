@@ -1,3 +1,13 @@
 # Ralph Progress Log
 Started: 2026-01-28
+
+## Codebase Patterns
+- Game engine modules go in src/engine/ (Room.js, Item.js, Parser.js, etc.)
+- Room/item data files go in src/data/
+- UI modules go in src/ui/
+- Pixel art images go in public/images/
+- This is a vanilla JavaScript browser game - no build step required
+- Use ES6 modules with import/export
+- Game runs by opening index.html in a browser
+
 ---

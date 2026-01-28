@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Custodian: The Janitorial Frontier</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <header id="game-header">
+            <h1>COSMIC CUSTODIAN</h1>
+            <span class="subtitle">The Janitorial Frontier</span>
+        </header>
+
+        <div id="main-content">
+            <div id="image-panel">
+                <canvas id="game-canvas" width="640" height="400"></canvas>
+                <div id="location-name"></div>
+            </div>
+
+            <div id="text-panel">
+                <div id="game-output"></div>
+            </div>
+        </div>
+
+        <div id="input-panel">
+            <span class="prompt">&gt;</span>
+            <input type="text" id="command-input" placeholder="Type a command..." autocomplete="off" autofocus>
+        </div>
+
+        <div id="status-bar">
+            <div id="inventory-display">
+                <span class="label">Inventory:</span>
+                <span id="inventory-list">Empty</span>
+            </div>
+            <div id="score-display">
+                <span class="label">Score:</span>
+                <span id="score">0</span> / 200
+            </div>
+        </div>
+    </div>
+
+    <div id="intro-screen" class="overlay">
+        <div class="intro-content">
+            <pre class="ascii-art">
+   ____                     _
+  / ___|___  ___ _ __ ___ (_) ___
+ | |   / _ \/ __| '_ ` _ \| |/ __|
+ | |__| (_) \__ \ | | | | | | (__
+  \____\___/|___/_| |_| |_|_|\___|
+
+   ____          _            _ _
+  / ___|   _ ___| |_ ___   __| (_) __ _ _ __
+ | |  | | | / __| __/ _ \ / _` | |/ _` | '_ \
+ | |__| |_| \__ \ || (_) | (_| | | (_| | | | |
+  \____\__,_|___/\__\___/ \__,_|_|\__,_|_| |_|
+            </pre>
+            <h2>THE JANITORIAL FRONTIER</h2>
+            <p class="tagline">"In space, no one can hear you clean."</p>
+            <div class="intro-text">
+                <p>The year is 2847. You are <strong>Zyx-7</strong>, janitor aboard the luxury space station "Pristine Venture."</p>
+                <p>While everyone attended the Captain's Gala, you were cleaning the toilet in Cargo Bay 7. Again.</p>
+                <p>Then the alien artifact activated. Now the crew is unconscious, the AI has gone haywire, and the station is heading straight for the Blorgnax Homeworld.</p>
+                <p>Armed with your mop, your wits, and 15 years of janitorial expertise, you must save the day.</p>
+                <p class="hint">Type commands like LOOK, TAKE, USE, TALK TO, and GO NORTH to play.</p>
+            </div>
+            <button id="start-button">Begin Your Shift</button>
+        </div>
+    </div>
+
+    <script type="module" src="game.js"></script>
+</body>
+</html>
