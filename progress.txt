@@ -69,3 +69,9 @@ Started: 2026-01-28
 - **Files changed:** src/ui/GameUI.js, public/game.js
 - **Learnings:** GameUI handles DOM binding, game.js imports engine modules, command history with arrow keys
 ---
+
+## 2026-01-28 - US-009
+- **What was implemented:** Cargo Bay 7 starting room with data files
+- **Files changed:** src/data/rooms.js, src/data/items.js, public/game.js
+- **Learnings:** Room features object for examinable elements, items have startingRoom property, export default for easy import
+---
