@@ -295,6 +295,20 @@ This could restore DUSTY to normal - if you can figure out how to install it.`,
         hidden: true,
         aliases: ['chip', 'memory chip', 'dusty chip', 'backup', 'personality backup'],
         useWith: ['dusty', 'terminal', 'dusty core']
+    },
+
+    'fire-extinguisher': {
+        name: 'Fire Extinguisher',
+        description: 'A standard fire extinguisher is mounted on the wall.',
+        examineText: `A standard station fire extinguisher, the kind that's checked monthly and used... well, more often than you'd think on a space station. Fire in space is no joke.
+
+The label reads "CO2 Fire Suppression Unit - Point and Press." Simple instructions for simple problems. If only everything in life could be solved by pointing at it and pressing a button.
+
+The gauge shows it's fully charged. You've discharged these before - accidentally, during the Great Fire Drill Panic of '43. The cafeteria was covered in white powder for weeks. They've never let you forget it.`,
+        takeable: true,
+        startingRoom: 'airlock',
+        aliases: ['extinguisher', 'fire suppressant', 'co2 extinguisher'],
+        useWith: ['fire', 'flames', 'sparks']
     }
 };
 

@@ -85,10 +85,13 @@ The lights flicker in a pattern that almost seems intentional, as if the station
 
 A few of the pipes are leaking steam, which adds a dramatic atmosphere but is probably terrible for the station's efficiency ratings. Someone has stuck a "We'll Fix It Eventually" sticky note on one of them. It's dated three years ago.
 
-The smell of ozone and machine oil hangs in the air. It's the smell of Engineering - a place where miracles are performed daily and nobody thanks you for it.`,
+The smell of ozone and machine oil hangs in the air. It's the smell of Engineering - a place where miracles are performed daily and nobody thanks you for it.
+
+A side passage to the south leads to the station's airlock.`,
         connections: {
             east: 'main-corridor',
-            west: 'engineering-deck'
+            west: 'engineering-deck',
+            south: 'airlock'
         },
         features: {
             'pipes': `Various pipes carry coolant, fuel, and what you suspect might be the captain's private hot cocoa supply. Most are labeled. Some labels are crossed out and replaced with cryptic notes like "DO NOT TOUCH - JENKINS" and "DEFINITELY NOT HOT COCOA."`,
@@ -243,6 +246,28 @@ Despite the chaos, this is actually one of the cleaner rooms you've seen. The ar
             'lunch': `What was once someone's lunch has mutated into a small, purple blob that's slowly consuming its container. It looks at you (how? It doesn't have eyes) and makes a sound that might be a greeting. You decide to leave it alone.`
         },
         image: 'science-lab.png'
+    },
+
+    'airlock': {
+        name: 'AIRLOCK',
+        description: `The airlock is a stark, utilitarian space designed for one purpose: keeping the deadly vacuum of space from becoming your personal problem. Emergency EVA suits hang in lockers along one wall, and various emergency equipment is stored in clearly labeled compartments.
+
+The outer airlock door looms ominously on the far wall, its status panel glowing a reassuring green. "SEALED" it announces, as if you needed reminding that opening it without a suit would result in an extremely brief and unpleasant experience.
+
+A small porthole offers a view of the stars outside - beautiful, eternal, and absolutely lethal. You've cleaned this porthole many times. The fingerprints of people pressing their faces against it to look at space never seem to go away.`,
+        connections: {
+            north: 'engineering-corridor'
+        },
+        features: {
+            'outer door': `The outer airlock door. A big, heavy portal between you and the void. The status panel reads "SEALED - AUTHORIZED PERSONNEL ONLY." You are not authorized personnel, but you ARE the only conscious person on the station, so the rules are flexible.`,
+            'suits': `Emergency EVA suits hang in their lockers, ready for use. They're the standard "one size fits nobody" model. You've worn one exactly once, during a drill, and it was like being trapped inside a sweaty, claustrophobic balloon.`,
+            'eva suits': `Emergency EVA suits hang in their lockers, ready for use. They're the standard "one size fits nobody" model. You've worn one exactly once, during a drill, and it was like being trapped inside a sweaty, claustrophobic balloon.`,
+            'equipment': `Emergency equipment storage: oxygen tanks, repair kits, and a fire extinguisher. Standard airlock supplies. You've inventoried this stuff more times than you can count.`,
+            'porthole': `A small porthole showing the stars outside. It's peaceful. It's beautiful. It's a constant reminder that you're surrounded by infinite death on all sides. Very calming.`,
+            'lockers': `Equipment lockers line the wall. Most are labeled with helpful warnings like "EMERGENCY USE ONLY" and "RETURN EQUIPMENT AFTER USE" and "JENKINS OWES ENGINEERING 3 OXYGEN TANKS."`,
+            'panel': `The airlock control panel. Big red buttons, lots of warnings, and a helpful sign that reads "IF IN DOUBT, DON'T." Words to live by, really.`
+        },
+        image: 'airlock.png'
     },
 
     'crew-quarters': {

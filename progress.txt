@@ -252,3 +252,14 @@ Started: 2026-01-28
   - Room check (currentRoomId) ensures puzzles only work in correct location
   - Hidden items revealed by puzzles: set hidden=false, add to inventory
 ---
+
+## 2026-01-28 - US-029
+- **What was implemented:** Airlock room with EVA equipment and fire extinguisher
+- **Files changed:**
+  - src/data/rooms.js - Added airlock room, updated engineering-corridor with south connection
+  - src/data/items.js - Added fire-extinguisher item
+- **Learnings for future iterations:**
+  - Airlock provides emergency equipment and potential danger (outer door)
+  - Items can be spread across related areas (flare in Engineering, extinguisher in Airlock)
+  - Room features describe equipment that may be useful later
+---
