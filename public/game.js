@@ -3,109 +3,91 @@
  * A text adventure game in the style of classic Sierra and LucasArts games
  */
 
-// DOM Elements
-const gameOutput = document.getElementById('game-output');
-const commandInput = document.getElementById('command-input');
-const introScreen = document.getElementById('intro-screen');
-const startButton = document.getElementById('start-button');
-const locationName = document.getElementById('location-name');
-const inventoryList = document.getElementById('inventory-list');
-const scoreDisplay = document.getElementById('score');
+import { Game } from '../src/engine/Game.js';
+import { GameUI } from '../src/ui/GameUI.js';
 
-/**
- * Output text to the game display
- * @param {string} text - The text to display
- * @param {string} className - Optional CSS class for styling
- */
-function output(text, className = '') {
-    const p = document.createElement('p');
-    p.textContent = text;
-    if (className) {
-        p.className = className;
+// Temporary room data until we implement US-009
+const roomData = {
+    'cargo-bay-7': {
+        name: 'CARGO BAY 7',
+        description: 'You are in the cramped confines of Cargo Bay 7, surrounded by crates of cleaning supplies and spare parts. The emergency lighting casts everything in a dim red glow. A toilet sits in the corner - your unlikely savior from the energy wave that knocked out the rest of the crew.',
+        connections: {
+            east: 'cargo-corridor'
+        },
+        features: {
+            'toilet': 'The toilet that saved your life. It\'s seen better days, but you owe it everything.',
+            'crates': 'Cleaning supplies and spare parts. The essentials.',
+            'shelf': 'A high metal shelf. Something glints up there - looks like a keycard.',
+            'lighting': 'The emergency lighting flickers ominously, casting red shadows.'
+        }
+    },
+    'cargo-corridor': {
+        name: 'CARGO BAY CORRIDOR',
+        description: 'A narrow corridor connects Cargo Bay 7 to the rest of the station. Emergency lights flicker overhead, and you can hear the distant hum of failing systems. Cables hang from the ceiling where panels have been knocked loose.',
+        connections: {
+            west: 'cargo-bay-7',
+            north: 'main-corridor'
+        },
+        features: {
+            'cables': 'Sparking cables dangle dangerously. Best not to touch them.',
+            'panels': 'Wall panels knocked loose by the energy wave.'
+        }
+    },
+    'main-corridor': {
+        name: 'MAIN CORRIDOR',
+        description: 'The main corridor of the Pristine Venture stretches before you. Doors lead off in multiple directions, and emergency signs flicker overhead. The usual pristine white walls are now marked with scorch marks and that strange alien goo.',
+        connections: {
+            south: 'cargo-corridor'
+        },
+        features: {
+            'goo': 'Pulsing, iridescent alien goo. It smells faintly of burnt toast.',
+            'signs': 'Emergency signs point to various locations: Bridge (North), Medical (East), Engineering (West).'
+        }
     }
-    gameOutput.appendChild(p);
-    gameOutput.scrollTop = gameOutput.scrollHeight;
-}
+};
 
-/**
- * Clear the game output safely
- */
-function clearOutput() {
-    while (gameOutput.firstChild) {
-        gameOutput.removeChild(gameOutput.firstChild);
+// Temporary item data until we implement full items
+const itemData = {
+    'mop': {
+        name: 'Mop',
+        description: 'A well-worn mop.',
+        examineText: 'Your trusty mop. You\'ve been together for 15 years. It\'s seen things. Cleaned things. It\'s more than a cleaning implement - it\'s a friend.',
+        takeable: true,
+        startingRoom: 'cargo-bay-7',
+        aliases: ['trusty mop', 'old mop']
+    },
+    'bucket': {
+        name: 'Bucket',
+        description: 'A dented metal bucket.',
+        examineText: 'A standard-issue janitorial bucket. Dented from years of service. There\'s still some murky water in the bottom.',
+        takeable: true,
+        startingRoom: 'cargo-bay-7',
+        aliases: ['metal bucket']
+    },
+    'keycard-cargo': {
+        name: 'Cargo Keycard',
+        description: 'A keycard glints on the high shelf.',
+        examineText: 'A standard station keycard, marked "CARGO". It could open locked doors in this section.',
+        takeable: false,
+        cantTakeMessage: 'The shelf is too high to reach. Maybe you could use something to knock it down?',
+        startingRoom: 'cargo-bay-7',
+        aliases: ['keycard', 'card', 'cargo keycard']
     }
-}
+};
 
-/**
- * Handle player commands
- * @param {string} input - The raw command string
- */
-function handleCommand(input) {
-    const command = input.trim().toUpperCase();
-
-    if (!command) return;
-
-    // Echo the command
-    output(`> ${input}`, 'system');
-
-    // Placeholder - will be replaced by Parser class in US-005
-    if (command === 'LOOK' || command === 'L') {
-        output('CARGO BAY 7', 'room-title');
-        output('You are in the cramped confines of Cargo Bay 7, surrounded by crates of cleaning supplies and spare parts. The emergency lighting casts everything in a dim red glow. A toilet sits in the corner - your unlikely savior from the energy wave that knocked out the rest of the crew.', 'description');
-        output('A mop leans against the wall. A bucket sits nearby. High above, you can see a keycard on a shelf.', 'items');
-        output('Exits: EAST', 'exits');
-    } else if (command === 'INVENTORY' || command === 'I') {
-        output('You are carrying: nothing yet.', 'description');
-    } else if (command === 'HELP') {
-        output('Available commands:', 'room-title');
-        output('LOOK - Examine your surroundings');
-        output('EXAMINE [object] - Look at something closely');
-        output('TAKE [object] - Pick up an item');
-        output('USE [object] - Use an item');
-        output('USE [object] WITH [object] - Combine or use items together');
-        output('INVENTORY (or I) - Check what you\'re carrying');
-        output('GO [direction] - Move in a direction (N/S/E/W/UP/DOWN)');
-        output('TALK TO [character] - Speak with someone');
-        output('HELP - Show this message');
-    } else {
-        output('I don\'t understand that command. Type HELP for a list of commands.', 'error');
-    }
-}
-
-/**
- * Start the game
- */
-function startGame() {
-    introScreen.classList.add('hidden');
-    commandInput.focus();
-
-    // Display initial room
-    output('═══════════════════════════════════════════', 'system');
-    output('Welcome to COSMIC CUSTODIAN: The Janitorial Frontier', 'room-title');
-    output('═══════════════════════════════════════════', 'system');
-    output('');
-    handleCommand('look');
-}
-
-// Event Listeners
-startButton.addEventListener('click', startGame);
-
-commandInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        const input = commandInput.value;
-        commandInput.value = '';
-        handleCommand(input);
-    }
+// Create the game instance
+const game = new Game({
+    outputCallback: (text, className) => ui.output(text, className),
+    roomData: roomData,
+    itemData: itemData,
+    startingRoom: 'cargo-bay-7'
 });
 
-// Allow pressing Enter on intro screen to start
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !introScreen.classList.contains('hidden')) {
-        startGame();
-    }
-});
+// Create the UI
+const ui = new GameUI({ game });
 
-// Initialize location display
-locationName.textContent = 'CARGO BAY 7';
+// Make game accessible for debugging
+window.game = game;
+window.ui = ui;
 
 console.log('Cosmic Custodian loaded successfully!');
