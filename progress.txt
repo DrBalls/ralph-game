@@ -150,3 +150,16 @@ Started: 2026-01-28
   - Room features can provide puzzle hints (e.g., "needs duct tape" for repair puzzle)
   - Items can be placed in new rooms via startingRoom property without additional code
 ---
+
+## 2026-01-28 - US-020
+- **What was implemented:** Coffee creation and doctor reward puzzle chain
+- **Files changed:**
+  - src/data/items.js - Added duct-tape, caffeinated-sludge, engineering-keycard items
+  - src/data/puzzles.js - Added setupCoffeePuzzle() with repair, make, and give handlers
+- **Learnings for future iterations:**
+  - Multi-step puzzles can chain: item A enables action B which creates item C for exchange D
+  - Room checks prevent puzzle actions in wrong locations (e.g., repair only in mess-hall)
+  - Prerequisite checks (e.g., synthesizer_repaired flag) gate puzzle progression
+  - Character item exchanges: remove consumed item, add received item, update character state
+  - Scoring can be distributed across puzzle steps for better feedback
+---

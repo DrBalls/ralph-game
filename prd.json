@@ -334,8 +334,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 20,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. Full puzzle chain works: repair→make coffee→give to doctor→receive keycard."
     },
     {
       "id": "US-021",
