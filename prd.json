@@ -546,8 +546,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 33,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. showEnding() triggered by game_won flag. Captain takes credit, new mop from DUSTY, credits with callbacks."
     },
     {
       "id": "US-034",

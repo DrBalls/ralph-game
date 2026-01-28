@@ -159,6 +159,13 @@ export class Game {
     executeCommand(command) {
         const { verb, noun, target } = command;
 
+        // Check for game win condition after each command
+        if (this.state.getFlag('game_won') && !this.state.getFlag('ending_shown')) {
+            this.state.setFlag('ending_shown', true);
+            this.showEnding();
+            return { success: true };
+        }
+
         switch (verb) {
             case 'look':
                 return noun ? this.handleExamine(noun) : this.handleLook();
@@ -582,6 +589,99 @@ export class Game {
         this.output(`Final score: ${this.state.getScore()} / ${this.state.maxScore}`, 'system');
         this.output(`Moves: ${this.state.getMoveCount()}`, 'system');
         this.output(`Time: ${this.state.getFormattedTime()}`, 'system');
+    }
+
+    /**
+     * Show the game ending sequence
+     */
+    showEnding() {
+        this.output('', 'description');
+        this.output('═══════════════════════════════════════════', 'system');
+        this.output('═══════════════════════════════════════════', 'system');
+        this.output('', 'description');
+
+        this.output(`The hours that follow are a blur of activity.`, 'description');
+        this.output('', 'description');
+
+        this.output(`One by one, the crew members begin to wake up. First the groans, then the confusion, then the inevitable "What happened?" questions that you answer with increasingly creative non-answers.`, 'description');
+        this.output('', 'description');
+
+        this.output(`Captain Bluster is among the last to regain consciousness. He sits up in his command chair, smooths his hair, and immediately demands a situation report.`, 'description');
+        this.output('', 'description');
+
+        this.output(`"Sir," you begin, "the station was on a collision course with Blorgnax Prime. The AI was corrupted. I had to-"`, 'description');
+        this.output('', 'description');
+
+        this.output(`"Yes, yes," the Captain waves his hand dismissively. "I'm sure I handled it brilliantly. My tactical genius saved us all, no doubt. Make a note of that for my commendation file."`, 'description');
+        this.output('', 'description');
+
+        this.output(`You open your mouth to correct him, then close it again. Some battles aren't worth fighting.`, 'description');
+        this.output('', 'description');
+
+        this.output(`"Also," the Captain continues, "this hero mop of yours." He gestures at your trusty cleaning companion. "It's looking a bit worn. Have Engineering issue you a replacement."`, 'description');
+        this.output('', 'description');
+
+        this.output(`A week later, a small package arrives at your quarters.`, 'description');
+        this.output('', 'description');
+
+        this.output(`Inside is a brand new mop - the Mark II Janitorial Companion, top of the line. The handle is reinforced titanium. The head is made of some kind of self-cleaning nano-fiber. There's even a cup holder.`, 'description');
+        this.output('', 'description');
+
+        this.output(`Attached is a note: "For services rendered to the station. - DUSTY"`, 'description');
+        this.output('', 'description');
+
+        this.output(`Underneath, in smaller text: "Don't tell anyone I did something nice. I have a reputation to maintain."`, 'description');
+        this.output('', 'description');
+
+        this.output(`You smile. Your old mop served you well, but change isn't always bad.`, 'description');
+        this.output('', 'description');
+
+        this.output(`After all, you've got a lot of cleaning to do. There's alien goo in the corridors, mirror shards in the ballroom, and someone needs to deal with whatever's living in that bucket.`, 'description');
+        this.output('', 'description');
+
+        this.output(`Just another day on the Pristine Venture.`, 'description');
+        this.output('', 'description');
+
+        this.output('═══════════════════════════════════════════', 'system');
+        this.output('                    THE END', 'room-title');
+        this.output('═══════════════════════════════════════════', 'system');
+        this.output('', 'description');
+
+        this.output('COSMIC CUSTODIAN: The Janitorial Frontier', 'room-title');
+        this.output('', 'description');
+
+        this.output('CREDITS', 'system');
+        this.output('─────────────────────────────────────────────', 'system');
+        this.output('', 'description');
+        this.output('Created by: Ralph Autonomous Agent', 'description');
+        this.output('Powered by: Claude AI', 'description');
+        this.output('Mop Consultant: You (probably)', 'description');
+        this.output('', 'description');
+
+        this.output('SPECIAL THANKS TO:', 'system');
+        this.output('─────────────────────────────────────────────', 'system');
+        this.output('- The toilet that saved your life', 'description');
+        this.output('- Your trusty mop (both versions)', 'description');
+        this.output('- Duct tape, the universal solution', 'description');
+        this.output('- Chief Krix, for not waking up and yelling at you', 'description');
+        this.output('- The alien artifact, for eventually being helpful', 'description');
+        this.output('- DUSTY, for the sarcasm and the new mop', 'description');
+        this.output('- Jenkins, for taking the blame for everything', 'description');
+        this.output('', 'description');
+
+        this.output('NO JANITORS WERE HARMED IN THE MAKING OF THIS GAME', 'system');
+        this.output('(The mop took some damage, though)', 'description');
+        this.output('', 'description');
+
+        this.output('═══════════════════════════════════════════', 'system');
+        this.output('', 'description');
+        this.output(`Final Score: ${this.state.getScore()} / ${this.state.maxScore}`, 'system');
+        this.output(`Total Moves: ${this.state.getMoveCount()}`, 'system');
+        this.output(`Play Time: ${this.state.getFormattedTime()}`, 'system');
+        this.output('', 'description');
+        this.output('Thank you for playing!', 'room-title');
+
+        this.gameOver = true;
     }
 
     /**

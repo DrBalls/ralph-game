@@ -297,3 +297,14 @@ Started: 2026-01-28
   - Game flags (game_won) can trigger ending sequences
   - Final puzzles should have dramatic, satisfying feedback messages
 ---
+
+## 2026-01-28 - US-033
+- **What was implemented:** Game ending sequence with credits and story conclusion
+- **Files changed:**
+  - src/engine/Game.js - Added showEnding() method, check for game_won flag in executeCommand()
+- **Learnings for future iterations:**
+  - Ending sequences should have narrative payoff (Captain takes credit, mop reward)
+  - Credits can include humorous callbacks to game elements
+  - Check for ending flag BEFORE processing commands to trigger immediately
+  - Use ending_shown flag to prevent re-showing
+---
