@@ -33,3 +33,9 @@ Started: 2026-01-28
 - **Files changed:** src/engine/Room.js
 - **Learnings:** Connections can be string (roomId) or object with locked/requiredKey properties
 ---
+
+## 2026-01-28 - US-003
+- **What was implemented:** Item class for interactive objects
+- **Files changed:** src/engine/Item.js
+- **Learnings:** Items support custom handlers via setUseHandler(), aliases for matching player input
+---
