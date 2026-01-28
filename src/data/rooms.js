@@ -34,7 +34,8 @@ Cables hang from the ceiling where panels have been knocked loose by the energy 
 A sign on the wall helpfully points north toward the Main Corridor, though someone has graffitied "CERTAIN DOOM" underneath it. Probably Jenkins from Engineering. He always was dramatic.`,
         connections: {
             west: 'cargo-bay-7',
-            north: 'main-corridor'
+            north: 'main-corridor',
+            east: 'crew-quarters'
         },
         features: {
             'cables': `Sparking cables dangle dangerously from the ceiling. You've filed seventeen work orders about these exact cables over the past two years. Management said they'd "get to it." Well, look who's laughing now. Actually, nobody is laughing. This is serious.`,
@@ -204,6 +205,30 @@ Despite the chaos, this is actually one of the cleaner rooms you've seen. The ar
             'lunch': `What was once someone's lunch has mutated into a small, purple blob that's slowly consuming its container. It looks at you (how? It doesn't have eyes) and makes a sound that might be a greeting. You decide to leave it alone.`
         },
         image: 'science-lab.png'
+    },
+
+    'crew-quarters': {
+        name: 'CREW QUARTERS',
+        description: `The crew quarters are a maze of small, personal spaces crammed together in the name of "efficient space utilization." Each bunk is a tiny monument to the individual personality of its occupant, which is to say, they're all slightly depressing in unique ways.
+
+Personal effects are scattered everywhere - photos, trinkets, and an alarming number of motivational posters that weren't motivating anyone even before the crisis. The energy wave knocked everything askew, creating a frozen snapshot of interrupted lives.
+
+On the bright side, you spot an emergency power cell sitting on someone's desk. Probably Dr. Chen - she was always "borrowing" equipment from Engineering for her "experiments."
+
+A large photo on the wall shows Captain Bluster at some award ceremony, standing next to a plaque with the station's motto. Someone has drawn a mustache on it in marker.`,
+        connections: {
+            west: 'cargo-corridor'
+        },
+        features: {
+            'bunks': `Cramped crew bunks, each one about the size of a coffin. With delusions of grandeur. The station's designers clearly prioritized cargo space over crew comfort. Typical.`,
+            'photo': `A large photo of Captain Bluster receiving the "Excellence in Leadership" award. The plaque behind him reads "PRISTINE VENTURE - PASSWORD: STARDUST847." Someone has drawn a mustache on the captain. You approve.`,
+            'captain photo': `A large photo of Captain Bluster receiving the "Excellence in Leadership" award. The plaque behind him reads "PRISTINE VENTURE - PASSWORD: STARDUST847." Someone has drawn a mustache on the captain. You approve.`,
+            'poster': `A motivational poster featuring a kitten hanging from a branch with the text "HANG IN THERE!" Someone has added "...or don't. We're all going to die in space anyway." in permanent marker. Crew morale was clearly an issue.`,
+            'posters': `Multiple motivational posters, all vandalized with increasingly cynical commentary. "TEAMWORK!" has been changed to "TEAM WHAT?" "REACH FOR THE STARS!" now reads "REACH FOR THE EMERGENCY OXYGEN." You feel a kinship with whoever did this.`,
+            'effects': `Personal effects from various crew members: a stuffed animal that might be a dog (or a very unfortunate cat), a collection of pressed space flowers, and what appears to be a shrine to some pop star you don't recognize.`,
+            'desk': `Dr. Chen's desk, identifiable by the "Property of Engineering - DO NOT TOUCH" stickers covering everything. The power cell sitting here probably wasn't supposed to leave Engineering. Classic Chen.`
+        },
+        image: 'crew-quarters.png'
     },
 
     'mess-hall': {

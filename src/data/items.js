@@ -206,6 +206,20 @@ The scientists probably wanted to study this stuff. Now it's your problem. Such 
         takeable: true,
         startingRoom: 'science-lab',
         aliases: ['goo sample', 'sample', 'goo', 'containment unit']
+    },
+
+    'power-cell': {
+        name: 'Power Cell',
+        description: 'An emergency power cell sits on Dr. Chen\'s desk.',
+        examineText: `A standard emergency power cell, the kind that keeps critical systems running when everything else fails. This one is fully charged and ready to use - probably because Dr. Chen "borrowed" it from Engineering before she could actually drain it with her experiments.
+
+The label reads "ENGINEERING PROPERTY - RETURN IMMEDIATELY." It's been marked with about twelve different "borrowed by" signatures, all crossed out. Station equipment circulation at its finest.
+
+This could restore power to something important. Like, hypothetically, the station's failing systems.`,
+        takeable: true,
+        startingRoom: 'crew-quarters',
+        aliases: ['cell', 'battery', 'emergency cell', 'emergency power cell'],
+        useWith: ['power cell slot', 'slot', 'generator', 'engineering']
     }
 };
 
