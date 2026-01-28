@@ -1,0 +1,400 @@
+/**
+ * Room data definitions for Cosmic Custodian
+ */
+
+export const rooms = {
+    'cargo-bay-7': {
+        name: 'CARGO BAY 7',
+        description: `You are in the cramped confines of Cargo Bay 7, surrounded by crates of cleaning supplies and spare parts. The emergency lighting casts everything in a dim red glow, making the whole place look like it's blushing in embarrassment.
+
+A toilet sits in the corner - your unlikely savior from the energy wave that knocked out the rest of the crew. You were cleaning it when everything went sideways. The irony is not lost on you.
+
+Cleaning equipment is scattered about: your trusty mop, a bucket that's seen better decades, and various bottles of chemicals that could probably strip paint off a battleship. High above, a keycard glints on a metal shelf, mocking your average human height.`,
+        connections: {
+            east: 'cargo-corridor'
+        },
+        features: {
+            'toilet': `The toilet that saved your life. A standard Sanitation Solutions Model 7 "The Liberator." You were elbow-deep in its innards when the energy wave hit. The ceramic bowl apparently blocked the chaotic energy, leaving you as the only conscious being on the entire station. You've always said this toilet was special. Now you have proof.`,
+            'crates': `Stacks of crates labeled "Cleaning Supplies - Hazmat Level 3" and "Spare Parts - Do Not Eat." Typical cargo bay stuff. One crate is labeled "Captain's Personal Wine Collection - FRAGILE" in red letters. Figures.`,
+            'shelf': `A high metal shelf mounted to the wall. Something's glinting up there - looks like a keycard. It's just out of reach. Story of your life, really. The good stuff is always on the top shelf.`,
+            'lighting': `Emergency lighting flickers ominously, casting red shadows across everything. It's like being inside a very boring nightclub. The main power must be fluctuating.`,
+            'supplies': `Bottles of Universal Cleaning Solvent, Grime-Away Pro, and something simply labeled "THE DISSOLVER" in warning yellow. Your tools of the trade. That last one requires a license in three systems.`,
+            'mop': `Your trusty mop leans against the wall, waiting for you like a loyal pet. You've been through a lot together.`,
+            'bucket': `A dented metal bucket sits nearby. It's seen fifteen years of service and every dent tells a story, mostly about you dropping it.`
+        },
+        image: 'cargo-bay-7.png'
+    },
+
+    'cargo-corridor': {
+        name: 'CARGO BAY CORRIDOR',
+        description: `A narrow corridor connects Cargo Bay 7 to the rest of the station. Emergency lights flicker overhead in an arrhythmic pattern that would drive a musician insane. You can hear the distant hum of failing systems - never a comforting sound.
+
+Cables hang from the ceiling where panels have been knocked loose by the energy wave. Scorch marks decorate the walls in abstract patterns that could probably sell for millions in some pretentious art gallery. "Post-Apocalyptic Expressionism," you'd call it.
+
+A sign on the wall helpfully points north toward the Main Corridor, though someone has graffitied "CERTAIN DOOM" underneath it. Probably Jenkins from Engineering. He always was dramatic.`,
+        connections: {
+            west: 'cargo-bay-7',
+            north: 'main-corridor',
+            east: 'crew-quarters'
+        },
+        features: {
+            'cables': `Sparking cables dangle dangerously from the ceiling. You've filed seventeen work orders about these exact cables over the past two years. Management said they'd "get to it." Well, look who's laughing now. Actually, nobody is laughing. This is serious.`,
+            'panels': `Wall panels knocked loose by the energy wave, revealing the station's guts - a tangle of wires, pipes, and what you're pretty sure is a family of space mice that have been living rent-free in the walls.`,
+            'sign': `A standard station directional sign. "Main Corridor - North." Below it, someone has added "CERTAIN DOOM" in what appears to be permanent marker. You recognize Jenkins' handwriting.`,
+            'scorch': `Scorch marks on the walls from the energy wave. They form interesting patterns. One of them kind of looks like Captain Bluster's face, if you squint. Not sure if that's meaningful or just your subconscious expressing itself.`
+        },
+        image: 'cargo-corridor.png'
+    },
+
+    'main-corridor': {
+        name: 'MAIN CORRIDOR',
+        description: `The main corridor of the Pristine Venture stretches before you, though "Pristine" is doing a lot of heavy lifting right now. Emergency signs flicker overhead, and the usual immaculate white walls are now decorated with scorch marks and pulsing alien goo that smells faintly of burnt toast and existential dread.
+
+This is the central hub of the station - or was, before everything went sideways. Doors lead off in multiple directions, each one a potential adventure or a horrible death. In your experience, usually both.
+
+The lights flicker in a pattern that almost seems intentional, as if the station itself is trying to communicate through morse code. If so, it's just repeating "HELP" over and over.`,
+        connections: {
+            south: 'cargo-corridor',
+            north: 'bridge',
+            east: 'medical-bay',
+            west: {
+                roomId: 'engineering-corridor',
+                locked: true,
+                requiredKey: 'keycard-cargo',
+                lockedMessage: 'The door to Engineering is locked. It has a keycard reader with "CARGO" written above it. Apparently, Engineering counts as "cargo" in some bureaucratic sense.'
+            },
+            up: 'mess-hall',
+            down: 'science-lab-corridor',
+            northeast: 'ballroom'
+        },
+        features: {
+            'goo': `Pulsing, iridescent alien goo. It smells faintly of burnt toast and something unidentifiable. You've cleaned up a lot of strange substances in your career, but this one takes the cake. It seems almost... alive? Best not to think about that.`,
+            'signs': `Emergency signs point to various locations: Bridge (North), Medical Bay (East), Engineering (West), Cargo (South), Mess Hall (Up via stairs), Science Lab (Down via stairs), Ballroom (Northeast). The "You Are Here" dot has been replaced with a sad face emoji. You don't remember authorizing that modification.`,
+            'walls': `The usually pristine white walls are covered in scorch marks and that weird goo. You're going to need a LOT of Universal Cleaning Solvent for this. Maybe THE DISSOLVER.`,
+            'lights': `The emergency lights flicker in an almost rhythmic pattern. Is the station trying to tell you something? Or is this just standard "everything is failing" behavior? Hard to tell anymore.`,
+            'door': `The door to Engineering is a heavy blast door with a keycard reader. Above the reader, someone has helpfully labeled it "CARGO ACCESS REQUIRED." Because apparently, Engineering is considered cargo storage. Station bureaucracy at its finest.`,
+            'engineering door': `The door to Engineering is a heavy blast door with a keycard reader. Above the reader, someone has helpfully labeled it "CARGO ACCESS REQUIRED." Because apparently, Engineering is considered cargo storage. Station bureaucracy at its finest.`,
+            'ballroom': `A large archway to the northeast leads to the Grand Ballroom, where the Captain's Gala was in full swing when everything went wrong. You can see scattered lights from the disco ball inside.`
+        },
+        image: 'main-corridor.png'
+    },
+
+    'engineering-corridor': {
+        name: 'ENGINEERING CORRIDOR',
+        description: `You're in the corridor leading to Engineering. The air here is noticeably warmer, and you can feel a subtle vibration through the floor from the station's power systems. Various pipes and conduits line the walls, most of them labeled with warnings you've learned to ignore.
+
+A few of the pipes are leaking steam, which adds a dramatic atmosphere but is probably terrible for the station's efficiency ratings. Someone has stuck a "We'll Fix It Eventually" sticky note on one of them. It's dated three years ago.
+
+The smell of ozone and machine oil hangs in the air. It's the smell of Engineering - a place where miracles are performed daily and nobody thanks you for it.
+
+A side passage to the south leads to the station's airlock.`,
+        connections: {
+            east: 'main-corridor',
+            west: 'engineering-deck',
+            south: 'airlock'
+        },
+        features: {
+            'pipes': `Various pipes carry coolant, fuel, and what you suspect might be the captain's private hot cocoa supply. Most are labeled. Some labels are crossed out and replaced with cryptic notes like "DO NOT TOUCH - JENKINS" and "DEFINITELY NOT HOT COCOA."`,
+            'steam': `Steam hisses from a leaky pipe. It's been doing this for at least three years, based on that sticky note. You've reported it twelve times. It's become a personal rivalry at this point.`,
+            'note': `A faded sticky note reads: "We'll Fix It Eventually - Engineering Dept." It's dated three years ago. You admire their optimism.`
+        },
+        image: 'engineering-corridor.png'
+    },
+
+    'engineering-deck': {
+        name: 'ENGINEERING DECK',
+        description: `The heart of the Pristine Venture's power systems spreads before you in all its chaotic glory. Reactor controls blink with warning lights that have been blinking so long everyone's stopped noticing them. The main power conduit hums ominously, occasionally sparking in ways that definitely violate several safety codes.
+
+A large power cell slot sits empty next to the emergency generator. Someone has placed a "Please Insert Power Cell" sign on it, which strikes you as optimistically passive-aggressive.
+
+The emergency power is clearly failing - half the displays are dead, and the ones that work keep flickering through error messages. You've seen this before. You've cleaned up after this before.
+
+In the corner, a maintenance panel sits slightly ajar. You know these tunnels well - you've used them to avoid meetings for years.`,
+        connections: {
+            east: 'engineering-corridor',
+            north: {
+                roomId: 'maintenance-tunnels',
+                locked: true,
+                requiredKey: null,
+                lockedMessage: 'The maintenance panel is here, but it\'s dark in the tunnels. You\'d need a light source to navigate safely - you learned that lesson the hard way during the Great Tunnel Incident of \'47.'
+            }
+        },
+        features: {
+            'reactor': `The main reactor controls. Most of the readouts are in the red, but to be fair, most readouts on this station are always in the red. It's almost comforting at this point.`,
+            'power cell slot': `An empty slot for an emergency power cell. The sign above it reads "INSERT POWER CELL HERE" with an arrow pointing down. Below that, someone added "No, seriously, we need one." The slot is clearly designed for a standard power cell.`,
+            'conduit': `The main power conduit sparks occasionally. You've reported this 23 times. Maintenance says it's "within acceptable parameters." Define "acceptable," you'd like to ask.`,
+            'displays': `Half the displays are dead. The working ones cycle through error messages: "POWER CRITICAL," "COOLANT LOW," and mysteriously, "HAVE YOU TRIED TURNING IT OFF AND ON AGAIN?"`,
+            'wire cutters': `A pair of wire cutters sits on the workbench. Standard engineering tool. Looks recently used.`,
+            'manual': `A thick maintenance manual sits on a nearby console. The cover reads "Pristine Venture Engineering Guide: When Things Go Wrong (And They Will)."`,
+            'panel': `A maintenance panel in the corner, slightly ajar. Beyond it, you can see the entrance to the maintenance tunnels - a cramped network of passages that connect various parts of the station. It's pitch black in there.`,
+            'maintenance panel': `A maintenance panel in the corner, slightly ajar. Beyond it, you can see the entrance to the maintenance tunnels - a cramped network of passages that connect various parts of the station. It's pitch black in there.`,
+            'tunnels': `The maintenance tunnels. You know them well from years of using them to avoid mandatory fun activities. But they're dark - you'd need a light source to navigate safely.`
+        },
+        image: 'engineering-deck.png'
+    },
+
+    'medical-bay': {
+        name: 'MEDICAL BAY',
+        description: `The Medical Bay is eerily quiet except for the soft beeping of life support monitors. Medical beds line the walls, most of them empty. The sterile white surfaces are still pristine - apparently the energy wave was polite enough to leave the medical equipment alone.
+
+Dr. Vera Patchwell lies unconscious on one of the beds, her perpetually tired expression somehow even more tired while she's asleep. Her coffee mug sits on the bedside table, long since cold.
+
+Medical supplies line the shelves - bandages, medicines, and several bottles of chemicals that you recognize from your advanced cleaning certification course. Those could be useful.`,
+        connections: {
+            west: 'main-corridor'
+        },
+        features: {
+            'beds': `Standard medical beds with built-in life support. Most are empty. One contains Dr. Patchwell, looking exhausted even while unconscious.`,
+            'monitors': `Life support monitors beep steadily. Everyone's vital signs are stable - just unconscious. Small mercies.`,
+            'supplies': `Medical supplies including bandages, antiseptic, and... is that ammonia? And vinegar? Your cleaning instincts are tingling.`,
+            'coffee': `Dr. Patchwell's coffee mug. Stone cold now. The mug reads "I Went to Medical School For This?" You feel a kinship.`,
+            'chemicals': `Various chemical compounds. Your trained eye spots ammonia solution and some other reagents. With your janitorial chemistry knowledge, you could probably make smelling salts.`
+        },
+        image: 'medical-bay.png'
+    },
+
+    'bridge': {
+        name: 'BRIDGE',
+        description: `The bridge of the Pristine Venture would be impressive if half the consoles weren't sparking and the viewscreen wasn't displaying what can only be described as "aggressive static with attitude."
+
+Captain Reginald Bluster slumps in his command chair, unconscious but still somehow radiating pomposity. His perfectly pressed uniform is wrinkled for perhaps the first time in his career. You'd feel bad, but he did call you "the mop person" at last year's crew evaluation.
+
+DUSTY's main terminal dominates one wall, its screen flickering with corrupted text. The AI seems to be stuck in some kind of loop, occasionally muttering in rhymes.
+
+Through the static on the viewscreen, you can just make out the approaching Blorgnax Homeworld. This is bad.
+
+A heavy door on the port side leads to DUSTY's Core - the AI's physical housing. A panel by the door reads "OVERRIDE REQUIRED."`,
+        connections: {
+            south: 'main-corridor',
+            west: {
+                roomId: 'dusty-core',
+                locked: true,
+                requiredKey: null,
+                lockedMessage: 'The door to DUSTY\'s Core is locked. A panel reads "OVERRIDE REQUIRED." You need the Captain\'s override code to access this area. It\'s for security - you don\'t want just anyone messing with the AI.'
+            }
+        },
+        features: {
+            'viewscreen': `The main viewscreen crackles with static, but through it you can see the Blorgnax Homeworld growing larger. ETA: approximately "too soon."`,
+            'consoles': `Navigation consoles spark and flicker. Most show ERROR messages. One optimistically displays "COLLISION COURSE CONFIRMED!" with a smiley face. You're going to have words with whoever programmed that.`,
+            'chair': `The captain's chair, currently occupied by the unconscious Captain Bluster. It's a really nice chair. You've dusted it many times.`,
+            'dusty': `DUSTY's terminal. The AI's avatar flickers on screen, occasionally spouting rhyming nonsense. "Systems failing, quite distressing / This situation needs addressing!" Not helpful, DUSTY.`,
+            'captain': `Captain Reginald Bluster, unconscious and slightly drooling on his command chair. His perfect hair is finally out of place. You resist the urge to take a photo.`,
+            'core door': `A heavy door on the port side of the bridge leads to DUSTY's Core. It requires the Captain's override code to open - even during emergencies, nobody wants unauthorized people messing with the AI. The panel reads "OVERRIDE REQUIRED."`
+        },
+        image: 'bridge.png'
+    },
+
+    'dusty-core': {
+        name: "DUSTY'S CORE",
+        description: `You stand in the heart of the Pristine Venture's artificial intelligence - DUSTY's physical core. The room is dominated by a massive cylindrical housing unit, its surface covered in blinking lights and status indicators, most of which are currently displaying alarming shades of red and orange.
+
+Cables and conduits snake across the floor and walls like the nervous system of some great mechanical beast. The air is thick with the smell of ozone and overheating electronics. Somewhere inside the housing, something is sparking rhythmically.
+
+This is it. This is where you save the station - or fail spectacularly trying. The core's main access panel is open, revealing damaged components and a clearly labeled slot marked "PERSONALITY MODULE - INSERT HERE."
+
+No pressure.`,
+        connections: {
+            east: 'bridge'
+        },
+        features: {
+            'core': `DUSTY's main processing core. It's about the size of a small car and covered in status lights that are doing their best impression of a Christmas tree having a seizure. The damage from the artifact's energy wave is visible - scorch marks, loose wires, and that ominous sparking.`,
+            'housing': `The cylindrical housing that contains DUSTY's main processors. It's warm to the touch - warmer than it should be. Various panels are open, exposing the delicate machinery inside.`,
+            'panel': `The main access panel is open, revealing the guts of DUSTY's personality matrix. Wires are crossed, components are damaged, and in the center of it all is an empty slot labeled "PERSONALITY MODULE - INSERT HERE." The original chip is fried - blackened and dead in its socket.`,
+            'slot': `A slot clearly labeled "PERSONALITY MODULE - INSERT HERE." It's currently empty - the original personality chip is a blackened ruin next to it. This is where you'd insert a backup, if you had one.`,
+            'personality slot': `A slot clearly labeled "PERSONALITY MODULE - INSERT HERE." It's currently empty - the original personality chip is a blackened ruin next to it. This is where you'd insert a backup, if you had one.`,
+            'wires': `Wires everywhere. Some are crossed, some are damaged, some are sparking ominously. You're not an engineer, but even you can tell this is bad. Wire cutters might help sort out the damaged ones.`,
+            'cables': `Cables of various sizes connect different parts of the core. Most look intact, but the main data cables show signs of damage. Some careful repair work might be needed.`,
+            'sparks': `Sparks occasionally fly from damaged components. It's like a tiny lightning storm inside the machine. Probably not ideal for sensitive electronics, but you're not the expert here.`
+        },
+        image: 'dusty-core.png'
+    },
+
+    'ballroom': {
+        name: 'BALLROOM',
+        description: `The Grand Ballroom of the Pristine Venture is frozen in time - specifically, the exact moment when the Captain's Gala went from "mandatory fun" to "mandatory unconsciousness."
+
+Dozens of crew members lie scattered across the polished floor, still in their formal wear, still clutching drinks that have long since gone flat. The decorations are impeccable: streamers, balloons, and a banner that reads "EXCELLENCE: IT'S NOT OPTIONAL!" The irony is palpable.
+
+Above it all, a massive disco ball hangs from the ceiling, still slowly rotating, scattering fragments of light across the unconscious partygoers like the world's most depressing snow globe.
+
+Chief Engineer Krix, the station's four-armed Delvian engineer, is slumped over the punch bowl, all four arms dangling limply. Even unconscious, she looks annoyed.`,
+        connections: {
+            southwest: 'main-corridor'
+        },
+        features: {
+            'disco ball': `A massive disco ball hangs from the ceiling, slowly rotating and casting sparkles across the room. It's the centerpiece of every station gala, because nothing says "mandatory fun" like a reflective sphere.
+
+Wait - is that... is there something INSIDE the disco ball? Through the mirrored panels, you can see what looks like a small electronic device. How did that get in there? And more importantly, why?`,
+            'crew': `Dozens of unconscious crew members in various states of formal dress. Some are face-down in hors d'oeuvres. Others are frozen mid-conversation. One appears to have been in the middle of an interpretive dance. You choose not to think about that one.`,
+            'decorations': `Streamers, balloons, and motivational banners. "EXCELLENCE: IT'S NOT OPTIONAL!" "PRISTINE IS PRISTING!" (someone clearly didn't proofread that one) and "CAPTAIN BLUSTER: LEADER, LEGEND, LOVER OF FINE CHEESE."`,
+            'banner': `"EXCELLENCE: IT'S NOT OPTIONAL!" screams the banner in letters you can read from space. You've cleaned up after many galas, and they always have banners like this. The more aggressive the message about fun, the less fun the event actually is.`,
+            'punch bowl': `Chief Engineer Krix is draped over the punch bowl. The punch itself has turned a concerning shade of purple. Either that's the alien goo's influence, or this is just how Engineering makes punch. Both are equally possible.`,
+            'floor': `The polished ballroom floor that you've buffed to a mirror shine many times. Currently decorated with unconscious people and spilled drinks. This is going to take FOREVER to clean.`
+        },
+        image: 'ballroom.png'
+    },
+
+    'science-lab-corridor': {
+        name: 'SCIENCE LAB CORRIDOR',
+        description: `A short corridor leads to the Science Lab. Or rather, it would lead there, if the doorway wasn't completely blocked by a massive wall of pulsating alien goo. The stuff is the same iridescent, burnt-toast-smelling substance you saw in the Main Corridor, but here it's formed an impenetrable barrier.
+
+The goo pulses with an internal light, occasionally forming shapes that might be faces, or might just be your imagination running away with you. Either way, it's disturbing.
+
+A sign next to the door reads "SCIENCE LAB - AUTHORIZED PERSONNEL ONLY." The goo seems unimpressed by the sign.`,
+        connections: {
+            west: 'main-corridor',
+            east: {
+                roomId: 'science-lab',
+                locked: true,
+                requiredKey: null,
+                lockedMessage: 'The doorway is completely blocked by alien goo. The stuff pulses and gurgles when you get close, as if daring you to try. Maybe something could dissolve it?'
+            }
+        },
+        features: {
+            'goo': `The alien goo forms a solid wall across the doorway. It's warm to the touch (you checked, regrettably) and seems almost alive. Your professional assessment: this is a mess that needs cleaning.`,
+            'alien goo': `The alien goo forms a solid wall across the doorway. It's warm to the touch (you checked, regrettably) and seems almost alive. Your professional assessment: this is a mess that needs cleaning.`,
+            'sign': `"SCIENCE LAB - AUTHORIZED PERSONNEL ONLY." Below it, someone has written "This means you, Jenkins." Jenkins must have been really unpopular.`,
+            'door': `You can barely see the door behind all that goo. It's a heavy blast door, probably locked too, but the goo is the more immediate problem.`
+        },
+        image: 'science-lab-corridor.png'
+    },
+
+    'science-lab': {
+        name: 'SCIENCE LAB',
+        description: `The Science Lab is ground zero for the chaos that's gripped the station. Equipment lies scattered, consoles spark intermittently, and in the center of it all sits THE ARTIFACT.
+
+The alien artifact hovers a few inches above its containment pedestal, glowing with an inner light that shifts between colors your brain insists shouldn't exist. It hums at a frequency that makes your teeth itch.
+
+Scattered around the room are notes, data pads, and what appears to be someone's lunch (now mutated into something that's eating the container). The scientists clearly left in a hurry when things went wrong.
+
+Despite the chaos, this is actually one of the cleaner rooms you've seen. The artifact's energy wave seems to have organized certain things while destroying others. Very inconsiderate of it.`,
+        connections: {
+            west: 'science-lab-corridor'
+        },
+        features: {
+            'artifact': `The alien artifact. The thing that started all this. It's about the size of a basketball, covered in intricate patterns that seem to shift when you're not looking directly at them. It hums smugly, as if it knows exactly what it did and isn't sorry.`,
+            'alien artifact': `The alien artifact. The thing that started all this. It's about the size of a basketball, covered in intricate patterns that seem to shift when you're not looking directly at them. It hums smugly, as if it knows exactly what it did and isn't sorry.`,
+            'pedestal': `A high-tech containment pedestal designed to keep the artifact stable. It's doing an... adequate job, considering the artifact is still glowing and humming ominously.`,
+            'consoles': `Scientific consoles blink with error messages and readings that are either very wrong or very right in ways no one understands anymore.`,
+            'notes': `Scientific notes scattered everywhere. Most are too technical to understand, but you spot phrases like "unprecedented energy readings," "consciousness patterns??" and "ORDER MORE COFFEE - URGENT."`,
+            'lunch': `What was once someone's lunch has mutated into a small, purple blob that's slowly consuming its container. It looks at you (how? It doesn't have eyes) and makes a sound that might be a greeting. You decide to leave it alone.`
+        },
+        image: 'science-lab.png'
+    },
+
+    'airlock': {
+        name: 'AIRLOCK',
+        description: `The airlock is a stark, utilitarian space designed for one purpose: keeping the deadly vacuum of space from becoming your personal problem. Emergency EVA suits hang in lockers along one wall, and various emergency equipment is stored in clearly labeled compartments.
+
+The outer airlock door looms ominously on the far wall, its status panel glowing a reassuring green. "SEALED" it announces, as if you needed reminding that opening it without a suit would result in an extremely brief and unpleasant experience.
+
+A small porthole offers a view of the stars outside - beautiful, eternal, and absolutely lethal. You've cleaned this porthole many times. The fingerprints of people pressing their faces against it to look at space never seem to go away.`,
+        connections: {
+            north: 'engineering-corridor'
+        },
+        features: {
+            'outer door': `The outer airlock door. A big, heavy portal between you and the void. The status panel reads "SEALED - AUTHORIZED PERSONNEL ONLY." You are not authorized personnel, but you ARE the only conscious person on the station, so the rules are flexible.`,
+            'suits': `Emergency EVA suits hang in their lockers, ready for use. They're the standard "one size fits nobody" model. You've worn one exactly once, during a drill, and it was like being trapped inside a sweaty, claustrophobic balloon.`,
+            'eva suits': `Emergency EVA suits hang in their lockers, ready for use. They're the standard "one size fits nobody" model. You've worn one exactly once, during a drill, and it was like being trapped inside a sweaty, claustrophobic balloon.`,
+            'equipment': `Emergency equipment storage: oxygen tanks, repair kits, and a fire extinguisher. Standard airlock supplies. You've inventoried this stuff more times than you can count.`,
+            'porthole': `A small porthole showing the stars outside. It's peaceful. It's beautiful. It's a constant reminder that you're surrounded by infinite death on all sides. Very calming.`,
+            'lockers': `Equipment lockers line the wall. Most are labeled with helpful warnings like "EMERGENCY USE ONLY" and "RETURN EQUIPMENT AFTER USE" and "JENKINS OWES ENGINEERING 3 OXYGEN TANKS."`,
+            'panel': `The airlock control panel. Big red buttons, lots of warnings, and a helpful sign that reads "IF IN DOUBT, DON'T." Words to live by, really.`
+        },
+        image: 'airlock.png'
+    },
+
+    'crew-quarters': {
+        name: 'CREW QUARTERS',
+        description: `The crew quarters are a maze of small, personal spaces crammed together in the name of "efficient space utilization." Each bunk is a tiny monument to the individual personality of its occupant, which is to say, they're all slightly depressing in unique ways.
+
+Personal effects are scattered everywhere - photos, trinkets, and an alarming number of motivational posters that weren't motivating anyone even before the crisis. The energy wave knocked everything askew, creating a frozen snapshot of interrupted lives.
+
+On the bright side, you spot an emergency power cell sitting on someone's desk. Probably Dr. Chen - she was always "borrowing" equipment from Engineering for her "experiments."
+
+A large photo on the wall shows Captain Bluster at some award ceremony, standing next to a plaque with the station's motto. Someone has drawn a mustache on it in marker.`,
+        connections: {
+            west: 'cargo-corridor'
+        },
+        features: {
+            'bunks': `Cramped crew bunks, each one about the size of a coffin. With delusions of grandeur. The station's designers clearly prioritized cargo space over crew comfort. Typical.`,
+            'photo': `A large photo of Captain Bluster receiving the "Excellence in Leadership" award. The plaque behind him reads "PRISTINE VENTURE - PASSWORD: STARDUST847." Someone has drawn a mustache on the captain. You approve.`,
+            'captain photo': `A large photo of Captain Bluster receiving the "Excellence in Leadership" award. The plaque behind him reads "PRISTINE VENTURE - PASSWORD: STARDUST847." Someone has drawn a mustache on the captain. You approve.`,
+            'poster': `A motivational poster featuring a kitten hanging from a branch with the text "HANG IN THERE!" Someone has added "...or don't. We're all going to die in space anyway." in permanent marker. Crew morale was clearly an issue.`,
+            'posters': `Multiple motivational posters, all vandalized with increasingly cynical commentary. "TEAMWORK!" has been changed to "TEAM WHAT?" "REACH FOR THE STARS!" now reads "REACH FOR THE EMERGENCY OXYGEN." You feel a kinship with whoever did this.`,
+            'effects': `Personal effects from various crew members: a stuffed animal that might be a dog (or a very unfortunate cat), a collection of pressed space flowers, and what appears to be a shrine to some pop star you don't recognize.`,
+            'desk': `Dr. Chen's desk, identifiable by the "Property of Engineering - DO NOT TOUCH" stickers covering everything. The power cell sitting here probably wasn't supposed to leave Engineering. Classic Chen.`
+        },
+        image: 'crew-quarters.png'
+    },
+
+    'maintenance-tunnels': {
+        name: 'MAINTENANCE TUNNELS',
+        description: `The maintenance tunnels are a claustrophobic nightmare of pipes, cables, and the fossilized dreams of budget-conscious architects. The ceiling is low enough that you have to crouch, and the walls are close enough to trigger the latent claustrophobia you didn't know you had.
+
+It's pitch dark in here except for occasional sparks from damaged wiring and the faint glow of emergency floor strips that someone installed and then immediately forgot about. The air smells of dust, machine oil, and regret.
+
+On the bright side, nobody ever comes down here. You've found some of your best alone time in these tunnels over the years. Also, some of your worst spiders.`,
+        connections: {
+            south: 'engineering-deck',
+            north: 'captains-quarters'
+        },
+        features: {
+            'pipes': `Pipes of various sizes carry unknown substances to unknown destinations. Some are hot, some are cold, and one is vibrating in a way that suggests it's either very important or very broken. Possibly both.`,
+            'cables': `Cables are bundled together in ways that would make an electrician weep. Someone has labeled them with tape, but the labels say things like "DON'T TOUCH" and "SERIOUSLY DON'T" and "JENKINS WAS HERE (RIP)."`,
+            'floor strips': `Emergency floor strips provide a faint green glow, just enough to see by if you squint. They were installed after the Great Tunnel Incident of '47, which nobody talks about.`,
+            'spiders': `You don't see any spiders right now, but you know they're here. Watching. Waiting. Probably judging your life choices.`,
+            'darkness': `It's very dark in here. The kind of dark that makes you question whether you actually have eyes or just imagine that you do. A light source would be helpful.`
+        },
+        image: 'maintenance-tunnels.png',
+        dark: true
+    },
+
+    'captains-quarters': {
+        name: "CAPTAIN'S QUARTERS",
+        description: `Captain Bluster's personal quarters are exactly as pretentious as you'd expect. The room is twice the size of any crew quarters and decorated with awards, commendations, and what appears to be a portrait of the Captain... painted by the Captain.
+
+A massive desk dominates one corner, covered in important-looking papers that are probably just ego documents. The bed is impeccably made with hospital corners you could cut yourself on. Everything screams "I'm in charge and I need you to know it."
+
+On the nightstand sits a slim volume of poetry - the Captain's own work, naturally. You've heard him recite it at crew meetings. It's... memorable. Not good, but memorable.`,
+        connections: {
+            south: 'maintenance-tunnels'
+        },
+        features: {
+            'portrait': `A life-size portrait of Captain Bluster, painted by Captain Bluster, in a style that can only be described as "aggressively self-congratulatory." He's posed heroically with one foot on a space rock. You've never seen him do anything heroic.`,
+            'desk': `The Captain's desk is a monument to bureaucratic self-importance. Papers, awards, and a nameplate that says "Captain Reginald Q. Bluster III - Excellence Personified." You've cleaned this desk many times. It's always dusty.`,
+            'awards': `Awards line the walls: "Best Maintained Mustache," "Excellence in Looking Stern," "Most Inspiring Speeches (Self-Nominated)." The frames are all slightly crooked. It bothers you every time.`,
+            'bed': `The Captain's bed is made with military precision. You've made this bed. The Captain actually has you remake it if you get the corners wrong. Three times you've had to remake it.`,
+            'poetry': `A slim volume titled "Stellar Sonnets: A Captain's Soul" by Captain Reginald Q. Bluster III. The cover features another portrait. Inside... well, you'll have to READ it to find out.`,
+            'papers': `Important-looking papers that are mostly memos the Captain wrote to himself about how important he is. One is titled "Why I Should Get Another Raise: A 47-Point Argument."`,
+            'nightstand': `A simple nightstand that somehow still looks pretentious. The poetry book sits here, along with a glass of water (room temperature, as the Captain insists) and a framed photo of the Captain's mustache.`
+        },
+        image: 'captains-quarters.png'
+    },
+
+    'mess-hall': {
+        name: 'MESS HALL',
+        description: `The Mess Hall of the Pristine Venture is a study in culinary disappointment even on the best of days. Today, with half the lights flickering and the food synthesizer making sounds that can only be described as "digestively concerning," it's somehow worse.
+
+Tables are scattered with half-finished meals - the crew was clearly interrupted mid-bite by the energy wave. Someone's soup has congealed into what might be a new life form. You decide not to investigate.
+
+The main food synthesizer dominates one wall, sparking occasionally and emitting a smell that's somewhere between "burnt toast" and "existential regret." A sign above it reads "Satisfaction Guaranteed!*" with an asterisk that leads to very fine print.
+
+At least the coffee station looks intact. Some things are sacred, even in a crisis.`,
+        connections: {
+            down: 'main-corridor'
+        },
+        features: {
+            'synthesizer': `The food synthesizer sparks and wheezes like an asthmatic robot. Its display flickers between "READY TO SERVE" and "CRITICAL MALFUNCTION" in an indecisive loop. Something inside it is making a grinding noise that doesn't inspire confidence. It looks like it needs some basic repairs - maybe some duct tape could hold it together long enough to produce something edible. Or at least something that won't immediately cause food poisoning.`,
+            'food synthesizer': `The food synthesizer sparks and wheezes like an asthmatic robot. Its display flickers between "READY TO SERVE" and "CRITICAL MALFUNCTION" in an indecisive loop. Something inside it is making a grinding noise that doesn't inspire confidence. It looks like it needs some basic repairs - maybe some duct tape could hold it together long enough to produce something edible. Or at least something that won't immediately cause food poisoning.`,
+            'tables': `Mess hall tables, each one a frozen snapshot of interrupted meals. Someone was having the "Mystery Protein Surprise" - you've cleaned up enough of that to know it's neither mysterious nor surprising. Just disappointing.`,
+            'soup': `The abandoned soup has developed a skin on top that you're pretty sure just blinked at you. Best to leave it alone. Some messes are better left uncleaned.`,
+            'sign': `"Satisfaction Guaranteed!*" The asterisk leads to fine print: "*Satisfaction not guaranteed. Pristine Ventures Inc. is not responsible for taste, texture, nutritional content, or any existential crises caused by consumption."`,
+            'coffee station': `The coffee station appears mercifully intact. There's even a clean mug waiting there, as if fate knew you'd need caffeine to deal with this situation. The station can produce coffee... if only the synthesizer was working.`,
+            'meals': `Half-eaten meals litter the tables. The variety is impressive in its mediocrity - synthesized "steak," reconstituted "vegetables," and something labeled "Nutrition Block Alpha" that looks like a brick of sadness.`
+        },
+        image: 'mess-hall.png'
+    }
+};
+
+export default rooms;
