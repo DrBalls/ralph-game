@@ -81,3 +81,9 @@ Started: 2026-01-28
 - **Files changed:** None (verification only)
 - **Learnings:** Item.onTake() returns {success, message}, cantTakeMessage for non-takeable items
 ---
+
+## 2026-01-28 - US-011
+- **What was implemented:** EXAMINE command verification
+- **Files changed:** None (verification only)
+- **Learnings:** handleExamine checks inventory first, then room items, then room features
+---
