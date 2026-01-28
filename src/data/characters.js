@@ -13,9 +13,25 @@ Her medical coat is slightly askew, and her coffee mug sits cold on the bedside 
         state: 'unconscious',
         dialogue: {
             'unconscious': `Dr. Patchwell is unconscious and doesn't respond. Her breathing is steady - she's just deeply asleep from the energy wave. Maybe if you had some smelling salts...`,
-            'awake': `"Ugh... what happened? My head feels like it was used as a gong." Dr. Patchwell rubs her temples. "The energy wave? Is everyone okay? Wait - why are YOU the one waking me up? Where's the captain?"`,
-            'helped': `"Thanks for the coffee. I needed that more than you know. Here - take this Engineering keycard. Chief Krix gave it to me for emergencies, and I'd say this qualifies."`,
-            'default': `Dr. Patchwell looks at you with tired but grateful eyes. "So the janitor saved the day. Why am I not surprised? This station has always run on caffeine and stubbornness."`
+            'awake': [
+                `"Ugh... what happened? My head feels like it was used as a gong." Dr. Patchwell rubs her temples. "The energy wave? Is everyone okay? Wait - why are YOU the one waking me up? Where's the captain?"`,
+                `"I feel like I haven't had coffee in days. Which, given how long I was out, might be true." She looks around desperately. "Please tell me the synthesizer still works. I NEED caffeine to think straight."`,
+                `"The artifact... I remember the gala, then this strange light, and then... nothing." She shudders. "I've treated radiation sickness, space madness, and something that turned Lieutenant Morris's skin plaid. But this? This is new."`,
+                `"DUSTY went haywire just before we all passed out. Started speaking in rhymes - can you imagine? An AI reciting poetry against its will. We need to fix it before it composes an epic about our demise."`,
+                `"Chief Krix was at the gala too. Four arms, and she couldn't stop the energy wave. If HER engineering skills couldn't prevent this, we're going to need some creative solutions. Starting with coffee. Did I mention coffee?"`,
+                `"The Captain's probably unconscious on the bridge, dreaming about promotions. Typical. When there's actual work to be done, guess who's conveniently asleep?"`
+            ],
+            'helped': [
+                `"Thanks for the coffee. I needed that more than you know." She takes a long sip. "Here - take this Engineering keycard. Chief Krix gave it to me for emergencies. I'd say 'station about to crash' qualifies."`,
+                `"The coffee is... actually perfect. By which I mean terrible, but exactly the kind of terrible I needed." She hands over the keycard. "Now go save the station. I'll... stay here. Monitor the unconscious. Try not to panic."`,
+                `"You're not bad at this hero thing. For a janitor." She manages a weak smile. "Now get going. DUSTY needs help, and you're apparently the only conscious person who can give it."`
+            ],
+            'default': [
+                `Dr. Patchwell looks at you with tired but grateful eyes. "So the janitor saved the day. Why am I not surprised? This station has always run on caffeine and stubbornness."`,
+                `"Check on DUSTY when you can. An AI speaking in rhymes is concerning on multiple levels. Also, if you see any coffee, bring it to me. Please."`,
+                `"I'd help more, but someone needs to monitor the unconscious crew. Also, I'm still not entirely sure I'm not hallucinating all of this. The janitor saving us all? Sounds like something I'd dream."`,
+                `"Don't let the Captain know you did all the work. He'll find a way to take credit anyway, but at least make him work for it."`
+            ]
         }
     },
 

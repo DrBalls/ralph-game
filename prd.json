@@ -724,8 +724,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 44,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Already implemented in Parser.getHelpText(). Lists all commands with descriptions."
     },
     {
       "id": "US-045",
@@ -741,8 +741,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 45,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. Enhanced with array dialogue for awake/helped/default states. Hints at coffee, discusses crew, mentions DUSTY."
     },
     {
       "id": "US-046",
@@ -757,8 +757,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 46,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Already implemented. 5 corrupted rhymes + repaired + default. Meets criteria (rhyming hints, glitchy, sarcastic after repair)."
     },
     {
       "id": "US-047",
@@ -773,8 +773,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 47,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Already implemented. 5 active + 5 impressed + dormant + default = 12 responses. Very sarcastic."
     },
     {
       "id": "US-048",

@@ -314,3 +314,13 @@ Started: 2026-01-28
 - **Files changed:** None (verification only)
 - **Learnings:** GameState.save() and GameState.load() already support 3 slots with localStorage
 ---
+
+## 2026-01-28 - US-044, US-045, US-046, US-047
+- **What was implemented:** HELP command verification, Dr. Patchwell dialogue enhancement, DUSTY/artifact dialogue verification
+- **Files changed:**
+  - src/data/characters.js - Enhanced Dr. Patchwell with array dialogue for awake/helped/default states
+- **Learnings for future iterations:**
+  - Dialogue arrays provide variety for repeated interactions
+  - State-based dialogue (unconscious→awake→helped) creates narrative progression
+  - Hints can be embedded naturally in character dialogue (coffee, DUSTY, crew)
+---
