@@ -111,3 +111,18 @@ Started: 2026-01-28
 - **Files changed:** src/data/rooms.js, src/data/items.js
 - **Learnings:** Batch similar room implementations together, add items via startingRoom property
 ---
+
+## 2026-01-28 - US-017
+- **What was implemented:** Character class and basic dialogue system
+- **Files changed:**
+  - src/engine/Character.js - New Character class with dialogue, state, talk(), giveItem(), matchesName()
+  - src/data/characters.js - Character data for Dr. Patchwell, Captain Bluster, DUSTY
+  - src/engine/Game.js - Added initCharacters() method, Character import, updated handleTalk/handleExamine/handleUse to use matchesName()
+  - public/game.js - Import characters data and pass to Game constructor
+- **Learnings for future iterations:**
+  - Character system follows same pattern as Items: data in src/data/, class in src/engine/, init method in Game
+  - Characters placed in rooms via startingRoom property, same as items
+  - talk() supports both string and array dialogue (random selection for arrays)
+  - Character state (e.g., 'unconscious', 'awake') determines which dialogue is returned
+  - matchesName() checks both name.includes() and id exact match for flexible player input
+---
