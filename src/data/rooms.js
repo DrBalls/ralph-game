@@ -61,11 +61,12 @@ The lights flicker in a pattern that almost seems intentional, as if the station
                 locked: true,
                 requiredKey: 'keycard-cargo',
                 lockedMessage: 'The door to Engineering is locked. It has a keycard reader with "CARGO" written above it. Apparently, Engineering counts as "cargo" in some bureaucratic sense.'
-            }
+            },
+            up: 'mess-hall'
         },
         features: {
             'goo': `Pulsing, iridescent alien goo. It smells faintly of burnt toast and something unidentifiable. You've cleaned up a lot of strange substances in your career, but this one takes the cake. It seems almost... alive? Best not to think about that.`,
-            'signs': `Emergency signs point to various locations: Bridge (North), Medical Bay (East), Engineering (West), Cargo (South). The "You Are Here" dot has been replaced with a sad face emoji. You don't remember authorizing that modification.`,
+            'signs': `Emergency signs point to various locations: Bridge (North), Medical Bay (East), Engineering (West), Cargo (South), Mess Hall (Up via stairs). The "You Are Here" dot has been replaced with a sad face emoji. You don't remember authorizing that modification.`,
             'walls': `The usually pristine white walls are covered in scorch marks and that weird goo. You're going to need a LOT of Universal Cleaning Solvent for this. Maybe THE DISSOLVER.`,
             'lights': `The emergency lights flicker in an almost rhythmic pattern. Is the station trying to tell you something? Or is this just standard "everything is failing" behavior? Hard to tell anymore.`,
             'door': `The door to Engineering is a heavy blast door with a keycard reader. Above the reader, someone has helpfully labeled it "CARGO ACCESS REQUIRED." Because apparently, Engineering is considered cargo storage. Station bureaucracy at its finest.`,
@@ -154,6 +155,30 @@ Through the static on the viewscreen, you can just make out the approaching Blor
             'captain': `Captain Reginald Bluster, unconscious and slightly drooling on his command chair. His perfect hair is finally out of place. You resist the urge to take a photo.`
         },
         image: 'bridge.png'
+    },
+
+    'mess-hall': {
+        name: 'MESS HALL',
+        description: `The Mess Hall of the Pristine Venture is a study in culinary disappointment even on the best of days. Today, with half the lights flickering and the food synthesizer making sounds that can only be described as "digestively concerning," it's somehow worse.
+
+Tables are scattered with half-finished meals - the crew was clearly interrupted mid-bite by the energy wave. Someone's soup has congealed into what might be a new life form. You decide not to investigate.
+
+The main food synthesizer dominates one wall, sparking occasionally and emitting a smell that's somewhere between "burnt toast" and "existential regret." A sign above it reads "Satisfaction Guaranteed!*" with an asterisk that leads to very fine print.
+
+At least the coffee station looks intact. Some things are sacred, even in a crisis.`,
+        connections: {
+            down: 'main-corridor'
+        },
+        features: {
+            'synthesizer': `The food synthesizer sparks and wheezes like an asthmatic robot. Its display flickers between "READY TO SERVE" and "CRITICAL MALFUNCTION" in an indecisive loop. Something inside it is making a grinding noise that doesn't inspire confidence. It looks like it needs some basic repairs - maybe some duct tape could hold it together long enough to produce something edible. Or at least something that won't immediately cause food poisoning.`,
+            'food synthesizer': `The food synthesizer sparks and wheezes like an asthmatic robot. Its display flickers between "READY TO SERVE" and "CRITICAL MALFUNCTION" in an indecisive loop. Something inside it is making a grinding noise that doesn't inspire confidence. It looks like it needs some basic repairs - maybe some duct tape could hold it together long enough to produce something edible. Or at least something that won't immediately cause food poisoning.`,
+            'tables': `Mess hall tables, each one a frozen snapshot of interrupted meals. Someone was having the "Mystery Protein Surprise" - you've cleaned up enough of that to know it's neither mysterious nor surprising. Just disappointing.`,
+            'soup': `The abandoned soup has developed a skin on top that you're pretty sure just blinked at you. Best to leave it alone. Some messes are better left uncleaned.`,
+            'sign': `"Satisfaction Guaranteed!*" The asterisk leads to fine print: "*Satisfaction not guaranteed. Pristine Ventures Inc. is not responsible for taste, texture, nutritional content, or any existential crises caused by consumption."`,
+            'coffee station': `The coffee station appears mercifully intact. There's even a clean mug waiting there, as if fate knew you'd need caffeine to deal with this situation. The station can produce coffee... if only the synthesizer was working.`,
+            'meals': `Half-eaten meals litter the tables. The variety is impressive in its mediocrity - synthesized "steak," reconstituted "vegetables," and something labeled "Nutrition Block Alpha" that looks like a brick of sadness.`
+        },
+        image: 'mess-hall.png'
     }
 };
 

@@ -122,6 +122,33 @@ Your janitorial chemistry certification is finally paying off.`,
         hidden: true,
         aliases: ['salts', 'smelling salts', 'ammonia glove'],
         useWith: ['doctor', 'dr patchwell', 'patchwell', 'vera']
+    },
+
+    'coffee-mug': {
+        name: 'Coffee Mug',
+        description: 'A clean coffee mug sits on the counter, waiting patiently.',
+        examineText: `A standard station-issue coffee mug. It's surprisingly clean considering the state of everything else. The mug bears the Pristine Venture logo and the motto "Excellence Through Caffeination."
+
+Someone has scratched "I survived the budget cuts" on the bottom. Morale has been an issue lately.
+
+This could hold coffee, if only there was a working way to make some...`,
+        takeable: true,
+        startingRoom: 'mess-hall',
+        aliases: ['mug', 'cup', 'coffee cup'],
+        useWith: ['synthesizer', 'food synthesizer', 'coffee station']
+    },
+
+    'stale-donuts': {
+        name: 'Stale Donuts',
+        description: 'A box of donuts sits on a table, looking distinctly past their prime.',
+        examineText: `A half-empty box of "Space Delights" brand donuts. They were probably brought in for the Captain's Gala and promptly abandoned when actual food arrived.
+
+The donuts have achieved a level of staleness that transcends mere "old." They've entered the realm of "geological." You're pretty sure you could use one as a weapon if necessary.
+
+The box cheerfully proclaims "Now with 50% less sawdust!" You've always wondered what happened to the other 50%.`,
+        takeable: true,
+        startingRoom: 'mess-hall',
+        aliases: ['donuts', 'donut', 'doughnuts', 'doughnut', 'pastries']
     }
 };
 
