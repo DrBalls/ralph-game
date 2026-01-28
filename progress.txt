@@ -57,3 +57,9 @@ Started: 2026-01-28
 - **Files changed:** src/engine/GameState.js
 - **Learnings:** save/load uses localStorage with versioned JSON, supports 3 slots, imports Inventory
 ---
+
+## 2026-01-28 - US-007
+- **What was implemented:** Main Game class tying all engine components together
+- **Files changed:** src/engine/Game.js
+- **Learnings:** Game takes outputCallback in config, uses Maps for rooms/items, handleCommand returns {success, message}
+---
