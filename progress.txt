@@ -263,3 +263,14 @@ Started: 2026-01-28
   - Items can be spread across related areas (flare in Engineering, extinguisher in Airlock)
   - Room features describe equipment that may be useful later
 ---
+
+## 2026-01-28 - US-030
+- **What was implemented:** DUSTY's Core room for endgame with override code puzzle
+- **Files changed:**
+  - src/data/rooms.js - Added dusty-core room, updated bridge with west locked connection and core door feature
+  - src/data/puzzles.js - Added setupOverrideCodePuzzle() function
+- **Learnings for future iterations:**
+  - Final areas should convey importance through description ("This is it")
+  - Puzzle items (override-code) found earlier are used to unlock later areas
+  - Room features can clearly show puzzle objectives (personality slot)
+---

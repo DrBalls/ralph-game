@@ -161,18 +161,52 @@ Captain Reginald Bluster slumps in his command chair, unconscious but still some
 
 DUSTY's main terminal dominates one wall, its screen flickering with corrupted text. The AI seems to be stuck in some kind of loop, occasionally muttering in rhymes.
 
-Through the static on the viewscreen, you can just make out the approaching Blorgnax Homeworld. This is bad.`,
+Through the static on the viewscreen, you can just make out the approaching Blorgnax Homeworld. This is bad.
+
+A heavy door on the port side leads to DUSTY's Core - the AI's physical housing. A panel by the door reads "OVERRIDE REQUIRED."`,
         connections: {
-            south: 'main-corridor'
+            south: 'main-corridor',
+            west: {
+                roomId: 'dusty-core',
+                locked: true,
+                requiredKey: null,
+                lockedMessage: 'The door to DUSTY\'s Core is locked. A panel reads "OVERRIDE REQUIRED." You need the Captain\'s override code to access this area. It\'s for security - you don\'t want just anyone messing with the AI.'
+            }
         },
         features: {
             'viewscreen': `The main viewscreen crackles with static, but through it you can see the Blorgnax Homeworld growing larger. ETA: approximately "too soon."`,
             'consoles': `Navigation consoles spark and flicker. Most show ERROR messages. One optimistically displays "COLLISION COURSE CONFIRMED!" with a smiley face. You're going to have words with whoever programmed that.`,
             'chair': `The captain's chair, currently occupied by the unconscious Captain Bluster. It's a really nice chair. You've dusted it many times.`,
             'dusty': `DUSTY's terminal. The AI's avatar flickers on screen, occasionally spouting rhyming nonsense. "Systems failing, quite distressing / This situation needs addressing!" Not helpful, DUSTY.`,
-            'captain': `Captain Reginald Bluster, unconscious and slightly drooling on his command chair. His perfect hair is finally out of place. You resist the urge to take a photo.`
+            'captain': `Captain Reginald Bluster, unconscious and slightly drooling on his command chair. His perfect hair is finally out of place. You resist the urge to take a photo.`,
+            'core door': `A heavy door on the port side of the bridge leads to DUSTY's Core. It requires the Captain's override code to open - even during emergencies, nobody wants unauthorized people messing with the AI. The panel reads "OVERRIDE REQUIRED."`
         },
         image: 'bridge.png'
+    },
+
+    'dusty-core': {
+        name: "DUSTY'S CORE",
+        description: `You stand in the heart of the Pristine Venture's artificial intelligence - DUSTY's physical core. The room is dominated by a massive cylindrical housing unit, its surface covered in blinking lights and status indicators, most of which are currently displaying alarming shades of red and orange.
+
+Cables and conduits snake across the floor and walls like the nervous system of some great mechanical beast. The air is thick with the smell of ozone and overheating electronics. Somewhere inside the housing, something is sparking rhythmically.
+
+This is it. This is where you save the station - or fail spectacularly trying. The core's main access panel is open, revealing damaged components and a clearly labeled slot marked "PERSONALITY MODULE - INSERT HERE."
+
+No pressure.`,
+        connections: {
+            east: 'bridge'
+        },
+        features: {
+            'core': `DUSTY's main processing core. It's about the size of a small car and covered in status lights that are doing their best impression of a Christmas tree having a seizure. The damage from the artifact's energy wave is visible - scorch marks, loose wires, and that ominous sparking.`,
+            'housing': `The cylindrical housing that contains DUSTY's main processors. It's warm to the touch - warmer than it should be. Various panels are open, exposing the delicate machinery inside.`,
+            'panel': `The main access panel is open, revealing the guts of DUSTY's personality matrix. Wires are crossed, components are damaged, and in the center of it all is an empty slot labeled "PERSONALITY MODULE - INSERT HERE." The original chip is fried - blackened and dead in its socket.`,
+            'slot': `A slot clearly labeled "PERSONALITY MODULE - INSERT HERE." It's currently empty - the original personality chip is a blackened ruin next to it. This is where you'd insert a backup, if you had one.`,
+            'personality slot': `A slot clearly labeled "PERSONALITY MODULE - INSERT HERE." It's currently empty - the original personality chip is a blackened ruin next to it. This is where you'd insert a backup, if you had one.`,
+            'wires': `Wires everywhere. Some are crossed, some are damaged, some are sparking ominously. You're not an engineer, but even you can tell this is bad. Wire cutters might help sort out the damaged ones.`,
+            'cables': `Cables of various sizes connect different parts of the core. Most look intact, but the main data cables show signs of damage. Some careful repair work might be needed.`,
+            'sparks': `Sparks occasionally fly from damaged components. It's like a tiny lightning storm inside the machine. Probably not ideal for sensitive electronics, but you're not the expert here.`
+        },
+        image: 'dusty-core.png'
     },
 
     'ballroom': {

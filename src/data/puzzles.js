@@ -18,6 +18,7 @@ export function initializePuzzles(game) {
     setupMaintenanceTunnelsPuzzle(game);
     setupPoetryBookPuzzle(game);
     setupDiscoBallPuzzle(game);
+    setupOverrideCodePuzzle(game);
 }
 
 /**
@@ -873,6 +874,74 @@ function setupDiscoBallPuzzle(game) {
 You've already retrieved the personality chip that was hidden inside. The cleanup of these mirror shards is going to be a nightmare, but that's a problem for future you.`;
         }
         return null; // Use default examineText
+    });
+}
+
+/**
+ * Setup the override code puzzle
+ * - Player uses the Captain's override code to unlock DUSTY's Core
+ */
+function setupOverrideCodePuzzle(game) {
+    const overrideCode = game.items.get('override-code');
+
+    if (!overrideCode) return;
+
+    overrideCode.setUseHandler((item, target, gameState) => {
+        const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+        // Check if using code with door, panel, or core
+        if (targetId === 'door' || targetId === 'core door' || targetId === 'panel' ||
+            targetId === 'dusty core' || targetId === 'dusty-core' || targetId === 'west') {
+            // Check if we're on the bridge
+            const currentRoomId = gameState.getCurrentRoomId();
+            if (currentRoomId !== 'bridge') {
+                return {
+                    success: false,
+                    message: "There's nothing here that needs the override code."
+                };
+            }
+
+            // Check if already unlocked
+            if (gameState.getFlag('dusty_core_unlocked')) {
+                return {
+                    success: false,
+                    message: "DUSTY's Core is already unlocked. The door is open."
+                };
+            }
+
+            // Unlock the door!
+            gameState.setFlag('dusty_core_unlocked', true);
+
+            // Unlock the actual door connection
+            const bridge = game.rooms.get('bridge');
+            if (bridge && bridge.connections.west) {
+                bridge.connections.west.locked = false;
+            }
+
+            gameState.addScore(10, 'unlock_dusty_core');
+
+            return {
+                success: true,
+                message: `You approach the door to DUSTY's Core and find a keypad glowing expectantly. You read from the scrap of paper:
+
+"BLUSTER-ALPHA-7-MAGNIFICENT"
+
+You type it in, wincing slightly at the egotism of it all.
+
+*BEEP* *BEEP* *BEEP*
+
+"OVERRIDE ACCEPTED," the panel announces. "WELCOME, CAPTAIN BLUSTER. YOU'RE LOOKING MAGNIFICENT TODAY."
+
+The door slides open with a dramatic hiss, revealing the flickering, sparking chaos of DUSTY's Core beyond. The Captain really programmed his own compliments into the security system. Incredible.
+
+The way to DUSTY's Core is now open!`
+            };
+        }
+
+        return {
+            success: false,
+            message: "You're not sure where to use the override code here."
+        };
     });
 }
 
