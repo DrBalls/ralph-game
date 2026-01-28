@@ -204,8 +204,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 12,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. First puzzle works with score."
     },
     {
       "id": "US-013",

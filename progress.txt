@@ -87,3 +87,9 @@ Started: 2026-01-28
 - **Files changed:** None (verification only)
 - **Learnings:** handleExamine checks inventory first, then room items, then room features
 ---
+
+## 2026-01-28 - US-012
+- **What was implemented:** First puzzle - mop/shelf/keycard
+- **Files changed:** src/data/puzzles.js, public/game.js
+- **Learnings:** item.setUseHandler() for custom puzzle logic, initializePuzzles() called after Game creation, score via addScore()
+---
