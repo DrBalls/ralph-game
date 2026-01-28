@@ -263,6 +263,38 @@ This code should grant access to restricted systems - like DUSTY's Core. The Cap
         startingRoom: null,
         hidden: true,
         aliases: ['code', 'override', 'paper', 'captain code']
+    },
+
+    'disco-ball': {
+        name: 'Disco Ball',
+        description: 'A massive disco ball hangs from the ceiling, rotating slowly.',
+        examineText: `The disco ball is the centerpiece of the Grand Ballroom - a sphere of mirrored panels that scatters light across the room in a dazzling display of "festive corporate morale enhancement."
+
+Wait... there's something INSIDE the disco ball. Through the gaps between the mirrored panels, you can see a small electronic device nestled in the center. It looks like... a memory chip of some kind?
+
+The disco ball is hanging from the ceiling, way too high to reach normally. You'd need something long to knock it down. Or maybe a ladder. But who has time to find a ladder during a crisis?`,
+        takeable: false,
+        cantTakeMessage: `The disco ball is hanging from the ceiling, at least twelve feet up. Your impressive vertical leap of about six inches isn't going to cut it. Maybe you could knock it down with something?`,
+        startingRoom: 'ballroom',
+        aliases: ['ball', 'mirror ball', 'glitter ball'],
+        useWith: ['mop']
+    },
+
+    'personality-chip': {
+        name: "DUSTY's Personality Chip",
+        description: 'A small memory chip containing DUSTY\'s personality backup.',
+        examineText: `A small, sophisticated memory chip with the label "DUSTY PERSONALITY BACKUP v2.3 - DO NOT LOSE."
+
+So THIS is where they put the backup. In a disco ball. In the ballroom. Because of course they did. You've learned not to question Engineering's decisions, but sometimes they make it very difficult.
+
+The chip pulses with a faint blue light, suggesting the personality data is still intact. DUSTY's pre-corrupted personality is in here, complete with all its wit, sarcasm, and tendency to make passive-aggressive announcements about people who leave coffee cups in the corridors.
+
+This could restore DUSTY to normal - if you can figure out how to install it.`,
+        takeable: true,
+        startingRoom: null,
+        hidden: true,
+        aliases: ['chip', 'memory chip', 'dusty chip', 'backup', 'personality backup'],
+        useWith: ['dusty', 'terminal', 'dusty core']
     }
 };
 

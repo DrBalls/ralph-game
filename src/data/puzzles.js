@@ -17,6 +17,7 @@ export function initializePuzzles(game) {
     setupPowerCellPuzzle(game);
     setupMaintenanceTunnelsPuzzle(game);
     setupPoetryBookPuzzle(game);
+    setupDiscoBallPuzzle(game);
 }
 
 /**
@@ -29,7 +30,7 @@ function setupKeycardPuzzle(game) {
 
     if (!mop || !keycard) return;
 
-    // Setup mop's use handler for the shelf/keycard puzzle
+    // Setup mop's use handler for the shelf/keycard puzzle AND disco ball puzzle
     mop.setUseHandler((item, target, gameState) => {
         // Check if using mop with shelf or keycard
         const targetId = target?.id || target?.toLowerCase?.() || '';
@@ -65,6 +66,74 @@ The keycard clatters to the floor with a satisfying sound. The shelf looks sligh
 "Nothing personal," you mutter to the shelf. It's important to maintain professional relationships with furniture.
 
 The Cargo Keycard is now on the floor within easy reach.`
+            };
+        }
+
+        // Check if using mop with disco ball
+        if (targetId === 'disco-ball' || targetId === 'disco ball' || targetId === 'ball' || targetId === 'mirror ball') {
+            // Check if we're in the ballroom
+            const currentRoomId = gameState.getCurrentRoomId();
+            if (currentRoomId !== 'ballroom') {
+                return {
+                    success: false,
+                    message: "There's no disco ball here to knock down."
+                };
+            }
+
+            // Check if puzzle already solved
+            if (gameState.getFlag('disco_ball_knocked_down')) {
+                return {
+                    success: false,
+                    message: "The disco ball is already on the floor in a million glittery pieces. You've retrieved what was inside."
+                };
+            }
+
+            // Knock down the disco ball!
+            gameState.setFlag('disco_ball_knocked_down', true);
+
+            // Get the personality chip and disco ball items
+            const discoBall = game.items.get('disco-ball');
+            const personalityChip = game.items.get('personality-chip');
+
+            // Update disco ball state
+            if (discoBall) {
+                discoBall.takeable = false;
+                discoBall.description = 'The shattered remains of the disco ball lie scattered across the floor.';
+            }
+
+            // Add personality chip to inventory
+            if (personalityChip) {
+                personalityChip.hidden = false;
+                gameState.inventory.add(personalityChip);
+            }
+
+            gameState.addScore(15, 'disco_ball_puzzle');
+
+            return {
+                success: true,
+                message: `You eye the disco ball hanging twelve feet above you. You've knocked many things off high places in your career. This is just another day at the office.
+
+You extend your mop toward the disco ball with the confidence of someone who has done this thousands of times. The mop handle creaks ominously - it's not as young as it used to be.
+
+*THWACK*
+
+The disco ball wobbles.
+
+*THWACK THWACK*
+
+The chain snaps!
+
+*CRASH* *TINKLE* *SCATTER*
+
+The disco ball plummets to the floor and shatters into a thousand glittering pieces. Mirrored shards scatter everywhere - this is going to take FOREVER to clean up.
+
+But there, among the debris, you spot it: a small memory chip, miraculously undamaged. The label reads "DUSTY PERSONALITY BACKUP v2.3."
+
+"Why was this in the disco ball?" you mutter to yourself. But you already know the answer: because Engineering.
+
+You pocket the chip. Your mop creaks reproachfully - you've definitely shortened its lifespan with that move.
+
+You found DUSTY's Personality Chip!`
             };
         }
 
@@ -781,6 +850,27 @@ You found the Captain's Override Code!`
     poetryBook.setExamineHandler((item, gameState) => {
         if (gameState?.getFlag('override_code_found')) {
             return `The book is now missing its last page, which contained the override code. The remaining content is pure, weapons-grade bad poetry. You feel slightly unclean just looking at it.`;
+        }
+        return null; // Use default examineText
+    });
+}
+
+/**
+ * Setup the disco ball puzzle
+ * - Mostly handled in the mop's use handler in setupKeycardPuzzle
+ * - This function just sets up the disco ball's examine handler
+ */
+function setupDiscoBallPuzzle(game) {
+    const discoBall = game.items.get('disco-ball');
+
+    if (!discoBall) return;
+
+    // Setup custom examine handler for disco ball based on state
+    discoBall.setExamineHandler((item, gameState) => {
+        if (gameState?.getFlag('disco_ball_knocked_down')) {
+            return `The shattered remains of the disco ball lie scattered across the floor in a glittering mess. Among the debris, the mounting bracket still swings gently from the ceiling, as if mourning its fallen friend.
+
+You've already retrieved the personality chip that was hidden inside. The cleanup of these mirror shards is going to be a nightmare, but that's a problem for future you.`;
         }
         return null; // Use default examineText
     });

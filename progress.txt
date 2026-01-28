@@ -241,3 +241,14 @@ Started: 2026-01-28
   - Room features can describe objects that will be puzzle targets later (disco ball)
   - Characters can have alien physiology (multiple arms, eyes) for variety
 ---
+
+## 2026-01-28 - US-028
+- **What was implemented:** Disco ball puzzle to retrieve DUSTY's personality chip
+- **Files changed:**
+  - src/data/items.js - Added disco-ball and personality-chip items
+  - src/data/puzzles.js - Extended mop's use handler for disco ball, added setupDiscoBallPuzzle() for examine handler
+- **Learnings for future iterations:**
+  - Single item (mop) can have multiple puzzle uses - check targetId for different targets
+  - Room check (currentRoomId) ensures puzzles only work in correct location
+  - Hidden items revealed by puzzles: set hidden=false, add to inventory
+---

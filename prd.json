@@ -465,8 +465,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 28,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. USE MOP WITH DISCO BALL knocks it down, reveals personality chip. Mop handle 'creaks reproachfully'."
     },
     {
       "id": "US-029",
