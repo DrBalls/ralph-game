@@ -5,6 +5,7 @@ import { Parser } from './Parser.js';
 import { GameState } from './GameState.js';
 import { Room } from './Room.js';
 import { Item } from './Item.js';
+import { Character } from './Character.js';
 
 export class Game {
     /**
@@ -33,6 +34,9 @@ export class Game {
         }
         if (config.itemData) {
             this.initItems(config.itemData);
+        }
+        if (config.characterData) {
+            this.initCharacters(config.characterData);
         }
 
         // Game running state
@@ -65,6 +69,25 @@ export class Game {
                 const room = this.rooms.get(data.startingRoom);
                 if (room) {
                     room.addItem(item);
+                }
+            }
+        }
+    }
+
+    /**
+     * Initialize characters from data
+     * @param {Object} characterData - Character definitions
+     */
+    initCharacters(characterData) {
+        for (const [id, data] of Object.entries(characterData)) {
+            const character = new Character({ id, ...data });
+            this.characters.set(id, character);
+
+            // Place character in their starting room if specified
+            if (data.startingRoom) {
+                const room = this.rooms.get(data.startingRoom);
+                if (room) {
+                    room.addCharacter(character);
                 }
             }
         }
@@ -243,9 +266,7 @@ export class Game {
         }
 
         // Check characters
-        const char = room.characters.find(c =>
-            c.name.toLowerCase().includes(noun.toLowerCase())
-        );
+        const char = room.characters.find(c => c.matchesName(noun));
         if (char) {
             this.output(char.description || `You see ${char.name}.`, 'description');
             return { success: true };
@@ -363,9 +384,7 @@ export class Game {
             if (!targetObj) {
                 // Check characters
                 const room = this.getCurrentRoom();
-                targetObj = room.characters.find(c =>
-                    c.name.toLowerCase().includes(target.toLowerCase())
-                );
+                targetObj = room.characters.find(c => c.matchesName(target));
             }
         }
 
@@ -417,9 +436,7 @@ export class Game {
         }
 
         const room = this.getCurrentRoom();
-        const char = room.characters.find(c =>
-            c.name.toLowerCase().includes(noun.toLowerCase())
-        );
+        const char = room.characters.find(c => c.matchesName(noun));
 
         if (!char) {
             this.output(`There's no "${noun}" here to talk to.`, 'error');
