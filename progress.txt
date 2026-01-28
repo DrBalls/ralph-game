@@ -93,3 +93,9 @@ Started: 2026-01-28
 - **Files changed:** src/data/puzzles.js, public/game.js
 - **Learnings:** item.setUseHandler() for custom puzzle logic, initializePuzzles() called after Game creation, score via addScore()
 ---
+
+## 2026-01-28 - US-013
+- **What was implemented:** Corridor rooms verification (implemented in US-009)
+- **Files changed:** None (verification only)
+- **Learnings:** Main Corridor has 4 exits to hub areas, direction shortcuts (n/s/e/w) work
+---
