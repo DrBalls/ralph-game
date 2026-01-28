@@ -324,3 +324,13 @@ Started: 2026-01-28
   - State-based dialogue (unconscious→awake→helped) creates narrative progression
   - Hints can be embedded naturally in character dialogue (coffee, DUSTY, crew)
 ---
+
+## 2026-01-28 - US-048
+- **What was implemented:** EXAMINE SELF command with humorous character description
+- **Files changed:**
+  - src/engine/Game.js - Added self-word detection in handleExamine(), added getSelfDescription() method
+- **Learnings for future iterations:**
+  - Self-examination adds character depth and humor
+  - Multiple aliases for self ('self', 'me', 'myself', character name, role) improve usability
+  - Character description should reflect game's tone and protagonist's personality
+---

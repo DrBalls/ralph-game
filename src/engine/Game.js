@@ -249,6 +249,13 @@ export class Game {
             return { success: false };
         }
 
+        // Handle EXAMINE SELF / EXAMINE ME
+        const selfWords = ['self', 'myself', 'me', 'zyx-7', 'zyx7', 'janitor'];
+        if (selfWords.includes(noun.toLowerCase())) {
+            this.output(this.getSelfDescription(), 'description');
+            return { success: true };
+        }
+
         const room = this.getCurrentRoom();
 
         // Check inventory first
@@ -691,6 +698,22 @@ export class Game {
      */
     getItemById(id) {
         return this.items.get(id) || null;
+    }
+
+    /**
+     * Get the player's self-description
+     * @returns {string} Self description
+     */
+    getSelfDescription() {
+        return `You are Zyx-7, Senior Maintenance Technician aboard the Pristine Venture. "Senior" in this case means "only" - you've been the station's sole janitor for fifteen years. You've cleaned up things that would make a xenobiologist weep and a health inspector cry.
+
+You're of average height, average build, and possess an above-average tolerance for existential dread. Your uniform is the standard station-issue jumpsuit in "maintenance gray" - a color chosen specifically to hide stains. It's working overtime right now.
+
+Your most notable feature is your trusty mop, which has been your constant companion longer than most people maintain friendships. You've been told you have "kind eyes" and "the posture of someone who has given up on life." Both are probably accurate.
+
+Despite everything - the thankless job, the dangerous messes, the crew who never remember your name - you're still here. Still cleaning. Still somehow the last conscious person aboard a station hurtling toward disaster.
+
+Just another Tuesday, really.`;
     }
 
     /**
