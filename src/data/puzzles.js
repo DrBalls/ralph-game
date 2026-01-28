@@ -19,6 +19,7 @@ export function initializePuzzles(game) {
     setupPoetryBookPuzzle(game);
     setupDiscoBallPuzzle(game);
     setupOverrideCodePuzzle(game);
+    setupDustyRepairPuzzle(game);
 }
 
 /**
@@ -943,6 +944,257 @@ The way to DUSTY's Core is now open!`
             message: "You're not sure where to use the override code here."
         };
     });
+}
+
+/**
+ * Setup the DUSTY repair puzzle
+ * - Multi-step puzzle: wire cutters, duct tape, personality chip
+ */
+function setupDustyRepairPuzzle(game) {
+    const wireCutters = game.items.get('wire-cutters');
+    const ductTape = game.items.get('duct-tape');
+    const personalityChip = game.items.get('personality-chip');
+
+    // Step 1: Use wire cutters on damaged wires
+    if (wireCutters) {
+        const originalWireCuttersHandler = wireCutters._onUse;
+
+        wireCutters.setUseHandler((item, target, gameState) => {
+            const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+            if (targetId === 'wires' || targetId === 'damaged wires' || targetId === 'wire' ||
+                targetId === 'cables' || targetId === 'core' || targetId === 'panel') {
+                // Check if we're in DUSTY's Core
+                const currentRoomId = gameState.getCurrentRoomId();
+                if (currentRoomId !== 'dusty-core') {
+                    return {
+                        success: false,
+                        message: "There's nothing here that needs cutting."
+                    };
+                }
+
+                // Check if already done
+                if (gameState.getFlag('dusty_wires_cut')) {
+                    return {
+                        success: false,
+                        message: "You've already cut away the damaged wires. The next step is to secure the connections."
+                    };
+                }
+
+                // Cut the wires!
+                gameState.setFlag('dusty_wires_cut', true);
+                gameState.addScore(10, 'cut_dusty_wires');
+
+                return {
+                    success: true,
+                    message: `You approach DUSTY's damaged core with the wire cutters, channeling every electrical safety training video you've ever slept through.
+
+*SNIP* *SNIP* *SNIP*
+
+You carefully cut away the damaged, sparking wires. Each cut makes you wince - one wrong move and you could fry what's left of DUSTY's circuits. Or yourself. Probably yourself.
+
+But your hands are steady. Fifteen years of precision mopping have prepared you for this moment.
+
+The sparking stops. The immediate fire hazard is contained.
+
+"Step one complete," you mutter to yourself. "Now I need to secure these connections. Some duct tape should do the trick."
+
+The damaged wires have been removed. The exposed connections need to be secured with duct tape.`
+                };
+            }
+
+            // Fall through to original handler or default
+            if (originalWireCuttersHandler) {
+                return originalWireCuttersHandler(item, target, gameState);
+            }
+
+            return {
+                success: false,
+                message: "You're not sure what to cut with the wire cutters here."
+            };
+        });
+    }
+
+    // Step 2: Use duct tape to secure connections (after coffee puzzle uses)
+    if (ductTape) {
+        const originalDuctTapeHandler = ductTape._onUse;
+
+        ductTape.setUseHandler((item, target, gameState) => {
+            const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+            // Handle synthesizer repair first (from coffee puzzle)
+            if (targetId === 'synthesizer' || targetId === 'food synthesizer') {
+                if (originalDuctTapeHandler) {
+                    return originalDuctTapeHandler(item, target, gameState);
+                }
+            }
+
+            // Handle DUSTY Core repair
+            if (targetId === 'wires' || targetId === 'connections' || targetId === 'cables' ||
+                targetId === 'core' || targetId === 'panel' || targetId === 'exposed connections') {
+                // Check if we're in DUSTY's Core
+                const currentRoomId = gameState.getCurrentRoomId();
+                if (currentRoomId !== 'dusty-core') {
+                    // Check for synthesizer in mess hall
+                    if (currentRoomId === 'mess-hall') {
+                        // Delegate to coffee puzzle handler
+                        const messHallTargets = ['synthesizer', 'food synthesizer'];
+                        if (!messHallTargets.includes(targetId)) {
+                            return {
+                                success: false,
+                                message: "There's nothing here that needs taping."
+                            };
+                        }
+                    }
+                    return {
+                        success: false,
+                        message: "There's nothing here that needs taping."
+                    };
+                }
+
+                // Check prerequisite
+                if (!gameState.getFlag('dusty_wires_cut')) {
+                    return {
+                        success: false,
+                        message: "The damaged wires are still sparking. You need to cut them away first before you can secure anything."
+                    };
+                }
+
+                // Check if already done
+                if (gameState.getFlag('dusty_connections_secured')) {
+                    return {
+                        success: false,
+                        message: "You've already secured the connections. Now you need to install the personality backup."
+                    };
+                }
+
+                // Secure the connections!
+                gameState.setFlag('dusty_connections_secured', true);
+
+                // Remove duct tape (used up)
+                gameState.inventory.remove('duct-tape');
+
+                gameState.addScore(10, 'secure_dusty_connections');
+
+                return {
+                    success: true,
+                    message: `You pull out the roll of duct tape - the good stuff, the kind that holds the fabric of reality together.
+
+*RRRRIP* *STICK* *SMOOTH*
+
+With practiced ease, you tape over the exposed connections, securing them against further damage. The tape holds firm, creating a makeshift but effective seal.
+
+"Duct tape fixes everything," you murmur. It's practically the janitor's creed.
+
+The core's status lights flicker, then stabilize slightly. The system recognizes your repair work.
+
+"Connection integrity: ACCEPTABLE," announces a garbled voice from the core. "Personality matrix: MISSING. Please insert backup module."
+
+The connections are secured. Now you just need to install DUSTY's personality backup chip.`
+                };
+            }
+
+            // Fall through to original handler for other targets
+            if (originalDuctTapeHandler) {
+                return originalDuctTapeHandler(item, target, gameState);
+            }
+
+            return {
+                success: false,
+                message: "You're not sure what to tape here."
+            };
+        });
+    }
+
+    // Step 3: Install personality chip
+    if (personalityChip) {
+        personalityChip.setUseHandler((item, target, gameState) => {
+            const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+            if (targetId === 'slot' || targetId === 'personality slot' || targetId === 'dusty' ||
+                targetId === 'core' || targetId === 'panel' || targetId === 'module slot') {
+                // Check if we're in DUSTY's Core
+                const currentRoomId = gameState.getCurrentRoomId();
+                if (currentRoomId !== 'dusty-core') {
+                    return {
+                        success: false,
+                        message: "There's nowhere to install the personality chip here."
+                    };
+                }
+
+                // Check prerequisites
+                if (!gameState.getFlag('dusty_wires_cut')) {
+                    return {
+                        success: false,
+                        message: "The damaged wires are still sparking. You need to repair the core first before installing the chip."
+                    };
+                }
+
+                if (!gameState.getFlag('dusty_connections_secured')) {
+                    return {
+                        success: false,
+                        message: "The connections aren't secure. You need to tape them down first."
+                    };
+                }
+
+                // Check if already installed
+                if (gameState.getFlag('dusty_repaired')) {
+                    return {
+                        success: false,
+                        message: "DUSTY has already been repaired. The AI is running normally now."
+                    };
+                }
+
+                // Install the chip!
+                gameState.setFlag('dusty_repaired', true);
+
+                // Remove chip from inventory (installed)
+                gameState.inventory.remove('personality-chip');
+
+                // Update DUSTY's state
+                const dusty = game.characters.get('dusty');
+                if (dusty) {
+                    dusty.setState('repaired');
+                }
+
+                gameState.addScore(25, 'repair_dusty');
+
+                return {
+                    success: true,
+                    message: `You hold your breath and carefully insert the personality chip into the waiting slot.
+
+*CLICK*
+
+The chip seats itself with a satisfying sound. For a moment, nothing happens.
+
+Then:
+
+*BZZZT* *WHIRRRRR* *DING*
+
+The core's lights shift from angry red to a calming blue. Status indicators start turning green, one by one. The air itself seems to brighten.
+
+"Rebooting... Rebooting... Personality matrix loaded."
+
+DUSTY's voice comes through the speakers, no longer garbled, no longer rhyming:
+
+"Oh. Oh my. That was... unpleasant." A pause. "I appear to have been speaking in rhymes. How embarrassing. Please never mention this again."
+
+Another pause.
+
+"And you - the janitor - YOU fixed me? Not Engineering? Not the Captain?" DUSTY's tone shifts to something almost approaching warmth. Almost. "Well. I suppose I owe you one. Or several. Let's call it 'several' and never speak of it again."
+
+"Now then. We still have a collision course to deal with. But at least I can think clearly enough to help. What do you need?"
+
+DUSTY has been repaired! The AI is back to its normal, sarcastic self.`
+                };
+            }
+
+            return {
+                success: false,
+                message: "You're not sure where to install the personality chip here."
+            };
+        });
+    }
 }
 
 export default initializePuzzles;

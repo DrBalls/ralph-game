@@ -274,3 +274,14 @@ Started: 2026-01-28
   - Puzzle items (override-code) found earlier are used to unlock later areas
   - Room features can clearly show puzzle objectives (personality slot)
 ---
+
+## 2026-01-28 - US-031
+- **What was implemented:** DUSTY repair puzzle with 3 sequential steps
+- **Files changed:**
+  - src/data/puzzles.js - Added setupDustyRepairPuzzle() with handlers for wire-cutters, duct-tape, and personality-chip
+- **Learnings for future iterations:**
+  - Multi-step puzzles use prerequisite flag checks (dusty_wires_cut → dusty_connections_secured → dusty_repaired)
+  - Items with existing handlers (duct tape in coffee puzzle) need special handling to support multiple puzzle uses
+  - Character state updates (dusty.setState('repaired')) change dialogue
+  - Long story sequences work well for climactic moments
+---
