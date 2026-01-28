@@ -99,3 +99,9 @@ Started: 2026-01-28
 - **Files changed:** None (verification only)
 - **Learnings:** Main Corridor has 4 exits to hub areas, direction shortcuts (n/s/e/w) work
 ---
+
+## 2026-01-28 - US-014
+- **What was implemented:** Keycard door mechanic
+- **Files changed:** src/data/rooms.js, src/data/puzzles.js
+- **Learnings:** Locked connections use object {roomId, locked, requiredKey, lockedMessage}, item.setUseHandler can check gameState.getCurrentRoomId()
+---
