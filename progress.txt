@@ -51,3 +51,9 @@ Started: 2026-01-28
 - **Files changed:** src/engine/Parser.js
 - **Learnings:** parse() returns {verb, noun, target, raw, error}, handles USE X WITH Y pattern specially
 ---
+
+## 2026-01-28 - US-006
+- **What was implemented:** GameState manager for game progress tracking
+- **Files changed:** src/engine/GameState.js
+- **Learnings:** save/load uses localStorage with versioned JSON, supports 3 slots, imports Inventory
+---
