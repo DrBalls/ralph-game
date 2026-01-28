@@ -183,3 +183,14 @@ Started: 2026-01-28
 - **Files changed:** None (verification only)
 - **Learnings:** Some stories may be completed by earlier work - verify before implementing
 ---
+
+## 2026-01-28 - US-023
+- **What was implemented:** Crew Quarters room with personal effects and power cell
+- **Files changed:**
+  - src/data/rooms.js - Added crew-quarters room with bidirectional connection to cargo-corridor
+  - src/data/items.js - Added power-cell item
+- **Learnings for future iterations:**
+  - Room features can contain important clues (password in photo)
+  - Personal effects add flavor and character to the world
+  - Items needed for later puzzles can be placed early for discovery
+---
