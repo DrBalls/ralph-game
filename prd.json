@@ -171,8 +171,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 10,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. Verified in browser - mop takeable, keycard blocked."
     },
     {
       "id": "US-011",

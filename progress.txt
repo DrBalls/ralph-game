@@ -75,3 +75,9 @@ Started: 2026-01-28
 - **Files changed:** src/data/rooms.js, src/data/items.js, public/game.js
 - **Learnings:** Room features object for examinable elements, items have startingRoom property, export default for easy import
 ---
+
+## 2026-01-28 - US-010
+- **What was implemented:** TAKE/GET command verification (implemented in US-007)
+- **Files changed:** None (verification only)
+- **Learnings:** Item.onTake() returns {success, message}, cantTakeMessage for non-takeable items
+---
