@@ -16,8 +16,8 @@
         "Typecheck passes (if applicable) or no JS errors in console"
       ],
       "priority": 1,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. Game loads in browser with intro screen and basic commands."
     },
     {
       "id": "US-002",
