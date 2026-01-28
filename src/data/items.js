@@ -105,7 +105,23 @@ These ones are bright yellow and slightly too large, but they'll do. Beggars can
 This could be useful. Your janitorial chemistry training is suggesting possibilities...`,
         takeable: true,
         startingRoom: 'medical-bay',
-        aliases: ['ammonia', 'ammonia bottle']
+        aliases: ['ammonia', 'ammonia bottle'],
+        useWith: ['cloth', 'gloves', 'rubber gloves', 'handkerchief']
+    },
+
+    'smelling-salts': {
+        name: 'Makeshift Smelling Salts',
+        description: 'A rubber glove soaked with ammonia - your improvised smelling salts.',
+        examineText: `A rubber glove that you've carefully soaked with ammonia solution. It's not exactly medical-grade smelling salts, but you've worked with worse improvised solutions.
+
+The smell is... potent. Very potent. Your eyes are watering just holding it. This should wake up even the most stubborn sleeper.
+
+Your janitorial chemistry certification is finally paying off.`,
+        takeable: true,
+        startingRoom: null,
+        hidden: true,
+        aliases: ['salts', 'smelling salts', 'ammonia glove'],
+        useWith: ['doctor', 'dr patchwell', 'patchwell', 'vera']
     }
 };
 

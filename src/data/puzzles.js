@@ -11,7 +11,7 @@
 export function initializePuzzles(game) {
     setupKeycardPuzzle(game);
     setupKeycardDoorUnlock(game);
-    // Additional puzzles will be added here
+    setupSmellingSaltsPuzzle(game);
 }
 
 /**
@@ -154,6 +154,150 @@ The way to Engineering is now open.`
             message: "You're not sure how to use the keycard with that."
         };
     });
+}
+
+/**
+ * Setup the smelling salts puzzle
+ * - Player combines ammonia with rubber gloves to create smelling salts
+ * - Using smelling salts on Dr. Patchwell wakes her up
+ */
+function setupSmellingSaltsPuzzle(game) {
+    const ammonia = game.items.get('ammonia');
+    const gloves = game.items.get('rubber-gloves');
+    const smellingSalts = game.items.get('smelling-salts');
+
+    if (!ammonia || !gloves) return;
+
+    // Setup ammonia use handler to create smelling salts
+    ammonia.setUseHandler((item, target, gameState) => {
+        const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+        // Check if using ammonia with rubber gloves
+        if (targetId === 'rubber-gloves' || targetId === 'gloves' ||
+            targetId === 'rubber gloves' || targetId === 'medical gloves') {
+
+            // Check if we have the gloves in inventory
+            if (!gameState.inventory.has('rubber-gloves')) {
+                return {
+                    success: false,
+                    message: "You'd need to have the rubber gloves first."
+                };
+            }
+
+            // Check if puzzle already solved
+            if (gameState.getFlag('smelling_salts_created')) {
+                return {
+                    success: false,
+                    message: "You've already made the smelling salts. One pair of ammonia-soaked gloves is quite enough."
+                };
+            }
+
+            // Create the smelling salts!
+            gameState.setFlag('smelling_salts_created', true);
+
+            // Remove ammonia and gloves from inventory
+            gameState.inventory.remove('ammonia');
+            gameState.inventory.remove('rubber-gloves');
+
+            // Add smelling salts to inventory
+            if (smellingSalts) {
+                smellingSalts.hidden = false;
+                gameState.inventory.add(smellingSalts);
+            }
+
+            gameState.addScore(10, 'smelling_salts');
+
+            return {
+                success: true,
+                message: `Your years of janitorial chemistry training kick in. You carefully pour the ammonia solution onto the rubber gloves, creating a makeshift smelling salts.
+
+"They said I was crazy to get my Advanced Cleaning Chemistry Certification," you mutter. "Who's crazy now?"
+
+The gloves are now thoroughly soaked and absolutely reeking of ammonia. Your eyes water, but you feel a surge of professional pride.
+
+You now have Makeshift Smelling Salts!`
+            };
+        }
+
+        // Using ammonia on the doctor directly
+        if (targetId === 'dr-patchwell' || targetId === 'doctor' ||
+            targetId === 'patchwell' || targetId === 'vera') {
+            return {
+                success: false,
+                message: "You could splash ammonia on the doctor, but that seems cruel and possibly illegal. Maybe if you combined it with something to make proper smelling salts..."
+            };
+        }
+
+        return {
+            success: false,
+            message: "You're not sure what to do with ammonia and that. Your chemistry training doesn't cover this combination."
+        };
+    });
+
+    // Setup smelling salts use handler
+    if (smellingSalts) {
+        smellingSalts.setUseHandler((item, target, gameState) => {
+            const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+            // Check if using on the doctor
+            if (targetId === 'dr-patchwell' || targetId === 'doctor' ||
+                targetId === 'patchwell' || targetId === 'vera') {
+
+                // Check if we're in the medical bay
+                const currentRoomId = gameState.getCurrentRoomId();
+                if (currentRoomId !== 'medical-bay') {
+                    return {
+                        success: false,
+                        message: "Dr. Patchwell isn't here. She's in the Medical Bay."
+                    };
+                }
+
+                // Check if doctor already awake
+                if (gameState.getFlag('doctor_awake')) {
+                    return {
+                        success: false,
+                        message: "Dr. Patchwell is already awake. Please don't assault the conscious medical officer with ammonia."
+                    };
+                }
+
+                // Wake the doctor!
+                gameState.setFlag('doctor_awake', true);
+
+                // Update doctor's state
+                const drPatchwell = game.characters.get('dr-patchwell');
+                if (drPatchwell) {
+                    drPatchwell.setState('awake');
+                }
+
+                // Remove smelling salts (used up)
+                gameState.inventory.remove('smelling-salts');
+
+                gameState.addScore(15, 'wake_doctor');
+
+                return {
+                    success: true,
+                    message: `You wave the ammonia-soaked gloves under Dr. Patchwell's nose with the care and precision of someone who has revived many unconscious people. Mostly janitors who passed out in cleaning supply closets, but still.
+
+*SNNNNNFFFFFF*
+
+Dr. Patchwell's eyes fly open. She bolts upright, nearly headbutting you.
+
+"GAH! What—who—why do I smell a chemical factory?!" She blinks rapidly, focusing on you. "Wait... Zyx-7? The janitor? Why are YOU waking me up with—are those my RUBBER GLOVES?!"
+
+She looks around, taking in the emergency lighting and the general state of chaos.
+
+"Oh no. The artifact. The gala. How long was I—is everyone else—?" She rubs her temples. "Never mind. You can fill me in. I think I need coffee first. LOTS of coffee."
+
+Dr. Patchwell is now awake!`
+                };
+            }
+
+            return {
+                success: false,
+                message: "You're not sure who or what to use the smelling salts on. Best save them for someone who needs waking up."
+            };
+        });
+    }
 }
 
 export default initializePuzzles;
