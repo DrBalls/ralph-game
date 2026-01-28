@@ -476,7 +476,29 @@ export class Game {
      * @param {string} noun - Thing to read
      */
     handleRead(noun) {
-        // For now, delegate to examine
+        if (!noun) {
+            this.output('Read what?', 'error');
+            return { success: false };
+        }
+
+        // Find the item (in inventory or room)
+        let item = this.state.inventory.findByName(noun);
+        if (!item) {
+            const room = this.getCurrentRoom();
+            item = room.items.find(i => i.matchesName(noun));
+        }
+
+        if (!item) {
+            this.output(`You don't see any "${noun}" to read.`, 'error');
+            return { success: false };
+        }
+
+        // If item has a use handler (like the poetry book), trigger it
+        if (item._onUse) {
+            return this.handleUse(noun, null);
+        }
+
+        // Otherwise, just examine it
         return this.handleExamine(noun);
     }
 

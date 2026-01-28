@@ -205,3 +205,28 @@ Started: 2026-01-28
   - Room features (like 'power cell slot') guide players on what targets to use
   - Flag-based state (power_restored) can gate future puzzle access
 ---
+
+## 2026-01-28 - US-025
+- **What was implemented:** Maintenance Tunnels with dark room mechanics
+- **Files changed:**
+  - src/data/rooms.js - Added maintenance-tunnels and captains-quarters rooms, updated engineering-deck with north connection
+  - src/data/items.js - Added emergency-flare item
+  - src/data/puzzles.js - Added setupMaintenanceTunnelsPuzzle() function
+- **Learnings for future iterations:**
+  - Dark room gates can use locked connection that's unlocked by light source puzzle
+  - Room connections can be locked without requiredKey (puzzle-unlocked instead)
+  - Flare/light source items enable access to dark areas
+---
+
+## 2026-01-28 - US-026
+- **What was implemented:** Captain's Quarters with poetry book override code puzzle
+- **Files changed:**
+  - src/data/rooms.js - Captain's Quarters included in US-025
+  - src/data/items.js - Added poetry-book and override-code items
+  - src/data/puzzles.js - Added setupPoetryBookPuzzle() function
+  - src/engine/Game.js - Updated handleRead() to trigger use handlers for readable items
+- **Learnings for future iterations:**
+  - READ command can trigger puzzles via item.setUseHandler() by checking item._onUse
+  - Hidden items (override-code) start with hidden:true and startingRoom:null, added to inventory by puzzle
+  - Books can have both examineText (for EXAMINE) and useHandler (for READ/USE)
+---

@@ -15,6 +15,8 @@ export function initializePuzzles(game) {
     setupCoffeePuzzle(game);
     setupScienceLabPuzzle(game);
     setupPowerCellPuzzle(game);
+    setupMaintenanceTunnelsPuzzle(game);
+    setupPoetryBookPuzzle(game);
 }
 
 /**
@@ -646,6 +648,142 @@ Dr. Patchwell is now awake!`
             };
         });
     }
+}
+
+/**
+ * Setup the maintenance tunnels puzzle
+ * - Player uses emergency flare to navigate the dark tunnels
+ */
+function setupMaintenanceTunnelsPuzzle(game) {
+    const flare = game.items.get('emergency-flare');
+
+    if (!flare) return;
+
+    flare.setUseHandler((item, target, gameState) => {
+        const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+        // Check if using flare with panel, tunnels, or darkness
+        if (targetId === 'panel' || targetId === 'maintenance panel' ||
+            targetId === 'tunnels' || targetId === 'maintenance tunnels' ||
+            targetId === 'darkness' || targetId === 'north') {
+            // Check if we're in engineering deck
+            const currentRoomId = gameState.getCurrentRoomId();
+            if (currentRoomId !== 'engineering-deck') {
+                return {
+                    success: false,
+                    message: "There's no dark tunnel entrance here that needs illuminating."
+                };
+            }
+
+            // Check if already lit
+            if (gameState.getFlag('tunnels_lit')) {
+                return {
+                    success: false,
+                    message: "You've already lit the flare. The tunnels are navigable now - head north when ready."
+                };
+            }
+
+            // Light the flare!
+            gameState.setFlag('tunnels_lit', true);
+
+            // Unlock the maintenance tunnels
+            const engDeck = game.rooms.get('engineering-deck');
+            if (engDeck && engDeck.connections.north) {
+                engDeck.connections.north.locked = false;
+            }
+
+            gameState.addScore(5, 'light_tunnels');
+
+            return {
+                success: true,
+                message: `You pull the tab on the emergency flare with practiced ease. After all, this isn't your first time navigating the maintenance tunnels - just the first time you've had a legitimate reason.
+
+*FWOOOOSH*
+
+The flare ignites with a satisfying hiss, casting a warm red glow that pushes back the darkness. The tunnels beyond the maintenance panel are now visible - cramped, dusty, and exactly as uninviting as you remember.
+
+"Thirty minutes of light," you remind yourself. "Better make them count."
+
+The flare illuminates the way. The maintenance panel is now a viable passage.
+
+The way north to the Maintenance Tunnels is now open!`
+            };
+        }
+
+        return {
+            success: false,
+            message: "You're not sure where to use the flare here. Save it for somewhere dark."
+        };
+    });
+}
+
+/**
+ * Setup the poetry book puzzle
+ * - Player reads the poetry book to find the override code
+ */
+function setupPoetryBookPuzzle(game) {
+    const poetryBook = game.items.get('poetry-book');
+    const overrideCode = game.items.get('override-code');
+
+    if (!poetryBook) return;
+
+    poetryBook.setUseHandler((item, target, gameState) => {
+        // Reading the book (use book, or use book with self)
+        const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+        if (!target || targetId === 'book' || targetId === 'poetry' || targetId === 'self' || targetId === 'me') {
+            // Check if already found the code
+            if (gameState.getFlag('override_code_found')) {
+                return {
+                    success: false,
+                    message: `You've already extracted the override code from the Captain's terrible poetry. There's no need to subject yourself to more. Your soul can only take so much.`
+                };
+            }
+
+            // Find the code!
+            gameState.setFlag('override_code_found', true);
+
+            // Add override code to inventory
+            if (overrideCode) {
+                overrideCode.hidden = false;
+                gameState.inventory.add(overrideCode);
+            }
+
+            gameState.addScore(15, 'find_override_code');
+
+            return {
+                success: true,
+                message: `You open "Stellar Sonnets: A Captain's Soul" and immediately regret your life choices.
+
+The first poem is titled "Ode to My Magnificent Mustache." You skim it. The words "bristling" and "manly" appear seventeen times.
+
+The second poem, "Why I Am the Best Captain," is somehow worse. The rhyme scheme is criminal.
+
+You're about to give up when you notice something on the last page. Hidden among the closing "acknowledgments" (which are just the Captain thanking himself) is a handwritten note:
+
+"In case I forget - OVERRIDE CODE: BLUSTER-ALPHA-7-MAGNIFICENT"
+
+Underneath, he's written: "Note: Change this to something even more magnificent later."
+
+You tear out the page. The poetry book's contribution to literature will not be missed.
+
+You found the Captain's Override Code!`
+            };
+        }
+
+        return {
+            success: false,
+            message: "You're not sure what to do with the poetry book and that."
+        };
+    });
+
+    // Also allow READ BOOK command - add custom examine handler
+    poetryBook.setExamineHandler((item, gameState) => {
+        if (gameState?.getFlag('override_code_found')) {
+            return `The book is now missing its last page, which contained the override code. The remaining content is pure, weapons-grade bad poetry. You feel slightly unclean just looking at it.`;
+        }
+        return null; // Use default examineText
+    });
 }
 
 export default initializePuzzles;

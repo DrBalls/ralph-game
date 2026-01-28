@@ -102,9 +102,17 @@ The smell of ozone and machine oil hangs in the air. It's the smell of Engineeri
 
 A large power cell slot sits empty next to the emergency generator. Someone has placed a "Please Insert Power Cell" sign on it, which strikes you as optimistically passive-aggressive.
 
-The emergency power is clearly failing - half the displays are dead, and the ones that work keep flickering through error messages. You've seen this before. You've cleaned up after this before.`,
+The emergency power is clearly failing - half the displays are dead, and the ones that work keep flickering through error messages. You've seen this before. You've cleaned up after this before.
+
+In the corner, a maintenance panel sits slightly ajar. You know these tunnels well - you've used them to avoid meetings for years.`,
         connections: {
-            east: 'engineering-corridor'
+            east: 'engineering-corridor',
+            north: {
+                roomId: 'maintenance-tunnels',
+                locked: true,
+                requiredKey: null,
+                lockedMessage: 'The maintenance panel is here, but it\'s dark in the tunnels. You\'d need a light source to navigate safely - you learned that lesson the hard way during the Great Tunnel Incident of \'47.'
+            }
         },
         features: {
             'reactor': `The main reactor controls. Most of the readouts are in the red, but to be fair, most readouts on this station are always in the red. It's almost comforting at this point.`,
@@ -112,7 +120,10 @@ The emergency power is clearly failing - half the displays are dead, and the one
             'conduit': `The main power conduit sparks occasionally. You've reported this 23 times. Maintenance says it's "within acceptable parameters." Define "acceptable," you'd like to ask.`,
             'displays': `Half the displays are dead. The working ones cycle through error messages: "POWER CRITICAL," "COOLANT LOW," and mysteriously, "HAVE YOU TRIED TURNING IT OFF AND ON AGAIN?"`,
             'wire cutters': `A pair of wire cutters sits on the workbench. Standard engineering tool. Looks recently used.`,
-            'manual': `A thick maintenance manual sits on a nearby console. The cover reads "Pristine Venture Engineering Guide: When Things Go Wrong (And They Will)."`
+            'manual': `A thick maintenance manual sits on a nearby console. The cover reads "Pristine Venture Engineering Guide: When Things Go Wrong (And They Will)."`,
+            'panel': `A maintenance panel in the corner, slightly ajar. Beyond it, you can see the entrance to the maintenance tunnels - a cramped network of passages that connect various parts of the station. It's pitch black in there.`,
+            'maintenance panel': `A maintenance panel in the corner, slightly ajar. Beyond it, you can see the entrance to the maintenance tunnels - a cramped network of passages that connect various parts of the station. It's pitch black in there.`,
+            'tunnels': `The maintenance tunnels. You know them well from years of using them to avoid mandatory fun activities. But they're dark - you'd need a light source to navigate safely.`
         },
         image: 'engineering-deck.png'
     },
@@ -229,6 +240,50 @@ A large photo on the wall shows Captain Bluster at some award ceremony, standing
             'desk': `Dr. Chen's desk, identifiable by the "Property of Engineering - DO NOT TOUCH" stickers covering everything. The power cell sitting here probably wasn't supposed to leave Engineering. Classic Chen.`
         },
         image: 'crew-quarters.png'
+    },
+
+    'maintenance-tunnels': {
+        name: 'MAINTENANCE TUNNELS',
+        description: `The maintenance tunnels are a claustrophobic nightmare of pipes, cables, and the fossilized dreams of budget-conscious architects. The ceiling is low enough that you have to crouch, and the walls are close enough to trigger the latent claustrophobia you didn't know you had.
+
+It's pitch dark in here except for occasional sparks from damaged wiring and the faint glow of emergency floor strips that someone installed and then immediately forgot about. The air smells of dust, machine oil, and regret.
+
+On the bright side, nobody ever comes down here. You've found some of your best alone time in these tunnels over the years. Also, some of your worst spiders.`,
+        connections: {
+            south: 'engineering-deck',
+            north: 'captains-quarters'
+        },
+        features: {
+            'pipes': `Pipes of various sizes carry unknown substances to unknown destinations. Some are hot, some are cold, and one is vibrating in a way that suggests it's either very important or very broken. Possibly both.`,
+            'cables': `Cables are bundled together in ways that would make an electrician weep. Someone has labeled them with tape, but the labels say things like "DON'T TOUCH" and "SERIOUSLY DON'T" and "JENKINS WAS HERE (RIP)."`,
+            'floor strips': `Emergency floor strips provide a faint green glow, just enough to see by if you squint. They were installed after the Great Tunnel Incident of '47, which nobody talks about.`,
+            'spiders': `You don't see any spiders right now, but you know they're here. Watching. Waiting. Probably judging your life choices.`,
+            'darkness': `It's very dark in here. The kind of dark that makes you question whether you actually have eyes or just imagine that you do. A light source would be helpful.`
+        },
+        image: 'maintenance-tunnels.png',
+        dark: true
+    },
+
+    'captains-quarters': {
+        name: "CAPTAIN'S QUARTERS",
+        description: `Captain Bluster's personal quarters are exactly as pretentious as you'd expect. The room is twice the size of any crew quarters and decorated with awards, commendations, and what appears to be a portrait of the Captain... painted by the Captain.
+
+A massive desk dominates one corner, covered in important-looking papers that are probably just ego documents. The bed is impeccably made with hospital corners you could cut yourself on. Everything screams "I'm in charge and I need you to know it."
+
+On the nightstand sits a slim volume of poetry - the Captain's own work, naturally. You've heard him recite it at crew meetings. It's... memorable. Not good, but memorable.`,
+        connections: {
+            south: 'maintenance-tunnels'
+        },
+        features: {
+            'portrait': `A life-size portrait of Captain Bluster, painted by Captain Bluster, in a style that can only be described as "aggressively self-congratulatory." He's posed heroically with one foot on a space rock. You've never seen him do anything heroic.`,
+            'desk': `The Captain's desk is a monument to bureaucratic self-importance. Papers, awards, and a nameplate that says "Captain Reginald Q. Bluster III - Excellence Personified." You've cleaned this desk many times. It's always dusty.`,
+            'awards': `Awards line the walls: "Best Maintained Mustache," "Excellence in Looking Stern," "Most Inspiring Speeches (Self-Nominated)." The frames are all slightly crooked. It bothers you every time.`,
+            'bed': `The Captain's bed is made with military precision. You've made this bed. The Captain actually has you remake it if you get the corners wrong. Three times you've had to remake it.`,
+            'poetry': `A slim volume titled "Stellar Sonnets: A Captain's Soul" by Captain Reginald Q. Bluster III. The cover features another portrait. Inside... well, you'll have to READ it to find out.`,
+            'papers': `Important-looking papers that are mostly memos the Captain wrote to himself about how important he is. One is titled "Why I Should Get Another Raise: A 47-Point Argument."`,
+            'nightstand': `A simple nightstand that somehow still looks pretentious. The poetry book sits here, along with a glass of water (room temperature, as the Captain insists) and a framed photo of the Captain's mustache.`
+        },
+        image: 'captains-quarters.png'
     },
 
     'mess-hall': {

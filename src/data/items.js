@@ -220,6 +220,49 @@ This could restore power to something important. Like, hypothetically, the stati
         startingRoom: 'crew-quarters',
         aliases: ['cell', 'battery', 'emergency cell', 'emergency power cell'],
         useWith: ['power cell slot', 'slot', 'generator', 'engineering']
+    },
+
+    'emergency-flare': {
+        name: 'Emergency Flare',
+        description: 'An emergency flare sits in the safety equipment locker.',
+        examineText: `A standard emergency flare, the kind that's supposed to be used for signaling rescue ships. This one has been "borrowed" so many times for maintenance tunnel navigation that someone just gave up and moved the whole box to Engineering.
+
+The instructions are simple: "Pull tab, point away from face, enjoy 30 minutes of light." Someone has added "or longer if you're lucky, shorter if you're not" in pencil.
+
+The flare is bright red and slightly warm to the touch. Perfect for navigating dark spaces where you don't want to trip over cables or encounter whatever lives in the maintenance tunnels.`,
+        takeable: true,
+        startingRoom: 'engineering-deck',
+        aliases: ['flare', 'light', 'torch', 'emergency light'],
+        useWith: ['panel', 'maintenance panel', 'tunnels', 'maintenance tunnels', 'darkness']
+    },
+
+    'poetry-book': {
+        name: 'Poetry Book',
+        description: 'A slim volume of poetry sits on the nightstand.',
+        examineText: `"Stellar Sonnets: A Captain's Soul" by Captain Reginald Q. Bluster III.
+
+The cover features yet another portrait of the Captain, this time in a contemplative pose. The back cover has review quotes that are all attributed to "R. Bluster" and "Anonymous (definitely not R. Bluster)."
+
+You could READ this book if you dare. Your literary survival is not guaranteed.`,
+        takeable: true,
+        startingRoom: 'captains-quarters',
+        aliases: ['book', 'poetry', 'stellar sonnets', 'sonnets', 'captain poetry']
+    },
+
+    'override-code': {
+        name: "Captain's Override Code",
+        description: 'A piece of paper with the override code scrawled on it.',
+        examineText: `A piece of paper torn from the poetry book. Scrawled on it in the Captain's pretentious handwriting:
+
+"OVERRIDE CODE: BLUSTER-ALPHA-7-MAGNIFICENT"
+
+The "MAGNIFICENT" is underlined three times. Of course it is.
+
+This code should grant access to restricted systems - like DUSTY's Core. The Captain probably never thought anyone would actually need it, or he would have made it longer and even more self-congratulatory.`,
+        takeable: true,
+        startingRoom: null,
+        hidden: true,
+        aliases: ['code', 'override', 'paper', 'captain code']
     }
 };
 

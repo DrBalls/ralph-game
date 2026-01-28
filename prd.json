@@ -416,8 +416,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 25,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. Tunnels require flare to unlock from Engineering Deck. Emergency flare added to Engineering Deck."
     },
     {
       "id": "US-026",
@@ -433,8 +433,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 26,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28. Captain's Quarters accessible via Maintenance Tunnels. Poetry book puzzle with setupPoetryBookPuzzle()."
     },
     {
       "id": "US-027",
