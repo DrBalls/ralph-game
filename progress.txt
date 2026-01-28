@@ -105,3 +105,9 @@ Started: 2026-01-28
 - **Files changed:** src/data/rooms.js, src/data/puzzles.js
 - **Learnings:** Locked connections use object {roomId, locked, requiredKey, lockedMessage}, item.setUseHandler can check gameState.getCurrentRoomId()
 ---
+
+## 2026-01-28 - US-015, US-016
+- **What was implemented:** Engineering Deck, Medical Bay, Bridge rooms with items
+- **Files changed:** src/data/rooms.js, src/data/items.js
+- **Learnings:** Batch similar room implementations together, add items via startingRoom property
+---

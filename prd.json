@@ -253,8 +253,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 15,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28"
     },
     {
       "id": "US-016",
@@ -269,8 +269,8 @@
         "Typecheck passes or no JS errors"
       ],
       "priority": 16,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed 2026-01-28"
     },
     {
       "id": "US-017",
