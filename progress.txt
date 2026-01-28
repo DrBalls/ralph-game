@@ -63,3 +63,9 @@ Started: 2026-01-28
 - **Files changed:** src/engine/Game.js
 - **Learnings:** Game takes outputCallback in config, uses Maps for rooms/items, handleCommand returns {success, message}
 ---
+
+## 2026-01-28 - US-008
+- **What was implemented:** GameUI class for browser interface
+- **Files changed:** src/ui/GameUI.js, public/game.js
+- **Learnings:** GameUI handles DOM binding, game.js imports engine modules, command history with arrow keys
+---
