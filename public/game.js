@@ -7,6 +7,7 @@ import { Game } from '../src/engine/Game.js';
 import { GameUI } from '../src/ui/GameUI.js';
 import { rooms } from '../src/data/rooms.js';
 import { items } from '../src/data/items.js';
+import { initializePuzzles } from '../src/data/puzzles.js';
 
 // Create the game instance
 const game = new Game({
@@ -15,6 +16,9 @@ const game = new Game({
     itemData: items,
     startingRoom: 'cargo-bay-7'
 });
+
+// Initialize puzzle handlers
+initializePuzzles(game);
 
 // Create the UI
 const ui = new GameUI({ game });
