@@ -91,6 +91,69 @@ The smell of ozone and machine oil hangs in the air. It's the smell of Engineeri
             'note': `A faded sticky note reads: "We'll Fix It Eventually - Engineering Dept." It's dated three years ago. You admire their optimism.`
         },
         image: 'engineering-corridor.png'
+    },
+
+    'engineering-deck': {
+        name: 'ENGINEERING DECK',
+        description: `The heart of the Pristine Venture's power systems spreads before you in all its chaotic glory. Reactor controls blink with warning lights that have been blinking so long everyone's stopped noticing them. The main power conduit hums ominously, occasionally sparking in ways that definitely violate several safety codes.
+
+A large power cell slot sits empty next to the emergency generator. Someone has placed a "Please Insert Power Cell" sign on it, which strikes you as optimistically passive-aggressive.
+
+The emergency power is clearly failing - half the displays are dead, and the ones that work keep flickering through error messages. You've seen this before. You've cleaned up after this before.`,
+        connections: {
+            east: 'engineering-corridor'
+        },
+        features: {
+            'reactor': `The main reactor controls. Most of the readouts are in the red, but to be fair, most readouts on this station are always in the red. It's almost comforting at this point.`,
+            'power cell slot': `An empty slot for an emergency power cell. The sign above it reads "INSERT POWER CELL HERE" with an arrow pointing down. Below that, someone added "No, seriously, we need one." The slot is clearly designed for a standard power cell.`,
+            'conduit': `The main power conduit sparks occasionally. You've reported this 23 times. Maintenance says it's "within acceptable parameters." Define "acceptable," you'd like to ask.`,
+            'displays': `Half the displays are dead. The working ones cycle through error messages: "POWER CRITICAL," "COOLANT LOW," and mysteriously, "HAVE YOU TRIED TURNING IT OFF AND ON AGAIN?"`,
+            'wire cutters': `A pair of wire cutters sits on the workbench. Standard engineering tool. Looks recently used.`,
+            'manual': `A thick maintenance manual sits on a nearby console. The cover reads "Pristine Venture Engineering Guide: When Things Go Wrong (And They Will)."`
+        },
+        image: 'engineering-deck.png'
+    },
+
+    'medical-bay': {
+        name: 'MEDICAL BAY',
+        description: `The Medical Bay is eerily quiet except for the soft beeping of life support monitors. Medical beds line the walls, most of them empty. The sterile white surfaces are still pristine - apparently the energy wave was polite enough to leave the medical equipment alone.
+
+Dr. Vera Patchwell lies unconscious on one of the beds, her perpetually tired expression somehow even more tired while she's asleep. Her coffee mug sits on the bedside table, long since cold.
+
+Medical supplies line the shelves - bandages, medicines, and several bottles of chemicals that you recognize from your advanced cleaning certification course. Those could be useful.`,
+        connections: {
+            west: 'main-corridor'
+        },
+        features: {
+            'beds': `Standard medical beds with built-in life support. Most are empty. One contains Dr. Patchwell, looking exhausted even while unconscious.`,
+            'monitors': `Life support monitors beep steadily. Everyone's vital signs are stable - just unconscious. Small mercies.`,
+            'supplies': `Medical supplies including bandages, antiseptic, and... is that ammonia? And vinegar? Your cleaning instincts are tingling.`,
+            'coffee': `Dr. Patchwell's coffee mug. Stone cold now. The mug reads "I Went to Medical School For This?" You feel a kinship.`,
+            'chemicals': `Various chemical compounds. Your trained eye spots ammonia solution and some other reagents. With your janitorial chemistry knowledge, you could probably make smelling salts.`
+        },
+        image: 'medical-bay.png'
+    },
+
+    'bridge': {
+        name: 'BRIDGE',
+        description: `The bridge of the Pristine Venture would be impressive if half the consoles weren't sparking and the viewscreen wasn't displaying what can only be described as "aggressive static with attitude."
+
+Captain Reginald Bluster slumps in his command chair, unconscious but still somehow radiating pomposity. His perfectly pressed uniform is wrinkled for perhaps the first time in his career. You'd feel bad, but he did call you "the mop person" at last year's crew evaluation.
+
+DUSTY's main terminal dominates one wall, its screen flickering with corrupted text. The AI seems to be stuck in some kind of loop, occasionally muttering in rhymes.
+
+Through the static on the viewscreen, you can just make out the approaching Blorgnax Homeworld. This is bad.`,
+        connections: {
+            south: 'main-corridor'
+        },
+        features: {
+            'viewscreen': `The main viewscreen crackles with static, but through it you can see the Blorgnax Homeworld growing larger. ETA: approximately "too soon."`,
+            'consoles': `Navigation consoles spark and flicker. Most show ERROR messages. One optimistically displays "COLLISION COURSE CONFIRMED!" with a smiley face. You're going to have words with whoever programmed that.`,
+            'chair': `The captain's chair, currently occupied by the unconscious Captain Bluster. It's a really nice chair. You've dusted it many times.`,
+            'dusty': `DUSTY's terminal. The AI's avatar flickers on screen, occasionally spouting rhyming nonsense. "Systems failing, quite distressing / This situation needs addressing!" Not helpful, DUSTY.`,
+            'captain': `Captain Reginald Bluster, unconscious and slightly drooling on his command chair. His perfect hair is finally out of place. You resist the urge to take a photo.`
+        },
+        image: 'bridge.png'
     }
 };
 

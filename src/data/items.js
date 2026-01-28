@@ -60,6 +60,52 @@ This stuff can clean ANYTHING. You've seen it dissolve things that technically s
         startingRoom: 'cargo-bay-7',
         aliases: ['solvent', 'cleaning solvent', 'bottle', 'cleaner'],
         useWith: ['goo', 'alien-goo']
+    },
+
+    'wire-cutters': {
+        name: 'Wire Cutters',
+        description: 'A pair of wire cutters sits on the workbench.',
+        examineText: `Standard engineering wire cutters. Sharp, sturdy, and covered in a thin layer of grease that suggests recent use. The handle has "PROPERTY OF ENGINEERING - DO NOT REMOVE" written on it in marker that's almost completely worn off.
+
+You've borrowed these before. "Borrowed." Engineering never noticed. Or if they did, they blamed Jenkins.`,
+        takeable: true,
+        startingRoom: 'engineering-deck',
+        aliases: ['cutters', 'wire cutter', 'tool']
+    },
+
+    'maintenance-manual': {
+        name: 'Maintenance Manual',
+        description: 'A thick maintenance manual sits on a console.',
+        examineText: `"Pristine Venture Engineering Guide: When Things Go Wrong (And They Will)" - 4th Edition
+
+The manual is dog-eared and coffee-stained. Someone has annotated the margins extensively with notes like "This doesn't work," "Tried this, made it worse," and "Just hit it."
+
+Chapter 7 is titled "Emergency Power Restoration" and features a helpful diagram of where to insert a power cell. Chapter 12 is titled "What To Do When The AI Goes Insane (Again)."`,
+        takeable: true,
+        startingRoom: 'engineering-deck',
+        aliases: ['manual', 'book', 'guide', 'engineering manual']
+    },
+
+    'rubber-gloves': {
+        name: 'Rubber Gloves',
+        description: 'A pair of rubber gloves hangs by the medical supplies.',
+        examineText: `Standard medical-grade rubber gloves. You have a deep professional respect for rubber gloves - they've saved your hands from countless horrifying substances over the years.
+
+These ones are bright yellow and slightly too large, but they'll do. Beggars can't be choosers when dealing with potential biohazards.`,
+        takeable: true,
+        startingRoom: 'medical-bay',
+        aliases: ['gloves', 'medical gloves', 'yellow gloves']
+    },
+
+    'ammonia': {
+        name: 'Ammonia Solution',
+        description: 'A bottle of ammonia solution sits among the medical supplies.',
+        examineText: `Medical-grade ammonia solution. The label warns against mixing with other chemicals, which you know from experience is excellent advice that you've ignored many times in your career.
+
+This could be useful. Your janitorial chemistry training is suggesting possibilities...`,
+        takeable: true,
+        startingRoom: 'medical-bay',
+        aliases: ['ammonia', 'ammonia bottle']
     }
 };
 
