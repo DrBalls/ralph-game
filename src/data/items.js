@@ -149,6 +149,50 @@ The box cheerfully proclaims "Now with 50% less sawdust!" You've always wondered
         takeable: true,
         startingRoom: 'mess-hall',
         aliases: ['donuts', 'donut', 'doughnuts', 'doughnut', 'pastries']
+    },
+
+    'duct-tape': {
+        name: 'Duct Tape',
+        description: 'A roll of industrial duct tape sits on a workbench.',
+        examineText: `A roll of "Fix-Everything Industrial Duct Tape" - the station's most valuable resource. The label claims it can repair "hulls, hearts, and hope."
+
+You've used this stuff to fix everything from leaky pipes to existential crises. There's a reason Engineering keeps it under lock and key. Well, they USED to keep it under lock and key. Now it's just sitting here.
+
+This is the good stuff - silver, sticky, and strong enough to hold the fabric of reality together. Possibly literally.`,
+        takeable: true,
+        startingRoom: 'engineering-deck',
+        aliases: ['tape', 'silver tape', 'repair tape'],
+        useWith: ['synthesizer', 'food synthesizer']
+    },
+
+    'caffeinated-sludge': {
+        name: 'Caffeinated Sludge',
+        description: 'A mug of what the synthesizer considers "coffee" steams ominously.',
+        examineText: `The food synthesizer's interpretation of "coffee" is... generous. It's black, it's hot, and it contains enough caffeine to wake the dead. Or at least the unconscious.
+
+The liquid is thick enough that the spoon stands up on its own. There's a faint glow that suggests either bioluminescence or radiation. You decide not to investigate which.
+
+Dr. Patchwell would probably drink motor oil if it had caffeine in it. This should definitely suffice.`,
+        takeable: true,
+        startingRoom: null,
+        hidden: true,
+        aliases: ['coffee', 'sludge', 'coffee mug', 'drink'],
+        useWith: ['doctor', 'dr patchwell', 'patchwell', 'vera']
+    },
+
+    'engineering-keycard': {
+        name: 'Engineering Keycard',
+        description: 'An Engineering keycard marked with the station logo.',
+        examineText: `An official Engineering access keycard. It's marked "ENGINEERING - ALL ACCESS" in bold letters, with Chief Krix's signature on the back.
+
+There's a coffee stain on one corner - probably from Dr. Patchwell. The keycard reader on the Science Lab door should accept this.
+
+With this, you can access the more restricted areas of the station. The plot thickens. Or at least, your access level does.`,
+        takeable: true,
+        startingRoom: null,
+        hidden: true,
+        aliases: ['keycard', 'eng keycard', 'access card'],
+        useWith: ['door', 'science door', 'science lab']
     }
 };
 

@@ -12,6 +12,7 @@ export function initializePuzzles(game) {
     setupKeycardPuzzle(game);
     setupKeycardDoorUnlock(game);
     setupSmellingSaltsPuzzle(game);
+    setupCoffeePuzzle(game);
 }
 
 /**
@@ -154,6 +155,207 @@ The way to Engineering is now open.`
             message: "You're not sure how to use the keycard with that."
         };
     });
+}
+
+/**
+ * Setup the coffee puzzle
+ * - Player repairs synthesizer with duct tape
+ * - Player uses mug with synthesizer to create coffee
+ * - Player gives coffee to doctor to get engineering keycard
+ */
+function setupCoffeePuzzle(game) {
+    const ductTape = game.items.get('duct-tape');
+    const coffeeMug = game.items.get('coffee-mug');
+    const coffee = game.items.get('caffeinated-sludge');
+    const engKeycard = game.items.get('engineering-keycard');
+
+    // Setup duct tape use handler to repair synthesizer
+    if (ductTape) {
+        ductTape.setUseHandler((item, target, gameState) => {
+            const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+            if (targetId === 'synthesizer' || targetId === 'food synthesizer') {
+                // Check if we're in the mess hall
+                const currentRoomId = gameState.getCurrentRoomId();
+                if (currentRoomId !== 'mess-hall') {
+                    return {
+                        success: false,
+                        message: "There's no synthesizer here to repair."
+                    };
+                }
+
+                // Check if already repaired
+                if (gameState.getFlag('synthesizer_repaired')) {
+                    return {
+                        success: false,
+                        message: "The synthesizer is already repaired. Your duct tape handiwork holds strong."
+                    };
+                }
+
+                // Repair the synthesizer!
+                gameState.setFlag('synthesizer_repaired', true);
+                gameState.inventory.remove('duct-tape');
+                gameState.addScore(5, 'repair_synthesizer');
+
+                return {
+                    success: true,
+                    message: `You approach the sparking food synthesizer with the confidence of someone who has fixed many things with duct tape. Which is to say, you.
+
+*RRRRIP* *STICK* *SMOOTH*
+
+You apply the duct tape to the synthesizer's exposed wiring with surgical precision. The sparking stops. The grinding noise becomes a gentle hum. The display settles on "READY TO SERVE."
+
+"Fixed it," you announce to no one in particular. It feels important to announce these things.
+
+The food synthesizer is now operational. Time for coffee.`
+                };
+            }
+
+            return {
+                success: false,
+                message: "You're not sure what to repair with the duct tape here."
+            };
+        });
+    }
+
+    // Setup coffee mug use handler to make coffee
+    if (coffeeMug) {
+        coffeeMug.setUseHandler((item, target, gameState) => {
+            const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+            if (targetId === 'synthesizer' || targetId === 'food synthesizer' ||
+                targetId === 'coffee station') {
+                // Check if we're in the mess hall
+                const currentRoomId = gameState.getCurrentRoomId();
+                if (currentRoomId !== 'mess-hall') {
+                    return {
+                        success: false,
+                        message: "There's no synthesizer here."
+                    };
+                }
+
+                // Check if synthesizer is repaired
+                if (!gameState.getFlag('synthesizer_repaired')) {
+                    return {
+                        success: false,
+                        message: "The synthesizer sparks angrily when you approach. It needs to be repaired first - maybe some duct tape would help."
+                    };
+                }
+
+                // Check if already made coffee
+                if (gameState.getFlag('coffee_created')) {
+                    return {
+                        success: false,
+                        message: "You've already made coffee. One cup of this stuff is enough to keep anyone awake for a week."
+                    };
+                }
+
+                // Make the coffee!
+                gameState.setFlag('coffee_created', true);
+                gameState.inventory.remove('coffee-mug');
+
+                if (coffee) {
+                    coffee.hidden = false;
+                    gameState.inventory.add(coffee);
+                }
+
+                gameState.addScore(5, 'make_coffee');
+
+                return {
+                    success: true,
+                    message: `You place the mug under the synthesizer's dispenser and press the button marked "COFFEE - EXTRA STRENGTH."
+
+*WHIRRRRR* *GURGLE* *SPLORP*
+
+A stream of liquid that can only charitably be called "coffee" fills the mug. It's the color of a black hole and smells like it could dissolve metal. The mug is now uncomfortably warm.
+
+"Perfect," you say, knowing that Dr. Patchwell's standards for coffee are... flexible.
+
+You now have a mug of Caffeinated Sludge!`
+                };
+            }
+
+            return {
+                success: false,
+                message: "You're not sure what to do with the mug here."
+            };
+        });
+    }
+
+    // Setup coffee use handler to give to doctor
+    if (coffee) {
+        coffee.setUseHandler((item, target, gameState) => {
+            const targetId = target?.id?.toLowerCase() || target?.toLowerCase?.() || '';
+
+            if (targetId === 'dr-patchwell' || targetId === 'doctor' ||
+                targetId === 'patchwell' || targetId === 'vera') {
+                // Check if we're in the medical bay
+                const currentRoomId = gameState.getCurrentRoomId();
+                if (currentRoomId !== 'medical-bay') {
+                    return {
+                        success: false,
+                        message: "Dr. Patchwell isn't here. She's in the Medical Bay."
+                    };
+                }
+
+                // Check if doctor is awake
+                if (!gameState.getFlag('doctor_awake')) {
+                    return {
+                        success: false,
+                        message: "Dr. Patchwell is unconscious. She can't drink coffee while she's asleep... though knowing her, she'd probably try."
+                    };
+                }
+
+                // Check if already given coffee
+                if (gameState.getFlag('coffee_given')) {
+                    return {
+                        success: false,
+                        message: "You've already given Dr. Patchwell coffee. She's caffeinated and grateful."
+                    };
+                }
+
+                // Give the coffee!
+                gameState.setFlag('coffee_given', true);
+                gameState.inventory.remove('caffeinated-sludge');
+
+                // Give player the engineering keycard
+                if (engKeycard) {
+                    engKeycard.hidden = false;
+                    gameState.inventory.add(engKeycard);
+                }
+
+                // Update doctor's state
+                const drPatchwell = game.characters.get('dr-patchwell');
+                if (drPatchwell) {
+                    drPatchwell.setState('helped');
+                }
+
+                gameState.addScore(15, 'help_doctor');
+
+                return {
+                    success: true,
+                    message: `You offer the mug of caffeinated sludge to Dr. Patchwell. Her eyes light up with an intensity usually reserved for religious experiences.
+
+"Is that... COFFEE?!" She snatches the mug from your hands with surprising speed for someone who was unconscious twenty minutes ago.
+
+She takes a long sip, pauses, and her expression shifts from desperate to contemplative to satisfied.
+
+"That is... the worst coffee I've ever had," she says, taking another sip. "I love it. Thank you."
+
+She reaches into her coat pocket and produces a keycard. "Here - take this. Engineering keycard. Chief Krix gave it to me for emergencies, and I'd say this qualifies. You'll need it to access the Science Lab."
+
+She takes another sip of coffee. "Now go save the station. I'll... stay here. Drink this. Try not to think about how we're all going to die."
+
+You received the Engineering Keycard!`
+                };
+            }
+
+            return {
+                success: false,
+                message: "You're not sure who to give this coffee to."
+            };
+        });
+    }
 }
 
 /**
