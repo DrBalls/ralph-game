@@ -6,20 +6,25 @@ A browser-based text adventure game in the style of classic Sierra and LucasArts
 
 ## Playing the Game
 
-Open `public/index.html` in any modern browser. No build step, server, or installation required.
+The game uses ES modules, which require a local HTTP server (browsers block module imports from `file://` URLs). No build step or dependencies to install — just serve and play.
 
-```
-# Clone and play
+```bash
+# Clone and play (works on Windows, Mac, and Linux)
 git clone https://github.com/DrBalls/ralph-game.git
 cd ralph-game
-open public/index.html
+npm start
 ```
 
-Or serve locally if your browser blocks ES module imports from `file://`:
+This runs a local server and opens the game in your browser. Requires [Node.js](https://nodejs.org/) (v16+).
 
-```
+**Alternative** — if you don't want to use npm:
+```bash
+# Any static file server works. For example:
 npx serve public
+python3 -m http.server -d public
 ```
+
+> **Note:** Double-clicking `index.html` directly will **not** work — browsers block ES module imports over the `file://` protocol.
 
 ## Story
 
@@ -88,7 +93,7 @@ See [WALKTHROUGH.md](WALKTHROUGH.md) for a complete guide with step-by-step solu
 
 - **Platform:** Browser (any modern browser on any OS)
 - **Tech stack:** Vanilla HTML, CSS, JavaScript (ES6 modules)
-- **Dependencies:** None
+- **Dependencies:** None (runtime). Node.js needed only to run the local dev server.
 - **Build step:** None
 - **Graphics:** 16 VGA-style pixel art images (640x400 PNG)
 - **Save system:** Browser localStorage
@@ -103,6 +108,10 @@ src/
 public/
   index.html, game.js, styles.css, images/
 ```
+
+## Development
+
+The `ralph.sh` agent loop script requires bash. On Windows, use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or [Git Bash](https://gitforwindows.org/). Alternatively, `npm run ralph` wraps it for convenience.
 
 ## Credits
 

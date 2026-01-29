@@ -1,0 +1,12 @@
+{
+  "name": "cosmic-custodian",
+  "version": "1.0.0",
+  "description": "Cosmic Custodian: The Janitorial Frontier — A browser-based text adventure game",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve public",
+    "ralph": "bash ralph.sh"
+  },
+  "keywords": ["text-adventure", "game", "space-quest", "browser"],
+  "license": "MIT"
+}
